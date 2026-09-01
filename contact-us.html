@@ -3,349 +3,434 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vextria - Contact Support</title>
+<title>Vextria - Blog System</title>
 <link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height:100%;font-family:"Source Sans Pro",Arial,Helvetica,sans-serif}
-body{background:rgb(220, 220, 220);color:#333;overflow-x:hidden}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{background:rgb(220, 220, 220);color:#fff;overflow-x:hidden}
 
-/* Top Navigation Bar */
+/* Top Banner */
 .topbar{
-  height:54px;
-  background:#174d88;
+  height:54px;background:#174d88;
   border-bottom:1px solid rgba(0,0,0,.18);
-  position:relative;
-  z-index:20;
+  position:relative;z-index:20
 }
 .topbar-inner{
-  height:54px;
-  max-width:800px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  padding:0 15px;
+  height:54px;max-width:1500px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 10px;
 }
 .brand{
-  display:block;
-  width:145px;
-  height:48px;
-  background:url("https://cdn.discordapp.com/attachments/1537761116963209227/1544175993978224650/image.png?ex=6a978d76&is=6a963bf6&hm=1e04d7b1a3d49253205d0634c2153c124ffbcb25115ce2403737a394f1a6cd2a&") center/contain no-repeat;
+  display:block;width:145px;height:48px;margin-left:6px;
+  background:url("https://cdn.discordapp.com/attachments/1537761116963209227/1544175993978224650/image.png?ex=6a978d76&is=6a963bf6&hm=1e04d7b1a3d49253205d0634c2153c124ffbcb25115ce2403737a394f1a6cd2a&") center/contain no-repeat
 }
 
 /* Page Layout Container */
 .page-container{
-  max-width:800px;
-  margin:0 auto;
-  min-height:calc(100vh - 152px);
+  max-width:1100px;margin:0 auto;min-height:calc(100vh - 152px);
+  display:flex;gap:15px;background:rgb(220, 220, 220);color:#333;
+  padding:20px 0;
+}
+
+/* View Switching Mechanics */
+.view-panel{
+  display:none;
+  width:100%;
+}
+
+.view-panel.active{
   display:flex;
+}
+
+/* Sidebar Styles (Right Side) */
+.sidebar{
+  width:240px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  flex-shrink:0;
+}
+
+.sidebar-box{
   background:#fff;
-  border-left:1px solid rgba(0,0,0,.15);
-  border-right:1px solid rgba(0,0,0,.15);
+  border:1px solid #707070;
+  padding:14px;
 }
 
-/* Main Content Area */
-.main-content{
-  flex-grow:1;
-  padding:25px 35px;
-  background:#fff;
-  color:#222;
-}
-
-h1.page-title{
-  font-size:24px;
-  margin:0 0 15px 0;
-  color:#000;
-  font-weight:700;
-  border-bottom:2px solid #174d88;
-  padding-bottom:8px;
-}
-
-.section-title{
-  font-size:15px;
-  font-weight:700;
-  color:#174d88;
-  margin:20px 0 12px 0;
-  padding-bottom:4px;
-  border-bottom:1px solid #e5e5e5;
-}
-
-/* Form Controls */
-.form-group{
-  margin-bottom:16px;
-  position:relative;
-}
-.form-group label{
-  display:block;
-  font-weight:400;
+.sidebar-title{
   font-size:14px;
-  margin-bottom:5px;
-  color:#333;
-}
-.label-desc{
-  font-weight:normal;
-  color:#757575;
-  font-size:12px;
-}
-.info-icon{
-  display:inline-block;
-  width:14px;
-  height:14px;
-  background:#666;
-  color:#fff;
-  border-radius:50%;
-  text-align:center;
-  font-size:10px;
-  line-height:14px;
   font-weight:bold;
-  cursor:pointer;
-  margin-left:4px;
-  vertical-align:middle;
-}
-
-.tooltip-box{
-  display:none;
-  position:absolute;
-  left:0;
-  top:-48px;
-  background:#fff;
-  border:1px solid #c3c3c3;
-  padding:6px 10px;
-  font-size:12px;
-  color:#333;
-  box-shadow:0 2px 5px rgba(0,0,0,0.15);
-  z-index:100;
-}
-.tooltip-box::after{
-  content:"";
-  position:absolute;
-  bottom:-6px;
-  left:15px;
-  border-width:6px 6px 0;
-  border-style:solid;
-  border-color:#fff transparent;
-  display:block;
-  width:0;
-}
-.info-icon:hover + .tooltip-box{
-  display:block;
-}
-
-.form-control{
-  width:100%;
-  padding:8px 12px;
-  font-size:14px;
-  border:1px solid #a6a6a6;
-  border-radius:3px;
-  background:#fff;
-  color:#333;
-  transition:border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.form-control::placeholder{
-  color:#b8b8b8;
-}
-
-.form-control:focus{
-  outline:none;
-  border-color:#174d88;
-  box-shadow:0 0 5px rgba(23, 77, 136, 0.4);
-}
-
-.form-control.valid{
-  border-color:#2e7d32;
-}
-.form-control.invalid{
-  border-color:#d32f2f;
-}
-.error-msg{
-  display:none;
-  color:#d32f2f;
-  font-size:12px;
-  margin-top:4px;
-}
-.form-control.invalid + .error-msg{
-  display:block;
-}
-
-/* Warning Banner (Static Warning) */
-.message-span-warning{
-  display:block;
-  background:#fdeded;
-  border:1px solid #d32f2f;
-  color:#d32f2f;
-  padding:8px 12px;
-  font-size:13px;
-  border-radius:0;
-  margin:18px 0;
-  width:100%;
-}
-
-/* Blue Confirmation Message Span (Sent) */
-.message-span-success{
-  display:none;
-  background:#e8f4fd;
-  border:1px solid #174d88;
   color:#174d88;
-  padding:8px 12px;
-  font-size:13px;
-  border-radius:0;
-  margin:18px 0;
-  width:100%;
+  border-bottom:2px solid #174d88;
+  padding-bottom:4px;
+  margin:0 0 10px 0;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
 }
 
-/* Red Error Message Span (Form Errors) */
-.message-span-error{
-  display:none;
-  background:#fdeded;
-  border:1px solid #d32f2f;
-  color:#d32f2f;
-  padding:8px 12px;
-  font-size:13px;
-  border-radius:0;
-  margin:18px 0;
-  width:100%;
+.search-form{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
-textarea.form-control{
-  resize:vertical;
-  min-height:110px;
+.search-input{
+  width:100%;
+  padding:5px 8px;
+  border:1px solid #707070;
+  font-size:12px;
 }
 
-/* Custom Styled Dropdown Component */
-.custom-select-wrapper{
-  position:relative;
-  width:100%;
-  user-select:none;
+.recent-article-item{
+  display:flex;
+  gap:8px;
+  align-items:center;
 }
 
-.custom-select-trigger{
-  width:100%;
-  height:38px;
-  padding:8px 12px;
-  font-size:14px;
-  border:1px solid #a6a6a6;
-  border-radius:3px;
-  background:#fff;
-  color:#333;
+.recent-article-thumb{
+  width:40px;
+  height:40px;
+  background:#eee;
+  border:1px solid #ccc;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  cursor:pointer;
-  transition:border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.custom-select-wrapper.open .custom-select-trigger{
-  border-color:#174d88;
-  box-shadow:0 0 5px rgba(23, 77, 136, 0.4);
-}
-.custom-select-wrapper.disabled .custom-select-trigger{
-  background:#f4f4f4;
-  color:#888;
-  cursor:not-allowed;
-  border-color:#ccc;
-}
-.custom-select-trigger::after{
-  content:"";
-  width:0;
-  height:0;
-  border-left:5px solid transparent;
-  border-right:5px solid transparent;
-  border-top:5px solid #333;
+  justify-content:center;
+  flex-shrink:0;
 }
 
-.custom-options{
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-  right:0;
-  background:#fff;
-  border:1px solid #a6a6a6;
-  border-top:none;
-  border-radius:0 0 3px 3px;
-  box-shadow:0 4px 8px rgba(0,0,0,0.15);
-  z-index:200;
-  max-height:220px;
-  overflow-y:auto;
-  margin-top:-1px;
-}
-.custom-select-wrapper.open .custom-options{
-  display:block;
+.recent-article-thumb svg{
+  width:20px;
+  height:20px;
+  fill:#aaa;
 }
 
-/* Custom Dropdown Option Styles */
-.custom-option{
-  padding:8px 15px;
-  font-size:14px;
+.recent-article-title{
+  font-size:12px;
+  font-weight:bold;
+  color:#174d88;
+  text-decoration:none;
+}
+
+.recent-article-title:hover{
+  text-decoration:underline;
+}
+
+.tree-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  font-size:12px;
+}
+
+.tree-list li{
+  padding:3px 0;
   color:#333;
-  cursor:pointer;
-  background:#fff;
-  border-left:3px solid transparent; /* 1st State: Default */
-  transition:background-color 0.1s ease, border-left-color 0.1s ease;
-}
-.custom-option:hover{
-  background:#f0f0f0; 
-  border-left:3px solid #174d88; /* 3rd State: Hover (Left Blue Bar) */
-}
-.custom-option.selected{
-  border-left:3px solid #174d88; /* 2nd State: Picked */
-  font-weight:600;
-  color:#000;
 }
 
-/* Classic Green Button */
-.btn-submit{
+.tree-list a{
+  color:#333;
+  text-decoration:none;
+}
+
+.tree-list a:hover{
+  color:#174d88;
+  text-decoration:underline;
+}
+
+.stats-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  font-size:12px;
+}
+
+.stats-list li{
+  padding:4px 0;
+  color:#555;
+  font-weight:bold;
+  border-bottom:1px solid #eee;
+}
+
+.stats-list li:last-child{
+  border-bottom:none;
+}
+
+/* Default Feed Styles */
+.feed-content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.feed-card{
+  background:#fff;
+  border:1px solid #707070;
+  padding:15px;
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+}
+
+.feed-thumb-placeholder{
+  width:160px;
+  height:160px;
+  background:#eee;
+  border:1px solid #ccc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.feed-thumb-placeholder svg{
+  width:64px;
+  height:64px;
+  fill:#aaa;
+}
+
+.feed-details{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.feed-header-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:4px;
+}
+
+.feed-title{
+  font-size:18px;
+  font-weight:bold;
+  color:#000;
+  margin:0;
+}
+
+.category-tag{
+  background:#174d88;
+  color:#fff;
+  font-size:11px;
+  font-weight:bold;
+  padding:2px 6px;
+  border-radius:2px;
+}
+
+.feed-meta{
+  font-size:12px;
+  color:#666;
+  margin-bottom:12px;
+}
+
+.feed-snippet{
+  font-size:13px;
+  color:#333;
+  line-height:1.4;
+  margin:0 0 15px 0;
+  flex-grow:1;
+}
+
+.read-more-btn{
+  color:#174d88;
+  font-weight:bold;
+  font-size:13px;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.read-more-btn:hover{
+  text-decoration:underline;
+}
+
+/* Main Blog Document View Styles */
+.doc-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.doc-post-card{
+  background:#fff;
+  border:1px solid #707070;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.doc-featured-image{
+  width:100%;
+  max-height:260px;
+  background:#eee;
+  border:1px solid #ccc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.doc-featured-image svg{
+  width:64px;
+  height:64px;
+  fill:#aaa;
+  padding:40px 0;
+}
+
+.doc-header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.doc-title{
+  font-size:22px;
+  font-weight:bold;
+  color:#000;
+  margin:0;
+  line-height:1.2;
+}
+
+.doc-author-meta{
+  font-size:12px;
+  color:#666;
+  margin-top:-4px;
+}
+
+.doc-message-body{
+  font-size:13px;
+  color:#333;
+  line-height:1.45;
+  margin:0;
+  display:-webkit-box;
+  -webkit-line-clamp:8;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Action Bar Container */
+.doc-actions-bar{
+  display:flex;
+  align-items:flex-start;
+  margin-top:15px;
+  padding-top:15px;
+  border-top:1px solid #ddd;
+  gap:12px;
+}
+
+/* Column Base Mechanics */
+.action-column{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+
+/* Counter Numbers directly below each button */
+.action-count{
+  font-size:12px;
+  font-weight:bold;
+}
+
+.count-blue{
+  color:#0055b3;
+}
+
+.count-green{
+  color:#008000;
+}
+
+.count-red{
+  color:#a00000;
+}
+
+/* Base Roblox Sprite Button Styles */
+.roblox-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:150px;
-  height:34px;
+  height:30px;
+  padding:0 14px;
   color:#fff;
-  font-weight:700;
-  font-size:13px;
+  font-size:12px;
+  font-weight:bold;
+  text-decoration:none;
   border:none;
   cursor:pointer;
-  text-shadow:0 -1px rgba(0,0,0,.45);
-  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-green.png");
-  background-repeat:no-repeat;
-  background-size:150px 178px;
-  background-position:0 0;
+  background-repeat:repeat-x;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.4);
 }
-.btn-submit:hover{
-  background-position:0 -34px;
+
+/* --- Share, Bookmark & Like Buttons --- */
+
+/* On Hover: Shift background position to -50px */
+.roblox-btn-blue:hover,
+.roblox-btn-green:hover{
+  background-position:0 -50px;
 }
-.btn-submit:active{
+
+.roblox-btn-blue{
   background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-blue.png");
-  background-position:0 -145px;
+  border:1px solid #0055b3;
+}
+
+.roblox-btn-green{
+  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-green.png");
+  border:1px solid #008000;
+}
+
+/* --- Red Button (Dislike) --- */
+/* Base position updated to -2px */
+.roblox-btn-red{
+  background-image:url("https://web.archive.org/web/20120223124915if_/http://www.roblox.com/images/btn_red_30h_t2.png");
+  border:1px solid #a00000;
+  background-position:0 -2px;
+}
+
+/* On Hover: Shift red sprite background all the way down */
+.roblox-btn-red:hover{
+  background-position:0 100%;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-top:10px;
+  color:#174d88;
+  font-size:12px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.back-btn:hover{
+  text-decoration:underline;
 }
 
 /* Footer */
 .lower{
-  width:100%;
-  height:98px;
-  min-height:98px;
+  width:100%;height:98px;min-height:98px;
   background:#174d88;
   border-top:1px solid rgba(255,255,255,.55);
-  position:relative;
-  z-index:10;
-  text-align:center;
+  position:relative;z-index:10;text-align:center;
   padding:16px 20px 0;
 }
 .footer-links{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  font-size:14px;
-  font-weight:700;
+  display:flex;justify-content:center;align-items:center;gap:10px;
+  flex-wrap:wrap;font-size:16px;font-weight:700;
 }
 .footer-links a{color:#fff;text-decoration:none}
 .footer-links a:hover{text-decoration:underline}
-.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+.footer-copy{margin:14px 0 0;font-size:14px;color:#8eadd1;line-height:1.25}
 
 @media(max-width:768px){
-  .main-content{padding:20px}
+  .page-container, .view-panel{flex-direction:column}
+  .feed-card{flex-direction:column}
+  .feed-thumb-placeholder{width:100%;height:180px}
+  .sidebar{width:100%}
 }
 </style>
 </head>
@@ -353,101 +438,145 @@ textarea.form-control{
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+    <a class="brand" href="/Vextria/" aria-label="Vextria"></a>
   </div>
 </header>
 
 <div class="page-container">
-  <main class="main-content">
-    <h1 class="page-title">Contact Support</h1>
 
-    <div class="message-span-success" id="successSpan">
-      Your request has been sent! Our support team will get back to you shortly.
-    </div>
-
-    <div class="message-span-error" id="errorSpan">
-      Please fill in all required fields correctly before submitting.
-    </div>
-
-    <form action="#" method="post" id="supportForm" onsubmit="return validateForm(event)">
-      
-      <div class="section-title">Your Information</div>
-
-      <div class="form-group">
-        <label for="firstName">First Name <span class="label-desc">(Optional)</span></label>
-        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name">
-      </div>
-
-      <div class="form-group">
-        <label for="email">
-          Account Email Address 
-          <span class="info-icon">?</span>
-          <span class="tooltip-box">The email address linked to your account.</span>
-        </label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required onblur="checkEmail(this)">
-        <span class="error-msg">Please check email format</span>
-      </div>
-
-      <div class="form-group">
-        <label for="confirmEmail">Confirm Account Email Address</label>
-        <input type="email" id="confirmEmail" name="confirmEmail" class="form-control" placeholder="Confirm Email Address" required onblur="checkConfirmEmail()">
-        <span class="error-msg">Emails do not match</span>
-      </div>
-
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="Username: 3-20 characters, no spaces" required>
-      </div>
-
-      <div class="section-title">What Do You Need Help With?</div>
-
-      <div class="form-group">
-        <label>Category</label>
-        <div class="custom-select-wrapper" id="categoryWrapper">
-          <div class="custom-select-trigger" id="categoryTrigger">-- Select a Category --</div>
-          <div class="custom-options" id="categoryOptions">
-            <div class="custom-option" data-value="account">Account Access</div>
-            <div class="custom-option" data-value="billing">Billing &amp; Payments</div>
-            <div class="custom-option" data-value="moderation">Moderation</div>
-            <div class="custom-option" data-value="copyright">Copyright</div>
-            <div class="custom-option" data-value="bug">Bug &amp; Exploit Report</div>
-            <div class="custom-option" data-value="delete">I want to delete my account</div>
-            <div class="custom-option" data-value="privacy">Privacy Request</div>
-            <div class="custom-option" data-value="advertisements">Advertisements</div>
+  <div id="default-view" class="view-panel active" style="gap:15px;">
+    
+    <main class="feed-content">
+      <article class="feed-card">
+        <div class="feed-thumb-placeholder">
+          <svg viewBox="0 0 24 24">
+            <path d="M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3L19,3z M14.14,11.86 l-3,3.87L9,13.14L6,17h12L14.14,11.86L14.14,11.86z M8.5,11C9.33,11,10,10.33,10,9.5S9.33,8,8.5,8S7,8.67,7,9.5S7.67,11,8.5,11 L8.5,11z"/>
+          </svg>
+        </div>
+        <div class="feed-details">
+          <div class="feed-header-row">
+            <h2 class="feed-title">Title</h2>
+            <span class="category-tag">Section (Game Development)</span>
+          </div>
+          <div class="feed-meta">By (username) at 15th August 2026 - 10:35Am BST</div>
+          <p class="feed-snippet">Few Messages</p>
+          <div>
+            <a onclick="showView('document-view')" class="read-more-btn">Read More</a>
           </div>
         </div>
-        <input type="hidden" name="category" id="categoryInput" required>
+      </article>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Search</h3>
+        <form class="search-form" action="#" method="get" onsubmit="return false;">
+          <input type="text" class="search-input" placeholder="Search..." aria-label="Search">
+          <button type="submit" class="roblox-btn roblox-btn-blue" style="width:100%;">Search</button>
+        </form>
       </div>
 
-      <div class="form-group">
-        <label>Subcategory</label>
-        <div class="custom-select-wrapper disabled" id="subcategoryWrapper">
-          <div class="custom-select-trigger" id="subcategoryTrigger">-- Please select a category first --</div>
-          <div class="custom-options" id="subcategoryOptions"></div>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Recent Articles</h3>
+        <div class="recent-article-item">
+          <div class="recent-article-thumb">
+            <svg viewBox="0 0 24 24">
+              <path d="M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3L19,3z M14.14,11.86 l-3,3.87L9,13.14L6,17h12L14.14,11.86L14.14,11.86z M8.5,11C9.33,11,10,10.33,10,9.5S9.33,8,8.5,8S7,8.67,7,9.5S7.67,11,8.5,11 L8.5,11z"/>
+            </svg>
+          </div>
+          <a href="#" onclick="showView('document-view')" class="recent-article-title">Title</a>
         </div>
-        <input type="hidden" name="subcategory" id="subcategoryInput" required>
       </div>
 
-      <div class="section-title">Tell Us What Happened</div>
-
-      <div class="form-group">
-        <label for="subject">Subject <span class="label-desc">&mdash; Give your request a title</span></label>
-        <input type="text" id="subject" name="subject" class="form-control" placeholder="Give your request a title" required>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Statistics</h3>
+        <ul class="stats-list">
+          <li>0 Shares All time</li>
+          <li>0 Bookmarks All time</li>
+          <li>0 Likes All time</li>
+          <li>0 Dislikes All time</li>
+        </ul>
       </div>
 
-      <div class="form-group">
-        <label for="description">Description <span class="label-desc">&mdash; Explain the problem as clearly as possible</span></label>
-        <textarea id="description" name="description" class="form-control" rows="5" placeholder="Explain the problem as clearly as possible" required></textarea>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Categories</h3>
+        <ul class="tree-list">
+          <li>+ <a href="#">News</a></li>
+          <li>+ <a href="#">Release Notes</a></li>
+          <li>+ <a href="#">Contests</a></li>
+          <li>+ <a href="#">Announcements</a></li>
+          <li>+ <a href="#">Gaming</a></li>
+          <li>+ <a href="#">Reviews</a></li>
+          <li>+ <a href="#">Tutroails</a></li>
+          <li>+ <a href="#">Uncategorize</a></li>
+        </ul>
       </div>
 
-      <div class="message-span-warning">
-        Do not send your password or other login details.
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Archives</h3>
+        <ul class="tree-list">
+          <li>+ <a href="#">Month Year</a></li>
+        </ul>
       </div>
+    </aside>
 
-      <button type="submit" class="btn-submit">Submit Request</button>
+  </div>
 
-    </form>
-  </main>
+  <div id="document-view" class="view-panel">
+    
+    <main class="doc-main">
+      <article class="doc-post-card">
+        
+        <div class="doc-featured-image">
+          <svg viewBox="0 0 24 24">
+            <path d="M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3L19,3z M14.14,11.86 l-3,3.87L9,13.14L6,17h12L14.14,11.86L14.14,11.86z M8.5,11C9.33,11,10,10.33,10,9.5S9.33,8,8.5,8S7,8.67,7,9.5S7.67,11,8.5,11 L8.5,11z"/>
+          </svg>
+        </div>
+
+        <div class="doc-header-row">
+          <h1 class="doc-title">Title</h1>
+          <span class="category-tag">Section (Game Development)</span>
+        </div>
+
+        <div class="doc-author-meta">By (username) at 15th August 2026 - 10:35Am BST</div>
+
+        <p class="doc-message-body">
+          Few Messages. This is the standalone main blog document view. CSS line clamping ensures that text caps strictly at 8 lines maximum.
+        </p>
+
+        <div class="doc-actions-bar">
+          
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-blue">Share</button>
+            <span class="action-count count-blue">0</span>
+          </div>
+
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-blue">Bookmark</button>
+            <span class="action-count count-blue">0</span>
+          </div>
+
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-green">Like</button>
+            <span class="action-count count-green">0</span>
+          </div>
+
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-red">Dislike</button>
+            <span class="action-count count-red">0</span>
+          </div>
+
+        </div>
+
+        <div>
+          <a onclick="showView('default-view')" class="back-btn">&larr; Go Back</a>
+        </div>
+
+      </article>
+    </main>
+
+  </div>
+
 </div>
 
 <footer class="lower">
@@ -456,9 +585,9 @@ textarea.form-control{
     <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
     <a href="/Vextria/info/about-us">About Us</a><span>|</span>
     <a href="/Vextria/info/careers">Careers</a><span>|</span>
-    <a href="https://blog.vextria.com/home">Blog</a><span>|</span>
+    <a href="/Vextria/blog/default">Blog</a><span>|</span>
     <a href="/Vextria/info/parents">Parents</a><span>|</span>
-    <a href="https://wiki.vextria.com/home">Help</a><span>|</span>
+    <a href="/Vextria/news/default">News</a><span>|</span>
     <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
     <a href="/Vextria/info/leadership">Leadership</a><span>|</span>
     <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
@@ -467,158 +596,12 @@ textarea.form-control{
 </footer>
 
 <script>
-const subcategories = {
-  account: [
-    "Can't sign in",
-    "Forgot my password/Username",
-    "Account Hacked",
-    "2 Step Verification issues",
-    "Other login issues"
-  ],
-  billing: [
-    "Purchase didn't arrive",
-    "Unauthorised Purchase",
-    "Request a refund",
-    "Subscription problem",
-    "Other purchase problem"
-  ],
-  moderation: [
-    "Appeal my account / content I created",
-    "Appeal for a friend",
-    "Report a safety concern"
-  ],
-  copyright: [
-    "DMCA takedown",
-    "DMCA Counter-Notice"
-  ],
-  bug: [
-    "Bug Report",
-    "Exploit Report"
-  ],
-  delete: [
-    "I want to delete my account"
-  ],
-  privacy: [
-    "Right to be Forgotten",
-    "Right of Access",
-    "Right to be Forgotten & Right of Access",
-    "Cookies",
-    "Other Privacy Request"
-  ],
-  advertisements: [
-    "Advertise with Us"
-  ]
-};
-
-// Dropdown Logic
-const catWrapper = document.getElementById('categoryWrapper');
-const catTrigger = document.getElementById('categoryTrigger');
-const catOptions = document.getElementById('categoryOptions');
-const catInput = document.getElementById('categoryInput');
-
-const subWrapper = document.getElementById('subcategoryWrapper');
-const subTrigger = document.getElementById('subcategoryTrigger');
-const subOptions = document.getElementById('subcategoryOptions');
-const subInput = document.getElementById('subcategoryInput');
-
-catTrigger.addEventListener('click', () => {
-  catWrapper.classList.toggle('open');
-  subWrapper.classList.remove('open');
-});
-
-catOptions.querySelectorAll('.custom-option').forEach(opt => {
-  opt.addEventListener('click', function() {
-    catOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
-    this.classList.add('selected');
-    catTrigger.textContent = this.textContent;
-    catInput.value = this.dataset.value;
-    catWrapper.classList.remove('open');
-    populateSubcategories(this.dataset.value);
+function showView(viewId) {
+  document.querySelectorAll('.view-panel').forEach(panel => {
+    panel.classList.remove('active');
   });
-});
-
-function populateSubcategories(catKey) {
-  subOptions.innerHTML = '';
-  subInput.value = '';
-  subTrigger.textContent = '-- Select a Subcategory --';
-  
-  if (subcategories[catKey]) {
-    subWrapper.classList.remove('disabled');
-    subcategories[catKey].forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'custom-option';
-      div.textContent = item;
-      div.dataset.value = item;
-      div.addEventListener('click', function() {
-        subOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
-        this.classList.add('selected');
-        subTrigger.textContent = this.textContent;
-        subInput.value = this.dataset.value;
-        subWrapper.classList.remove('open');
-      });
-      subOptions.appendChild(div);
-    });
-  }
-}
-
-subTrigger.addEventListener('click', () => {
-  if (!subWrapper.classList.contains('disabled')) {
-    subWrapper.classList.toggle('open');
-    catWrapper.classList.remove('open');
-  }
-});
-
-window.addEventListener('click', (e) => {
-  if (!catWrapper.contains(e.target)) catWrapper.classList.remove('open');
-  if (!subWrapper.contains(e.target)) subWrapper.classList.remove('open');
-});
-
-function checkEmail(input) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (input.value && !emailRegex.test(input.value)) {
-    input.classList.remove("valid");
-    input.classList.add("invalid");
-  } else if (input.value) {
-    input.classList.remove("invalid");
-    input.classList.add("valid");
-  } else {
-    input.classList.remove("invalid", "valid");
-  }
-}
-
-function checkConfirmEmail() {
-  const email = document.getElementById("email");
-  const confirm = document.getElementById("confirmEmail");
-  if (confirm.value && confirm.value !== email.value) {
-    confirm.classList.remove("valid");
-    confirm.classList.add("invalid");
-  } else if (confirm.value) {
-    confirm.classList.remove("invalid");
-    confirm.classList.add("valid");
-  } else {
-    confirm.classList.remove("invalid", "valid");
-  }
-}
-
-function validateForm(e) {
-  e.preventDefault();
-  const email = document.getElementById("email");
-  const confirm = document.getElementById("confirmEmail");
-  const successSpan = document.getElementById("successSpan");
-  const errorSpan = document.getElementById("errorSpan");
-
-  checkEmail(email);
-  checkConfirmEmail();
-
-  if (email.classList.contains("invalid") || confirm.classList.contains("invalid") || !catInput.value || !subInput.value) {
-    errorSpan.style.display = 'block';
-    successSpan.style.display = 'none';
-    return false;
-  }
-
-  errorSpan.style.display = 'none';
-  successSpan.style.display = 'block';
-  return true;
+  document.getElementById(viewId).classList.add('active');
+  window.scrollTo(0, 0);
 }
 </script>
 
