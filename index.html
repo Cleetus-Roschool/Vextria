@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria - Adventure Awaits</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{background:#174d88;color:#fff;overflow-x:hidden}
+
+/* Top banner */
+.topbar{
+  height:54px;background:#174d88;
+  border-bottom:1px solid rgba(0,0,0,.18);
+  position:relative;z-index:20
+}
+.topbar-inner{
+  height:54px;max-width:1500px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between
+}
+.brand{
+  display:block;width:145px;height:48px;margin-left:6px;
+  background:url("https://cdn.discordapp.com/attachments/1537761116963209227/1544175993978224650/image.png?ex=6a978d76&is=6a963bf6&hm=1e04d7b1a3d49253205d0634c2153c124ffbcb25115ce2403737a394f1a6cd2a&") center/contain no-repeat
+}
+.account{display:flex;gap:6px;align-items:center}
+.sprite-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  color:#fff;text-decoration:none;font-weight:700;
+  font-size:17px;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-repeat:no-repeat;
+}
+
+/* Tiny Buttons: Frame = {0, 92},{0, 34} | Sprite Sheet Scaled to 92px 178px */
+.signup,.login{
+  width:92px;
+  height:34px;
+  background-size:92px 178px;
+  background-position:0 0;
+}
+.signup{
+  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-green.png");
+}
+.login{
+  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-blue.png");
+}
+
+/* Hover State */
+.signup:hover,.login:hover{
+  background-position:0 -34px;
+}
+
+/* Main animated background */
+.hero{
+  position:relative;min-height:calc(100vh - 152px);overflow:hidden;
+  background:#2864af
+}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background-image:url("https://web.archive.org/web/20140701204830im_/http://images.rbxcdn.com/437004fbc01bf6a613547a40aabde10a.jpg");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  background-size:auto 686px;
+  animation:city-scroll 32s linear infinite;
+  z-index:0
+}
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background-image:url("https://web.archive.org/web/20140701204830im_/http://images.rbxcdn.com/161d0d393d74c103e5f50eef988b7217.png");
+  background-repeat:repeat-x;
+  background-position:0 bottom;
+  background-size:auto 100%;
+  animation:city-scroll 32s linear infinite;
+  pointer-events:none;z-index:1
+}
+@keyframes city-scroll{
+  from{background-position-x:0}
+  to{background-position-x:-1000px}
+}
+
+.hero-content{
+  position:relative;z-index:5;width:100%;max-width:1868px;
+  margin:auto;text-align:center;
+  padding-top:50px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+h1{
+  margin:0;font-size:76px;line-height:1.05;
+  font-weight:700;letter-spacing:-2px
+}
+.subtitle{
+  margin:10px 0 30px 0;
+  font-size:35px;line-height:1.2
+}
+
+/* Play Button: Frame = {0, 380},{0, 68} | Sprite Image Size = 380px x 68px */
+.play-button{
+  width:380px !important;
+  height:68px !important;
+  margin:0 auto 30px !important;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  font-size:31px;
+  font-weight:700;
+  text-shadow:0 -1px rgba(0,0,0,.55);
+  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-lg-green-play.png");
+  background-repeat:no-repeat;
+  background-position:0 0;
+  background-size:380px 136px;
+  overflow:hidden;
+}
+
+/* Hover ImageRectOffset shift set to -68px */
+.play-button:hover{
+  background-position:0 -68px;
+}
+
+/* Perfectly Centered Image: {0, 380},{0, 250} */
+.town-image{
+  width:380px;
+  height:250px;
+  object-fit:cover;
+  display:block;
+  margin:0 auto;
+  border:4px solid #008b00;
+  box-shadow:0 0 0 1px rgba(0,0,0,.25);
+}
+.tagline{
+  margin-top:30px;
+  font-size:20px;line-height:1.3
+}
+
+/* Footer */
+.lower{
+  width:100%;height:98px;min-height:98px;
+  background:#174d88;
+  border-top:1px solid rgba(255,255,255,.55);
+  position:relative;z-index:10;text-align:center;
+  padding:16px 20px 0;
+}
+.footer-links{
+  display:flex;justify-content:center;align-items:center;gap:10px;
+  flex-wrap:wrap;font-size:16px;font-weight:700;
+}
+.footer-links a{color:#fff;text-decoration:none}
+.footer-links a:hover{text-decoration:underline}
+.footer-copy{margin:14px 0 0;font-size:14px;color:#8eadd1;line-height:1.25}
+
+@media(max-width:900px){
+  .topbar-inner{padding:0 10px}
+  .hero-content{padding-top:50px}
+  h1{font-size:54px}.subtitle{font-size:26px}
+}
+@media(max-width:520px){
+  .brand{width:115px}
+  .signup,.login{width:92px;height:34px}
+  h1{font-size:40px}.subtitle{font-size:20px}
+  .play-button{width:min(90vw,380px) !important;height:68px !important}
+  .town-image{width:min(92vw,380px);height:auto;aspect-ratio:380/250}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#" aria-label="Vextria"></a>
+    <nav class="account">
+      <a class="sprite-btn signup" href="#">Sign Up</a>
+      <a class="sprite-btn login" href="#">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Adventure Awaits</h1>
+      <div class="subtitle">Create and explore millions of games with friends!</div>
+
+      <a class="play-button" href="#" aria-label="Play Now">Play Now</a>
+
+      <img class="town-image"
+           src="https://web.archive.org/web/20140701204830im_/http://images.rbxcdn.com/a53fcaef613b178ec86dc2937d677451.jpg"
+           alt="Game world">
+
+      <div class="tagline">Join hundreds of players today and explore their creations</div>
+    </div>
+  </section>
+
+  <footer class="lower">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#">Privacy Policy</a><span>|</span>
+      <a href="#">Contact Us</a><span>|</span>
+      <a href="#">Jobs</a><span>|</span>
+      <a href="#">Blog</a><span>|</span>
+      <a href="#">About Us</a><span>|</span>
+      <a href="#">Parents</a><span>|</span>
+      <a href="#">Terms</a>
+    </nav>
+    <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
+  </footer>
+</main>
+</body>
+</html>
