@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria - Contact Support</title>
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%;font-family:"Source Sans Pro",Arial,Helvetica,sans-serif}
+body{background:rgb(220, 220, 220);color:#333;overflow-x:hidden}
+
+/* Top Navigation Bar */
+.topbar{
+  height:54px;
+  background:#174d88;
+  border-bottom:1px solid rgba(0,0,0,.18);
+  position:relative;
+  z-index:20;
+}
+.topbar-inner{
+  height:54px;
+  max-width:800px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:0 15px;
+}
+.brand{
+  display:block;
+  width:145px;
+  height:48px;
+  background:url("https://cdn.discordapp.com/attachments/1537761116963209227/1544175993978224650/image.png?ex=6a978d76&is=6a963bf6&hm=1e04d7b1a3d49253205d0634c2153c124ffbcb25115ce2403737a394f1a6cd2a&") center/contain no-repeat;
+}
+
+/* Page Layout Container */
+.page-container{
+  max-width:800px;
+  margin:0 auto;
+  min-height:calc(100vh - 152px);
+  display:flex;
+  background:#fff;
+  border-left:1px solid rgba(0,0,0,.15);
+  border-right:1px solid rgba(0,0,0,.15);
+}
+
+/* Main Content Area */
+.main-content{
+  flex-grow:1;
+  padding:25px 35px;
+  background:#fff;
+  color:#222;
+}
+
+h1.page-title{
+  font-size:24px;
+  margin:0 0 15px 0;
+  color:#000;
+  font-weight:700;
+  border-bottom:2px solid #174d88;
+  padding-bottom:8px;
+}
+
+.section-title{
+  font-size:15px;
+  font-weight:700;
+  color:#174d88;
+  margin:20px 0 12px 0;
+  padding-bottom:4px;
+  border-bottom:1px solid #e5e5e5;
+}
+
+/* Form Controls */
+.form-group{
+  margin-bottom:16px;
+  position:relative;
+}
+.form-group label{
+  display:block;
+  font-weight:400;
+  font-size:14px;
+  margin-bottom:5px;
+  color:#333;
+}
+.label-desc{
+  font-weight:normal;
+  color:#757575;
+  font-size:12px;
+}
+.info-icon{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  background:#666;
+  color:#fff;
+  border-radius:50%;
+  text-align:center;
+  font-size:10px;
+  line-height:14px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-left:4px;
+  vertical-align:middle;
+}
+
+.tooltip-box{
+  display:none;
+  position:absolute;
+  left:0;
+  top:-48px;
+  background:#fff;
+  border:1px solid #c3c3c3;
+  padding:6px 10px;
+  font-size:12px;
+  color:#333;
+  box-shadow:0 2px 5px rgba(0,0,0,0.15);
+  z-index:100;
+}
+.tooltip-box::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  left:15px;
+  border-width:6px 6px 0;
+  border-style:solid;
+  border-color:#fff transparent;
+  display:block;
+  width:0;
+}
+.info-icon:hover + .tooltip-box{
+  display:block;
+}
+
+.form-control{
+  width:100%;
+  padding:8px 12px;
+  font-size:14px;
+  border:1px solid #a6a6a6;
+  border-radius:3px;
+  background:#fff;
+  color:#333;
+  transition:border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control::placeholder{
+  color:#b8b8b8;
+}
+
+.form-control:focus{
+  outline:none;
+  border-color:#174d88;
+  box-shadow:0 0 5px rgba(23, 77, 136, 0.4);
+}
+
+.form-control.valid{
+  border-color:#2e7d32;
+}
+.form-control.invalid{
+  border-color:#d32f2f;
+}
+.error-msg{
+  display:none;
+  color:#d32f2f;
+  font-size:12px;
+  margin-top:4px;
+}
+.form-control.invalid + .error-msg{
+  display:block;
+}
+
+/* Warning Banner (Static Warning) */
+.message-span-warning{
+  display:block;
+  background:#fdeded;
+  border:1px solid #d32f2f;
+  color:#d32f2f;
+  padding:8px 12px;
+  font-size:13px;
+  border-radius:0;
+  margin:18px 0;
+  width:100%;
+}
+
+/* Blue Confirmation Message Span (Sent) */
+.message-span-success{
+  display:none;
+  background:#e8f4fd;
+  border:1px solid #174d88;
+  color:#174d88;
+  padding:8px 12px;
+  font-size:13px;
+  border-radius:0;
+  margin:18px 0;
+  width:100%;
+}
+
+/* Red Error Message Span (Form Errors) */
+.message-span-error{
+  display:none;
+  background:#fdeded;
+  border:1px solid #d32f2f;
+  color:#d32f2f;
+  padding:8px 12px;
+  font-size:13px;
+  border-radius:0;
+  margin:18px 0;
+  width:100%;
+}
+
+textarea.form-control{
+  resize:vertical;
+  min-height:110px;
+}
+
+/* Custom Styled Dropdown Component */
+.custom-select-wrapper{
+  position:relative;
+  width:100%;
+  user-select:none;
+}
+
+.custom-select-trigger{
+  width:100%;
+  height:38px;
+  padding:8px 12px;
+  font-size:14px;
+  border:1px solid #a6a6a6;
+  border-radius:3px;
+  background:#fff;
+  color:#333;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+  transition:border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.custom-select-wrapper.open .custom-select-trigger{
+  border-color:#174d88;
+  box-shadow:0 0 5px rgba(23, 77, 136, 0.4);
+}
+.custom-select-wrapper.disabled .custom-select-trigger{
+  background:#f4f4f4;
+  color:#888;
+  cursor:not-allowed;
+  border-color:#ccc;
+}
+.custom-select-trigger::after{
+  content:"";
+  width:0;
+  height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:5px solid #333;
+}
+
+.custom-options{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  background:#fff;
+  border:1px solid #a6a6a6;
+  border-top:none;
+  border-radius:0 0 3px 3px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.15);
+  z-index:200;
+  max-height:220px;
+  overflow-y:auto;
+  margin-top:-1px;
+}
+.custom-select-wrapper.open .custom-options{
+  display:block;
+}
+
+/* Custom Dropdown Option Styles */
+.custom-option{
+  padding:8px 15px;
+  font-size:14px;
+  color:#333;
+  cursor:pointer;
+  background:#fff;
+  border-left:3px solid transparent; /* 1st State: Default */
+  transition:background-color 0.1s ease, border-left-color 0.1s ease;
+}
+.custom-option:hover{
+  background:#f0f0f0; 
+  border-left:3px solid #174d88; /* 3rd State: Hover (Left Blue Bar) */
+}
+.custom-option.selected{
+  border-left:3px solid #174d88; /* 2nd State: Picked */
+  font-weight:600;
+  color:#000;
+}
+
+/* Classic Green Button */
+.btn-submit{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:150px;
+  height:34px;
+  color:#fff;
+  font-weight:700;
+  font-size:13px;
+  border:none;
+  cursor:pointer;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-green.png");
+  background-repeat:no-repeat;
+  background-size:150px 178px;
+  background-position:0 0;
+}
+.btn-submit:hover{
+  background-position:0 -34px;
+}
+.btn-submit:active{
+  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-blue.png");
+  background-position:0 -145px;
+}
+
+/* Footer */
+.lower{
+  width:100%;
+  height:98px;
+  min-height:98px;
+  background:#174d88;
+  border-top:1px solid rgba(255,255,255,.55);
+  position:relative;
+  z-index:10;
+  text-align:center;
+  padding:16px 20px 0;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:14px;
+  font-weight:700;
+}
+.footer-links a{color:#fff;text-decoration:none}
+.footer-links a:hover{text-decoration:underline}
+.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+
+@media(max-width:768px){
+  .main-content{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+  </div>
+</header>
+
+<div class="page-container">
+  <main class="main-content">
+    <h1 class="page-title">Contact Support</h1>
+
+    <div class="message-span-success" id="successSpan">
+      Your request has been sent! Our support team will get back to you shortly.
+    </div>
+
+    <div class="message-span-error" id="errorSpan">
+      Please fill in all required fields correctly before submitting.
+    </div>
+
+    <form action="#" method="post" id="supportForm" onsubmit="return validateForm(event)">
+      
+      <div class="section-title">Your Information</div>
+
+      <div class="form-group">
+        <label for="firstName">First Name <span class="label-desc">(Optional)</span></label>
+        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">
+          Account Email Address 
+          <span class="info-icon">?</span>
+          <span class="tooltip-box">The email address linked to your account.</span>
+        </label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required onblur="checkEmail(this)">
+        <span class="error-msg">Please check email format</span>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmEmail">Confirm Account Email Address</label>
+        <input type="email" id="confirmEmail" name="confirmEmail" class="form-control" placeholder="Confirm Email Address" required onblur="checkConfirmEmail()">
+        <span class="error-msg">Emails do not match</span>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Username: 3-20 characters, no spaces" required>
+      </div>
+
+      <div class="section-title">What Do You Need Help With?</div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <div class="custom-select-wrapper" id="categoryWrapper">
+          <div class="custom-select-trigger" id="categoryTrigger">-- Select a Category --</div>
+          <div class="custom-options" id="categoryOptions">
+            <div class="custom-option" data-value="account">Account Access</div>
+            <div class="custom-option" data-value="billing">Billing &amp; Payments</div>
+            <div class="custom-option" data-value="moderation">Moderation</div>
+            <div class="custom-option" data-value="copyright">Copyright</div>
+            <div class="custom-option" data-value="bug">Bug &amp; Exploit Report</div>
+            <div class="custom-option" data-value="delete">I want to delete my account</div>
+            <div class="custom-option" data-value="privacy">Privacy Request</div>
+            <div class="custom-option" data-value="advertisements">Advertisements</div>
+          </div>
+        </div>
+        <input type="hidden" name="category" id="categoryInput" required>
+      </div>
+
+      <div class="form-group">
+        <label>Subcategory</label>
+        <div class="custom-select-wrapper disabled" id="subcategoryWrapper">
+          <div class="custom-select-trigger" id="subcategoryTrigger">-- Please select a category first --</div>
+          <div class="custom-options" id="subcategoryOptions"></div>
+        </div>
+        <input type="hidden" name="subcategory" id="subcategoryInput" required>
+      </div>
+
+      <div class="section-title">Tell Us What Happened</div>
+
+      <div class="form-group">
+        <label for="subject">Subject <span class="label-desc">&mdash; Give your request a title</span></label>
+        <input type="text" id="subject" name="subject" class="form-control" placeholder="Give your request a title" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description <span class="label-desc">&mdash; Explain the problem as clearly as possible</span></label>
+        <textarea id="description" name="description" class="form-control" rows="5" placeholder="Explain the problem as clearly as possible" required></textarea>
+      </div>
+
+      <div class="message-span-warning">
+        Do not send your password or other login details.
+      </div>
+
+      <button type="submit" class="btn-submit">Submit Request</button>
+
+    </form>
+  </main>
+</div>
+
+<footer class="lower">
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
+    <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
+    <a href="/Vextria/info/about-us">About Us</a><span>|</span>
+    <a href="/Vextria/info/careers">Careers</a><span>|</span>
+    <a href="https://blog.vextria.com/home">Blog</a><span>|</span>
+    <a href="/Vextria/info/parents">Parents</a><span>|</span>
+    <a href="https://wiki.vextria.com/home">Help</a><span>|</span>
+    <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
+    <a href="/Vextria/info/leadership">Leadership</a><span>|</span>
+    <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
+  </nav>
+  <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
+</footer>
+
+<script>
+const subcategories = {
+  account: [
+    "Can't sign in",
+    "Forgot my password/Username",
+    "Account Hacked",
+    "2 Step Verification issues",
+    "Other login issues"
+  ],
+  billing: [
+    "Purchase didn't arrive",
+    "Unauthorised Purchase",
+    "Request a refund",
+    "Subscription problem",
+    "Other purchase problem"
+  ],
+  moderation: [
+    "Appeal my account / content I created",
+    "Appeal for a friend",
+    "Report a safety concern"
+  ],
+  copyright: [
+    "DMCA takedown",
+    "DMCA Counter-Notice"
+  ],
+  bug: [
+    "Bug Report",
+    "Exploit Report"
+  ],
+  delete: [
+    "I want to delete my account"
+  ],
+  privacy: [
+    "Right to be Forgotten",
+    "Right of Access",
+    "Right to be Forgotten & Right of Access",
+    "Cookies",
+    "Other Privacy Request"
+  ],
+  advertisements: [
+    "Advertise with Us"
+  ]
+};
+
+// Dropdown Logic
+const catWrapper = document.getElementById('categoryWrapper');
+const catTrigger = document.getElementById('categoryTrigger');
+const catOptions = document.getElementById('categoryOptions');
+const catInput = document.getElementById('categoryInput');
+
+const subWrapper = document.getElementById('subcategoryWrapper');
+const subTrigger = document.getElementById('subcategoryTrigger');
+const subOptions = document.getElementById('subcategoryOptions');
+const subInput = document.getElementById('subcategoryInput');
+
+catTrigger.addEventListener('click', () => {
+  catWrapper.classList.toggle('open');
+  subWrapper.classList.remove('open');
+});
+
+catOptions.querySelectorAll('.custom-option').forEach(opt => {
+  opt.addEventListener('click', function() {
+    catOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+    this.classList.add('selected');
+    catTrigger.textContent = this.textContent;
+    catInput.value = this.dataset.value;
+    catWrapper.classList.remove('open');
+    populateSubcategories(this.dataset.value);
+  });
+});
+
+function populateSubcategories(catKey) {
+  subOptions.innerHTML = '';
+  subInput.value = '';
+  subTrigger.textContent = '-- Select a Subcategory --';
+  
+  if (subcategories[catKey]) {
+    subWrapper.classList.remove('disabled');
+    subcategories[catKey].forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'custom-option';
+      div.textContent = item;
+      div.dataset.value = item;
+      div.addEventListener('click', function() {
+        subOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+        subTrigger.textContent = this.textContent;
+        subInput.value = this.dataset.value;
+        subWrapper.classList.remove('open');
+      });
+      subOptions.appendChild(div);
+    });
+  }
+}
+
+subTrigger.addEventListener('click', () => {
+  if (!subWrapper.classList.contains('disabled')) {
+    subWrapper.classList.toggle('open');
+    catWrapper.classList.remove('open');
+  }
+});
+
+window.addEventListener('click', (e) => {
+  if (!catWrapper.contains(e.target)) catWrapper.classList.remove('open');
+  if (!subWrapper.contains(e.target)) subWrapper.classList.remove('open');
+});
+
+function checkEmail(input) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (input.value && !emailRegex.test(input.value)) {
+    input.classList.remove("valid");
+    input.classList.add("invalid");
+  } else if (input.value) {
+    input.classList.remove("invalid");
+    input.classList.add("valid");
+  } else {
+    input.classList.remove("invalid", "valid");
+  }
+}
+
+function checkConfirmEmail() {
+  const email = document.getElementById("email");
+  const confirm = document.getElementById("confirmEmail");
+  if (confirm.value && confirm.value !== email.value) {
+    confirm.classList.remove("valid");
+    confirm.classList.add("invalid");
+  } else if (confirm.value) {
+    confirm.classList.remove("invalid");
+    confirm.classList.add("valid");
+  } else {
+    confirm.classList.remove("invalid", "valid");
+  }
+}
+
+function validateForm(e) {
+  e.preventDefault();
+  const email = document.getElementById("email");
+  const confirm = document.getElementById("confirmEmail");
+  const successSpan = document.getElementById("successSpan");
+  const errorSpan = document.getElementById("errorSpan");
+
+  checkEmail(email);
+  checkConfirmEmail();
+
+  if (email.classList.contains("invalid") || confirm.classList.contains("invalid") || !catInput.value || !subInput.value) {
+    errorSpan.style.display = 'block';
+    successSpan.style.display = 'none';
+    return false;
+  }
+
+  errorSpan.style.display = 'none';
+  successSpan.style.display = 'block';
+  return true;
+}
+</script>
+
+</body>
+</html>
