@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vextria - Contact Support</title>
+<title>Vextria - Parental Controls</title>
 <link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
 <style>
 *{box-sizing:border-box}
@@ -112,7 +112,7 @@ table.data-table {
   border: 1px solid #d9d9d9;
 }
 table.data-table th, table.data-table td {
-  padding: 14px 20px;
+  padding: 14px 15px;
   border-bottom: 1px solid #e5e5e5;
   text-align: left;
   vertical-align: middle;
@@ -187,6 +187,17 @@ input:checked + .slider:before{transform:translateX(20px)}
   font-size:18px;
   color:#111;
 }
+.profile-public-link{
+  display:inline-block;
+  margin-top:6px;
+  color:#174d88;
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+}
+.profile-public-link:hover{
+  text-decoration:underline;
+}
 
 /* Friends Carousel Styling */
 .friends-carousel-container {
@@ -246,7 +257,7 @@ input:checked + .slider:before{transform:translateX(20px)}
   flex: 0 0 auto;
 }
 .arrow-left {
-  background: url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/GamesPage/arrow_left.png") no-repeat 0 0;
+  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_left.png?raw=true") no-repeat 0 0;
 }
 .arrow-left:hover:not(:disabled) {
   background-position: 0 -51px;
@@ -256,7 +267,7 @@ input:checked + .slider:before{transform:translateX(20px)}
   cursor: default;
 }
 .arrow-right {
-  background: url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/GamesPage/arrow_right.png") no-repeat 0 0;
+  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true") no-repeat 0 0;
 }
 .arrow-right:hover:not(:disabled) {
   background-position: 0 -51px;
@@ -284,7 +295,7 @@ input:checked + .slider:before{transform:translateX(20px)}
   cursor: pointer;
   border-radius: 0;
   text-shadow: 0 1px rgba(255,255,255,.6);
-  background-image: url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/StyleGuide/btn-control-large-tile.png");
+  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn-control-large-tile.png?raw=true");
   background-repeat: no-repeat;
   background-size: 140px 100px;
   background-position: 0 -34px;
@@ -307,7 +318,7 @@ input:checked + .slider:before{transform:translateX(20px)}
   border-radius: 0;
   cursor: pointer;
   text-shadow: 0 -1px rgba(0,0,0,.45);
-  background-image: url(https://web.archive.org/web/20120223124915if_/http://www.roblox.com/images/btn_red_30h_t2.png);
+  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
   background-repeat: repeat-x;
   background-size: auto 100px;
   background-position: 0 -2px;
@@ -326,11 +337,12 @@ input:checked + .slider:before{transform:translateX(20px)}
   text-decoration: underline;
 }
 
-/* Base Roblox Button Style */
+/* Base Roblox Button Style - Fixed explicit dimensions and flex alignment to prevent text changes from altering size */
 .roblox-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   height: 30px;
   padding: 0 14px;
   color: #fff;
@@ -342,11 +354,16 @@ input:checked + .slider:before{transform:translateX(20px)}
   background-repeat: repeat-x;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
   vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .roblox-btn-blue {
   width: 70px;
-  background-image: url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-blue.png");
+  min-width: 70px;
+  max-width: 70px;
+  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
   background-repeat: no-repeat;
   background-size: 150px 178px;
   background-position: 0 0;
@@ -357,7 +374,9 @@ input:checked + .slider:before{transform:translateX(20px)}
 
 .roblox-btn-red {
   width: 130px;
-  background-image: url(https://web.archive.org/web/20120223124915if_/http://www.roblox.com/images/btn_red_30h_t2.png);
+  min-width: 130px;
+  max-width: 130px;
+  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
   border: 1px solid #a00000;
   background-position: 0 -2px;
 }
@@ -367,7 +386,9 @@ input:checked + .slider:before{transform:translateX(20px)}
 
 .btn-change-email {
   width: 130px;
-  background-image: url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-blue.png");
+  min-width: 130px;
+  max-width: 130px;
+  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
   background-repeat: no-repeat;
   background-size: 150px 178px;
   background-position: 0 0;
@@ -378,7 +399,9 @@ input:checked + .slider:before{transform:translateX(20px)}
 
 .btn-change-pass {
   width: 160px;
-  background-image: url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-blue.png");
+  min-width: 160px;
+  max-width: 160px;
+  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
   background-repeat: no-repeat;
   background-size: 160px 178px;
   background-position: 0 0;
@@ -389,7 +412,9 @@ input:checked + .slider:before{transform:translateX(20px)}
 
 .btn-logout {
   width: 85px;
-  background-image: url(https://web.archive.org/web/20120223124915if_/http://www.roblox.com/images/btn_red_30h_t2.png);
+  min-width: 85px;
+  max-width: 85px;
+  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
   border: 1px solid #a00000;
   background-position: 0 -2px;
 }
@@ -397,11 +422,51 @@ input:checked + .slider:before{transform:translateX(20px)}
   background-position: 0 bottom;
 }
 
+.btn-parent-info {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
+  background-repeat: no-repeat;
+  background-size: 160px 178px;
+  background-position: 0 0;
+}
+.btn-parent-info:hover {
+  background-position: 0 -34px;
+}
+
+.btn-policy-link {
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
+  border: 1px solid #a00000;
+  background-position: 0 -2px;
+}
+.btn-policy-link:hover {
+  background-position: 0 bottom;
+}
+
+.btn-tos-link {
+  width: 145px;
+  min-width: 145px;
+  max-width: 145px;
+  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
+  border: 1px solid #a00000;
+  background-position: 0 -2px;
+}
+.btn-tos-link:hover {
+  background-position: 0 bottom;
+}
+
 .btn-submit-red{
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 130px;
+  min-width: 130px;
+  max-width: 130px;
   height: 50px;
   color: #fff;
   font-weight: 700;
@@ -410,10 +475,13 @@ input:checked + .slider:before{transform:translateX(20px)}
   border-radius: 0;
   cursor: pointer;
   text-shadow: 0 -1px rgba(0,0,0,.45);
-  background-image: url(https://web.archive.org/web/20120223124915if_/http://www.roblox.com/images/btn_red_30h_t2.png);
+  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
   background-repeat: repeat-x;
   background-size: auto 100px;
   background-position: 0 -2px;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 .btn-submit-red:hover{
   background-position: 0 bottom;
@@ -423,7 +491,10 @@ input:checked + .slider:before{transform:translateX(20px)}
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  box-sizing: border-box;
   width: 120px;
+  min-width: 120px;
+  max-width: 120px;
   height:30px;
   color:#fff;
   font-weight:700;
@@ -432,10 +503,13 @@ input:checked + .slider:before{transform:translateX(20px)}
   border-radius:0;
   cursor:pointer;
   text-shadow:0 -1px rgba(0,0,0,.45);
-  background-image:url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-green.png");
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-green.png?raw=true");
   background-repeat:no-repeat;
   background-size:150px 178px;
   background-position:0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 .btn-submit:hover{
   background-position:0 -34px;
@@ -444,13 +518,18 @@ input:checked + .slider:before{transform:translateX(20px)}
 /* Specific Purchase Section Action Buttons */
 .btn-buy-vexbucks {
   width: 130px;
+  min-width: 130px;
+  max-width: 130px;
   height: 30px;
   border: none;
   font-size: 14px;
-  background-image: url("https://web.archive.org/web/20140516222354im_/http://www.roblox.com/images/Buttons/StyleGuide/bg-btn-green.png");
+  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-green.png?raw=true");
   background-repeat: no-repeat;
   background-size: 150px 178px;
   background-position: 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 .btn-buy-vexbucks:hover {
   background-position: 0 -34px;
@@ -458,13 +537,18 @@ input:checked + .slider:before{transform:translateX(20px)}
 
 .btn-cancel-sub {
   width: 175px;
+  min-width: 175px;
+  max-width: 175px;
   height: 30px;
   border: 1px solid #a00000;
   font-size: 14px;
-  background-image: url(https://web.archive.org/web/20120223124915if_/http://www.roblox.com/images/btn_red_30h_t2.png);
+  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
   background-repeat: repeat-x;
   background-size: auto 100px;
-  background-position: 0 -2px; /* Restored -2px background-position for default state */
+  background-position: 0 -2px;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 .btn-cancel-sub:hover {
   background-position: 0 bottom;
@@ -510,7 +594,7 @@ input:checked + .slider:before{transform:translateX(20px)}
   right: -14px;
   width: 35px;
   height: 35px;
-  background: url("https://web.archive.org/web/20110624014504if_/http://www.roblox.com/images/Buttons/closeBtnCircle_35h.png") no-repeat 0 0;
+  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/closeBtnCircle_35h.png?raw=true") no-repeat 0 0;
   border: none;
   cursor: pointer;
   padding: 0;
@@ -683,11 +767,20 @@ input:checked + .slider:before{transform:translateX(20px)}
       </div>
 
       <div class="section-title">Manage Your Account</div>
-      <div style="padding:10px 0 20px 0;">
-        <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
+      <div style="padding:5px 0 10px 0;">
+        <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center; margin-bottom:15px;">
           <button type="button" class="roblox-btn btn-change-email" onclick="alert('Change Email modal')">Change Email</button>
           <button type="button" class="roblox-btn btn-change-pass" onclick="alert('Change Password modal')">Change Password</button>
           <button type="button" class="roblox-btn btn-logout" onclick="alert('Logged out')">Log out</button>
+        </div>
+      </div>
+
+      <div class="section-title">Information</div>
+      <div style="padding:5px 0 20px 0;">
+        <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
+          <button type="button" class="roblox-btn btn-parent-info" onclick="alert('Redirecting to Parent Information page...')">Parent Information</button>
+          <button type="button" class="roblox-btn btn-policy-link" onclick="alert('Redirecting to Privacy Policy page...')">Privacy Policy</button>
+          <button type="button" class="roblox-btn btn-tos-link" onclick="alert('Redirecting to Terms of Service page...')">Terms of Service</button>
         </div>
       </div>
     </div>
@@ -711,6 +804,7 @@ input:checked + .slider:before{transform:translateX(20px)}
         <div class="profile-center">
           <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Avatar">
           <h2>username</h2>
+          <a href="javascript:void(0);" class="profile-public-link" onclick="alert('View Public Profile flow')">View Public Profile</a>
         </div>
 
         <!-- 2. Friends Carousel with strict page-part pagination -->
@@ -824,6 +918,29 @@ input:checked + .slider:before{transform:translateX(20px)}
             </div>
           </div>
         </div>
+
+        <!-- 5. Moderation Reports -->
+        <div class="section-title">Moderation Reports</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Reported For</th>
+              <th>Created</th>
+              <th>Expiration date</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="color:#a00000; font-weight:600;">1 day ban</span></td>
+              <td>Scamming</td>
+              <td>2/9/2026 01:38am (LT)</td>
+              <td>3/9/2026 01:38am (LT)</td>
+              <td>scam</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- SUB-SECTION 2: RESTRICT ACCESS -->
