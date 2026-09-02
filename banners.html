@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria - Updated Layout</title>
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Provided Button & General Styles */
+.sprite-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    text-shadow: 0 -1px rgba(0, 0, 0, .45);
+    background-repeat: no-repeat;
+}
+.signup, .login {
+    width: 80px;
+    height: 28px;
+    background-size: 80px 154px;
+    background-position: 0 0;
+}
+.signup {
+    background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-green.png?raw=true);
+}
+.login {
+    background-image: url(https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/bg-btn-blue.png);
+}
+.signup:hover, .login:hover {
+    background-position: 0 -30px;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    background: rgb(220, 220, 220);
+    color: #333;
+    overflow-x: hidden;
+    margin: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html {
+    margin: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 1. Main Header Container */
+.topbar{
+  position:relative;
+  margin-bottom:20px;
+  z-index: 10;
+  width: 100%;
+}
+
+.topbar.classic-topbar {
+  z-index: 1000;
+}
+
+/* FirstHeader: Signed-In Version */
+.first-header{
+  width:100%;
+  background:#114081;
+}
+.first-header-inner {
+  max-width:900px;
+  height:40px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+  position:relative;
+}
+
+/* FirstHeader Minimal */
+.first-header-minimal{
+  width:100%;
+  background:#114081;
+}
+.first-header-minimal-inner {
+  max-width:900px;
+  height:40px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+  position:relative;
+}
+
+/* Classic Roblox Header Style */
+.classic-roblox-header {
+  width: 100%;
+  height: 40px;
+  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-rbx_header.png?raw=true") repeat-x;
+  background-size: auto 40px;
+  position: relative;
+  z-index: 100;
+}
+.classic-roblox-header-inner {
+  max-width: 1100px;
+  height: 40px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  position: relative;
+  overflow: visible;
+}
+
+.classic-left-group {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  height: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.classic-nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  gap: 1px;
+  position: relative;
+  overflow: visible;
+}
+
+.classic-nav-links > li {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+.classic-nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 5px;
+}
+
+.classic-nav-links > li > a:hover {
+  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-main_menu_hover.png?raw=true") repeat-x;
+  background-size: auto 100%;
+  text-decoration: none;
+}
+
+/* Custom "More" Active Hover State Implementation */
+.moreLink.active #hlMore,
+.dropdown-container.moreLink:hover #hlMore {
+    color: black;
+    margin-top: 0;
+    background-color: #efefef;
+    background-image: none;
+    text-shadow: none;
+}
+
+/* Dropdown Menu Styling - Positioned below and given a high z-index to stay on top */
+.dropdown-container {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 101 !important;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: #f1f1f1;
+    border: 1px solid #7f7f7f;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    min-width: 140px;
+    z-index: 9999 !important;
+}
+
+.dropdown-container:hover .dropdown-menu,
+.dropdown-container.active .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    height: auto !important;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 6px 15px;
+    color: #333;
+    font-size: 13px;
+    font-weight: normal;
+    text-shadow: none;
+    text-decoration: none;
+    height: auto;
+    background: none !important;
+}
+
+.dropdown-menu li a:hover {
+    background: #cccccc !important;
+    color: #000;
+    text-decoration: none;
+}
+
+/* Dropdown states: Selected, Hovering, Inactive */
+.dropdown-menu li.selected-item a {
+    font-weight: bold;
+    background: #ffffff !important;
+    color: #000;
+    border-left: 3px solid #114081;
+    padding-left: 12px;
+}
+.dropdown-menu li.hover-item a:hover,
+.dropdown-menu li a:hover {
+    background: #e1e1e1 !important;
+    color: #000;
+}
+.dropdown-menu li.inactive-item a {
+    color: #333;
+    font-weight: normal;
+}
+
+.classic-right-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.classic-right-group a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.classic-right-group a:hover {
+    text-decoration: underline;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand{
+    display:block;
+    width:120px;
+    height:34px;
+    background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png?raw=true") center/contain no-repeat;
+}
+
+/* Signed-In Right Section Components */
+.topbar-right-signed {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.badge-age {
+    background-color: #969a9c;
+    color: #fff;
+    padding: 1px 5px;
+    font-size: 11px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.username-link {
+    color: #bacce1;
+    text-decoration: none;
+}
+.username-link:hover {
+    text-decoration: underline;
+}
+
+.sep-bar {
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background-color: #627893;
+    margin: 0 2px;
+}
+
+.user-info-item {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    gap: 4px;
+}
+.user-info-item:hover {
+    text-decoration: underline;
+}
+
+/* Updated Notification Bubble Style */
+.notification-bubble {
+    position: absolute;
+    top: -2px;
+    right: 0px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    font-size: 10px;
+    padding: 0 3px;
+    border-radius: 20%;
+    font-weight: bold;
+    line-height: 12px;
+    text-shadow: none;
+}
+
+.nav-icon {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+.nav-icon-img1 {
+    background-image: url('https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/2826c14fcfa6b9d2db02adb73bea4c12.png?raw=true');
+}
+
+.nav-icon-currency {
+    background-image: url('https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/image%20(1).png?raw=true');
+    background-size: 26px auto;
+}
+
+.nav-icon-vexbuck {
+    background-position: 2px 4px;
+}
+
+.nav-icon-tickets {
+    background-position: 2px -25px;
+}
+
+.nav-icon-message {
+    background-position: 0 -60px;
+}
+
+.nav-icon-friends {
+    background-position: 0 -86px;
+}
+
+.nav-icon-settings {
+    background-position: -5px -455px;
+}
+
+.btn-logout {
+    border: none;
+    background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true") no-repeat 0 -2px;
+    background-size: 800px 60px;
+    width: 63px;
+    height: 24px;
+    cursor: pointer;
+    padding: 0;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.btn-logout:hover {
+    background-position: 0 -32px;
+}
+
+.second-header {
+    height:31px;
+    background:#6e99c9 url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/topNav_blue.png?raw=true") repeat-x;
+    background-size:auto auto;
+    border-top:1px solid rgba(255,255,255,0.15);
+    border-bottom:1px solid rgba(0,0,0,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.navbar-links {
+    display:flex;
+    list-style:none;
+    margin:0;
+    padding:0;
+    height:100%;
+    gap:9px;
+}
+.navbar-links li {
+    height:100%;
+    display:flex;
+    align-items:center;
+}
+.navbar-links a {
+    display:flex;
+    align-items:center;
+    height:100%;
+    padding:0 8px;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    text-decoration:none;
+}
+.navbar-links a:hover {
+    background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/topNav_blue.png?raw=true") repeat-x;
+    background-size:auto auto;
+    filter:brightness(1.3);
+}
+
+.third-header {
+    height:31px;
+    background:#114081 url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/topNav_black.png?raw=true") repeat-x;
+    background-size:auto auto;
+    border-top:1px solid rgba(255,255,255,0.15);
+    border-bottom:1px solid rgba(0,0,0,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+}
+.third-header a {
+    display:flex;
+    align-items:center;
+    height:100%;
+    padding:0 8px;
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+    text-decoration:none;
+}
+.third-header a:hover {
+    background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/topNav_black.png?raw=true") repeat-x;
+    background-size:auto auto;
+    filter:brightness(1.3);
+    text-decoration:underline;
+}
+
+.third-header-solid {
+    height: 31px;
+    background: #191919;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+}
+
+.third-header-solid-inner {
+    max-width: 1100px;
+    height: 31px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 15px;
+    width: 100%;
+    gap: 2px;
+}
+
+.third-header-solid-inner a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.third-header-solid-inner a:hover {
+    background: url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/bg-main_menu_hover.png") repeat-x;
+    background-size: auto 100%;
+    text-decoration: none;
+}
+
+/* Custom styled header section */
+.custom-styled-header {
+    background: #2d528f !important;
+}
+
+.custom-styled-header .classic-left-group {
+    gap: 13px !important;
+}
+
+.custom-styled-header .classic-nav-links {
+    gap: 13px !important;
+}
+
+.custom-styled-header .classic-nav-links a {
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+.custom-styled-header .classic-nav-links > li > a {
+    height: 30px;
+    border-radius: 4px;
+    padding: 0 8px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    transition: background-color 0.1s ease;
+}
+
+.custom-styled-header .classic-nav-links > li > a:hover,
+.custom-styled-header .classic-nav-links > li.active > a {
+    background: #27487e !important;
+    background-image: none !important;
+    height: 30px !important;
+    border: none !important;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+    color: #fff !important;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.45);
+}
+
+.banner-section-wrapper {
+    margin-bottom: 40px;
+    border-bottom: 2px dashed #999;
+    padding-bottom: 30px;
+}
+
+.banner-label {
+    background: #333;
+    color: #fff;
+    padding: 5px 15px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Main Layout Wrapper for Sidebar + Content */
+.main-layout {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 40px);
+}
+
+/* Sidebar section */
+.sidebar-section {
+    width: 175px;
+    min-width: 175px;
+    background-color: #e3e3e3;
+    border-right: 1px solid #bcbcbc;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    height: 100%;
+}
+
+.sidebar-user-info {
+    width: 175px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #bcbcbc;
+    font-size: 13px;
+    color: rgb(68, 68, 68);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-nav li {
+    width: 175px;
+    height: 35px;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    width: 175px;
+    height: 35px;
+    padding: 0 8px;
+    gap: 8px;
+    color: rgb(68, 68, 68);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 35px;
+    transition: background-color 0.1s, color 0.1s;
+}
+
+.sidebar-nav li.active > a,
+.sidebar-nav a:hover {
+    background-color: #cccccc !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+.sidebar-action-container {
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.sidebar-blue-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 30px;
+    background-color: #114081;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 4px;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.45);
+    transition: background-color 0.1s ease;
+}
+
+.sidebar-blue-btn:hover {
+    background-color: #27487e !important;
+    background-image: none !important;
+}
+
+.sidebar-icon {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    display: inline-block;
+    background-image: url('https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/2826c14fcfa6b9d2db02adb73bea4c12.png?raw=true');
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+/* PNG sidebar icon variants with updated coordinates */
+.sidebar-icon-home { background-position: -3px -0px; }
+.sidebar-icon-profile { background-position: -3px -29px; }
+.sidebar-icon-messages { background-position: -3px -58px; }
+.sidebar-icon-friends { background-position: -3px -87px; }
+.sidebar-icon-character { background-position: -3px -116px; }
+.sidebar-icon-inventory { background-position: -3px -145.2px; }
+.sidebar-icon-trading { background-position: -3px -174px; }
+.sidebar-icon-guidelines { background-position: -3px -205px; }
+.sidebar-icon-groups { background-position: -3px -232px; }
+.sidebar-icon-forums { background-position: -3px -263px; }
+.sidebar-icon-contests,
+.sidebar-icon-blog { background-position: -3px --288.4px; }
+
+/* Slightly larger notification alerts in the sidebar */
+.sidebar-nav .notification-bubble {
+    font-size: 12px;
+    line-height: 14px;
+    min-width: 18px;
+    min-height: 16px;
+    padding: 1px 4px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="banner-section-wrapper">
+  <div class="banner-label">Banner Style 1: Standard Signed-In Header</div>
+  <header class="topbar">
+    <div class="first-header">
+      <div class="first-header-inner">
+        <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+        <div class="topbar-right-signed">
+          <span class="badge-age">13+</span>
+          <a href="/Vextria/my/profile" class="username-link">username</a>
+          <span class="sep-bar"></span>
+          <a href="/Vextria/my/messages" class="user-info-item" title="Messages">
+            <span style="position:relative; display:inline-block;">
+              <span class="nav-icon nav-icon-img1 nav-icon-message"></span>
+              <span class="notification-bubble">9+</span>
+            </span>
+          </a>
+          <a href="/Vextria/my/friends" class="user-info-item" title="Friends">
+            <span style="position:relative; display:inline-block;">
+              <span class="nav-icon nav-icon-img1 nav-icon-friends"></span>
+              <span class="notification-bubble">3</span>
+            </span>
+          </a>
+          <span class="sep-bar"></span>
+          <a href="/Vextria/currency/vexbucks" class="user-info-item">
+            <span class="nav-icon nav-icon-currency nav-icon-vexbuck"></span>
+            <span>14,673</span>
+          </a>
+          <a href="/Vextria/currency/tickets/trade" class="user-info-item">
+            <span class="nav-icon nav-icon-currency nav-icon-tickets"></span>
+            <span>383,326</span>
+          </a>
+          <span class="sep-bar"></span>
+          <a href="/Vextria/my/settings" class="user-info-item" title="Settings">
+            <span class="nav-icon nav-icon-img1 nav-icon-settings"></span>
+          </a>
+          <a href="/Vextria/logout" class="btn-logout">Log out</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="second-header">
+      <ul class="navbar-links">
+        <li><a href="/Vextria/my/account">My Account</a></li>
+        <li><a href="/Vextria/games">Games</a></li>
+        <li><a href="/Vextria/catalog">Catalog</a></li>
+        <li><a href="/Vextria/browse/people">People</a></li>
+        <li><a href="/Vextria/my/account/upgrade">Upgrade</a></li>
+        <li><a href="/Vextria/contests">Contests</a></li>
+        <li><a href="/Vextria/fourms">Fourms</a></li>
+        <li><a href="/Vextria/info/parents">Parents</a></li>
+        <li><a href="/Vextria/blog/home">Blog</a></li>
+        <li><a href="/Vextria/wiki/home">Help</a></li>
+      </ul>
+    </div>
+
+    <div class="third-header">
+      <a href="/Vextria/my/account">Home</a>
+      <a href="/Vextria/my/places">Places</a>
+      <a href="/Vextria/my/messages">Messages</a>
+      <a href="/Vextria/my/profile">Profile</a>
+      <a href="/Vextria/my/character">Character</a>
+      <a href="/Vextria/my/friends">Friends</a>
+      <a href="/Vextria/my/inventory">Inventory</a>
+      <a href="/Vextria/my/groups">Groups</a>
+      <a href="/Vextria/my/balance">Money</a>
+      <a href="/Vextria/my/admanager">Advertising</a>
+      <a href="/Vextria/info/guidelines">Guidelines</a>
+      <a href="/Vextria/sharevextria">Share</a>
+    </div>
+  </header>
+</div>
+
+<div class="banner-section-wrapper">
+  <div class="banner-label">Banner Style 4: Minimal Header</div>
+  <header class="topbar">
+    <div class="first-header-minimal">
+      <div class="first-header-minimal-inner">
+        <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+        <div class="auth-buttons">
+          <a href="/Vextria/signup" class="sprite-btn signup">Sign Up</a>
+          <a href="/Vextria/login" class="sprite-btn login">Log In</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="second-header">
+      <ul class="navbar-links">
+        <li><a href="/Vextria/my/account">My Account</a></li>
+        <li><a href="/Vextria/games">Games</a></li>
+        <li><a href="/Vextria/catalog">Catalog</a></li>
+        <li><a href="/Vextria/browse/people">People</a></li>
+        <li><a href="/Vextria/my/account/upgrade">Upgrade</a></li>
+        <li><a href="/Vextria/contests">Contests</a></li>
+        <li><a href="/Vextria/fourms">Fourms</a></li>
+        <li><a href="/Vextria/info/parents">Parents</a></li>
+        <li><a href="/Vextria/blog/home">Blog</a></li>
+        <li><a href="/Vextria/wiki/home">Help</a></li>
+      </ul>
+    </div>
+  </header>
+</div>
+
+<div class="banner-section-wrapper">
+  <div class="banner-label">New Classic Header Section</div>
+<div style="margin-top:50px;"></div>
+
+<header class="topbar classic-topbar">
+  <div class="classic-roblox-header">
+    <div class="classic-roblox-header-inner">
+      <div class="classic-left-group">
+        <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+        <ul class="classic-nav-links">
+          <li><a href="/Vextria/my/account" style="padding: 0 5px;">Home</a></li>
+          <li><a href="/Vextria/games" style="padding: 0 5px;">Games</a></li>
+          <li><a href="/Vextria/catalog" style="padding: 0 5px;">Catalog</a></li>
+          <li><a href="/Vextria/my/account/upgrade" style="padding: 0 5px;">Upgrade</a></li>
+          <li><a href="/Vextria/fourms" style="padding: 0 5px;">Fourm</a></li>
+          <li class="dropdown-container moreLink">
+            <a href="javascript:void(0);" id="hlMore" style="padding: 0 5px;">More ▼</a>
+            <ul class="dropdown-menu">
+              <li class="selected-item"><a href="/Vextria/browse/people">People</a></li>
+              <li class="hover-item"><a href="/Vextria/contests">Contests</a></li>
+              <li class="inactive-item"><a href="/Vextria/info/parents">Parents</a></li>
+              <li class="inactive-item"><a href="/Vextria/blog/home">Blog</a></li>
+              <li class="inactive-item"><a href="/Vextria/wiki/home">Help</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="topbar-right-signed">
+        <span class="badge-age">13+</span>
+        <a href="/Vextria/my/profile" class="username-link">username</a>
+        <span class="sep-bar"></span>
+        <a href="/Vextria/my/messages" class="user-info-item" title="Messages"><span style="position:relative; display:inline-block;"><span class="nav-icon nav-icon-img1 nav-icon-message"></span><span class="notification-bubble">9+</span></span></a>
+        <a href="/Vextria/my/friends" class="user-info-item" title="Friends"><span style="position:relative; display:inline-block;"><span class="nav-icon nav-icon-img1 nav-icon-friends"></span><span class="notification-bubble">3</span></span></a>
+        <span class="sep-bar"></span>
+        <a href="/Vextria/currency/vexbucks" class="user-info-item"><span class="nav-icon nav-icon-currency nav-icon-vexbuck"></span><span>14,673</span></a>
+        <a href="/Vextria/currency/tickets/trade" class="user-info-item"><span class="nav-icon nav-icon-currency nav-icon-tickets"></span><span>383,326</span></a>
+        <span class="sep-bar"></span>
+        <a href="/Vextria/my/settings" class="user-info-item" title="Settings"><span class="nav-icon nav-icon-img1 nav-icon-settings"></span></a>
+        <a href="/Vextria/logout" class="btn-logout">Log out</a>
+      </div>
+    </div>
+  </div>
+  <div class="third-header-solid">
+    <div class="third-header-solid-inner">
+      <a href="/Vextria/my/account">E</a><a href="/Vextria/my/places">Places</a><a href="/Vextria/my/messages">Messages</a><a href="/Vextria/my/profile">Profile</a><a href="/Vextria/my/character">Character</a><a href="/Vextria/my/friends">Friends</a><a href="/Vextria/my/inventory">Inventory</a><a href="/Vextria/my/groups">Groups</a><a href="/Vextria/my/balance">Money</a><a href="/Vextria/my/admanager">Advertising</a><a href="/Vextria/info/guidelines">Guidelines</a><a href="/Vextria/sharevextria">Share</a>
+    </div>
+  </div>
+</header>
+<div style="margin-top:50px;"></div>
+</div>
+
+<div class="banner-section-wrapper" style="border-bottom: none;">
+  <div class="banner-label">Combined Custom Topbar Header & Updated Sidebar Component</div>
+  <header class="topbar classic-topbar" style="margin-bottom:0;">
+    <div class="classic-roblox-header custom-styled-header" style="max-width: none;">
+      <div class="classic-roblox-header-inner" style="max-width: none; width: 100%;">
+        <div class="classic-left-group">
+          <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+          <ul class="classic-nav-links">
+            <li><a href="/Vextria/games">Games</a></li>
+            <li><a href="/Vextria/catalog">Catalog</a></li>
+            <li><a href="/Vextria/my/account/upgrade">Develop</a></li>
+            <li><a href="/Vextria/browse">Browse</a></li>
+            <li><a href="/Vextria/currency/vexbucks">Vexbuck</a></li>
+          </ul>
+        </div>
+        
+        <div class="topbar-right-signed">
+          <a href="/Vextria/currency/vexbucks" class="user-info-item">
+            <span class="nav-icon nav-icon-currency nav-icon-vexbuck"></span>
+            <span>14,673</span>
+          </a>
+          <a href="/Vextria/currency/tickets/trade" class="user-info-item">
+            <span class="nav-icon nav-icon-currency nav-icon-tickets"></span>
+            <span>383,326</span>
+          </a>
+          <span class="sep-bar"></span>
+          <a href="/Vextria/my/settings" class="user-info-item" title="Settings">
+            <span class="nav-icon nav-icon-img1 nav-icon-settings"></span>
+          </a>
+          <a href="/Vextria/logout" class="btn-logout">Log out</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <aside class="sidebar-section">
+      <div class="sidebar-user-info">
+        <span class="badge-age">13+</span>&nbsp;&nbsp;<a href="/Vextria/my/profile" class="username-link" style="color:rgb(68,68,68);">username</a>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li class="home-item"><a href="/Vextria/my/account"><span class="sidebar-icon sidebar-icon-home"></span> Home</a></li>
+        <li><a href="/Vextria/my/profile"><span class="sidebar-icon sidebar-icon-profile"></span> Profile</a></li>
+        <li>
+          <a href="/Vextria/my/messages" style="position:relative;">
+            <span class="sidebar-icon sidebar-icon-messages"></span> Messages 
+            <span class="notification-bubble" style="right: 15px; top: 8px;">9+</span>
+          </a>
+        </li>
+        <li>
+          <a href="/Vextria/my/friends" style="position:relative;">
+            <span class="sidebar-icon sidebar-icon-friends"></span> Friends 
+            <span class="notification-bubble" style="right: 15px; top: 8px;">3</span>
+          </a>
+        </li>
+        <li><a href="/Vextria/my/character"><span class="sidebar-icon sidebar-icon-character"></span> Character</a></li>
+        <li><a href="/Vextria/my/inventory"><span class="sidebar-icon sidebar-icon-inventory"></span> Inventory</a></li>
+        <li><a href="/Vextria/currency/tickets/trade"><span class="sidebar-icon sidebar-icon-trading"></span> Trading</a></li>
+        <li><a href="/Vextria/my/groups"><span class="sidebar-icon sidebar-icon-groups"></span> Groups</a></li>
+        <li><a href="/Vextria/fourms"><span class="sidebar-icon sidebar-icon-forums"></span> Forums</a></li>
+        <li><a href="/Vextria/contests"><span class="sidebar-icon sidebar-icon-contests"></span> Contests</a></li>
+        <li><a href="/Vextria/info/guidelines"><span class="sidebar-icon sidebar-icon-guidelines"></span> Guidelines</a></li>
+        <li><a href="/Vextria/blog/home"><span class="sidebar-icon sidebar-icon-blog"></span> Blog</a></li>
+      </ul>
+
+      <div class="sidebar-action-container">
+        <a href="/Vextria/my/account/upgrade" class="sidebar-blue-btn">Upgrade Now</a>
+        <a href="/Vextria/info/parents" class="sidebar-blue-btn">For Parents</a>
+        <a href="/Vextria/wiki/home" class="sidebar-blue-btn">Help</a>
+        <a href="/Vextria/sharevextria" class="sidebar-blue-btn">Share</a>
+      </div>
+    </aside>
+
+    <main style="padding: 20px; flex-grow: 1;">
+      </main>
+  </div>
+</div>
+
+</body>
+</html>
