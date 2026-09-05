@@ -8,21 +8,114 @@
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
-body{background:rgb(220, 220, 220);color:#fff;overflow-x:hidden}
-
-/* Top banner */
-.topbar{
-  height:54px;background:#174d88;
-  border-bottom:1px solid rgba(0,0,0,.18);
-  position:relative;z-index:20
+body{
+  background-color:#000443;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  animation:bodyBkgScroll 40s linear infinite;
+  color:#fff;
+  overflow-x:hidden;
 }
-.topbar-inner{
-  height:54px;max-width:1500px;margin:auto;
-  display:flex;align-items:center;justify-content:space-between
+@keyframes bodyBkgScroll{
+  from{background-position:0 0;}
+  to{background-position:-1000px 0;}
+}
+
+/* Top banner - Signed-out banner (from admin/templates/banners) */
+.topbar{
+  position:relative;
+  z-index:20;
+  width:100%;
+}
+.first-header-minimal{
+  width:100%;
+  background:#114081;
+}
+.first-header-minimal-inner{
+  max-width:900px;
+  height:40px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+  position:relative;
 }
 .brand{
-  display:block;width:145px;height:48px;margin-left:6px;
-  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png?raw=true") center/contain no-repeat
+  display:block;
+  width:120px;
+  height:34px;
+  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat;
+}
+.auth-buttons{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sprite-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:16px;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-repeat:no-repeat;
+}
+.signup,.login{
+  width:80px;
+  height:28px;
+  background-size:80px 154px;
+  background-position:0 0;
+}
+.signup{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-green.png");
+}
+.login{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-blue.png");
+}
+.signup:hover,.login:hover{
+  background-position:0 -30px;
+}
+.second-header{
+  height:31px;
+  background:#6e99c9 url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
+  background-size:auto auto;
+  border-top:1px solid rgba(255,255,255,0.15);
+  border-bottom:1px solid rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.navbar-links{
+  display:flex;
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:100%;
+  gap:9px;
+}
+.navbar-links li{
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+.navbar-links a{
+  display:flex;
+  align-items:center;
+  height:100%;
+  padding:0 8px;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  text-decoration:none;
+}
+.navbar-links a:hover{
+  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
+  background-size:auto auto;
+  filter:brightness(1.3);
 }
 
 /* Page Layout Container */
@@ -34,13 +127,26 @@ body{background:rgb(220, 220, 220);color:#fff;overflow-x:hidden}
 
 /* Content Area */
 .legal-content{
-  padding:25px 30px;background:#fff;color:#222;
+  padding:25px 30px;color:#222;
   font-size:14px;line-height:1.6;
   min-height:calc(100vh - 152px);
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/containerBkg_01.png");
+  background-repeat:repeat;
 }
-.legal-content h1{font-size:26px;margin-top:0;margin-bottom:6px;color:#000}
-.legal-content h2{font-size:18px;margin-top:25px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:4px;color:#174d88}
-.legal-content p{margin:8px 0 15px 0}
+.legal-content h1{
+  font-size:22px;
+  margin-top:0;
+  margin-bottom:16px;
+  color:#000;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+}
+.legal-content h2{font-size:18px;margin-top:25px;margin-bottom:10px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
+.legal-content p{margin:8px 0 15px 0;color:#000}
+.legal-content a{color:#0000cc;text-decoration:none}
+.legal-content a:hover{text-decoration:none}
 
 /* Red Error/Warning Message Span */
 .message-span-error{
@@ -88,8 +194,7 @@ body{background:rgb(220, 220, 220);color:#fff;overflow-x:hidden}
   overflow:hidden;
   transition:max-height 0.2s ease-out;
   background:#f9f9f9;
-  border:1px solid #707070;
-  border-top:none;
+  border:1px solid transparent;
   width:400px;
   padding:0 12px;
 }
@@ -97,6 +202,8 @@ body{background:rgb(220, 220, 220);color:#fff;overflow-x:hidden}
 .accordion-content.show{
   padding:12px;
   max-height:800px;
+  border:1px solid #707070;
+  border-top:none;
 }
 
 .no-jobs-msg{
@@ -140,8 +247,29 @@ body{background:rgb(220, 220, 220);color:#fff;overflow-x:hidden}
 <body>
 
 <header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/Vextria/" aria-label="Vextria"></a>
+  <div class="first-header-minimal">
+    <div class="first-header-minimal-inner">
+      <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+      <div class="auth-buttons">
+        <a href="/Vextria/signup" class="sprite-btn signup">Sign Up</a>
+        <a href="/Vextria/login" class="sprite-btn login">Log In</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-header">
+    <ul class="navbar-links">
+      <li><a href="/Vextria/my/account">My Account</a></li>
+      <li><a href="/Vextria/games">Games</a></li>
+      <li><a href="/Vextria/catalog">Catalog</a></li>
+      <li><a href="/Vextria/browse/people">People</a></li>
+      <li><a href="/Vextria/my/account/upgrade">Upgrade</a></li>
+      <li><a href="/Vextria/contests">Contests</a></li>
+      <li><a href="/Vextria/fourms">Fourms</a></li>
+      <li><a href="/Vextria/info/parents">Parents</a></li>
+      <li><a href="/Vextria/blog/home">Blog</a></li>
+      <li><a href="/Vextria/wiki/home">Help</a></li>
+    </ul>
   </div>
 </header>
 
