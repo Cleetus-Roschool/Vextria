@@ -3,680 +3,513 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vextria - Parental Controls</title>
+<title>Vextria - Blog System</title>
 <link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height:100%;font-family:"Source Sans Pro",Arial,Helvetica,sans-serif}
-body{background:rgb(220, 220, 220);color:#333;overflow-x:hidden}
-
-/* Top banner */
-.topbar{
-  height:54px;background:#174d88;
-  border-bottom:1px solid rgba(0,0,0,.18);
-  position:relative;z-index:20
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{
+  background-color:#000443;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  animation:bodyBkgScroll 40s linear infinite;
+  color:#fff;
+  overflow-x:hidden;
 }
-.topbar-inner{
-  height:54px;max-width:1500px;margin:auto;
-  display:flex;align-items:center;justify-content:space-between;
+@keyframes bodyBkgScroll{
+  from{background-position:0 0;}
+  to{background-position:-1000px 0;}
+}
+
+/* Top banner - Signed-out banner (from admin/templates/banners) */
+.topbar{
+  position:relative;
+  z-index:20;
+  width:100%;
+}
+.first-header-minimal{
+  width:100%;
+  background:#114081;
+}
+.first-header-minimal-inner{
+  max-width:900px;
+  height:40px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   padding:0 15px;
+  position:relative;
 }
 .brand{
-  display:block;width:145px;height:48px;margin-left:6px;
-  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png?raw=true") center/contain no-repeat
+  display:block;
+  width:120px;
+  height:34px;
+  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat;
 }
-.topbar-user{
+.auth-buttons{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sprite-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   color:#fff;
-  font-size:14px;
-  font-weight:600;
+  text-decoration:none;
+  font-weight:700;
+  font-size:16px;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-repeat:no-repeat;
+}
+.signup,.login{
+  width:80px;
+  height:28px;
+  background-size:80px 154px;
+  background-position:0 0;
+}
+.signup{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-green.png");
+}
+.login{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-blue.png");
+}
+.signup:hover,.login:hover{
+  background-position:0 -30px;
+}
+.second-header{
+  height:31px;
+  background:#6e99c9 url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
+  background-size:auto auto;
+  border-top:1px solid rgba(255,255,255,0.15);
+  border-bottom:1px solid rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.navbar-links{
+  display:flex;
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:100%;
+  gap:9px;
+}
+.navbar-links li{
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+.navbar-links a{
+  display:flex;
+  align-items:center;
+  height:100%;
+  padding:0 8px;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  text-decoration:none;
+}
+.navbar-links a:hover{
+  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
+  background-size:auto auto;
+  filter:brightness(1.3);
 }
 
 /* Page Layout Container */
 .page-container{
-  max-width:800px;
-  margin:0 auto;
-  min-height:calc(100vh - 152px);
-  display:flex;
-  background:#fff;
-  border-left:1px solid rgba(0,0,0,.15);
-  border-right:1px solid rgba(0,0,0,.15);
+  max-width:1100px;margin:0 auto;min-height:calc(100vh - 152px);
+  display:flex;gap:15px;background:rgb(220, 220, 220);color:#333;
+  padding:20px 20px;
 }
 
-/* Main Content Area */
-.main-content{
-  flex-grow:1;
-  padding:25px 35px;
-  background:#fff;
-  color:#222;
-}
-
-h1.page-title{
-  font-size:24px;
-  margin:0 0 15px 0;
-  color:#000;
-  font-weight:700;
-  border-bottom:2px solid #174d88;
-  padding-bottom:8px;
-}
-
-.section-title{
-  font-size:15px;
-  font-weight:700;
-  color:#174d88;
-  margin:25px 0 12px 0;
-  padding-bottom:4px;
-  border-bottom:1px solid #e5e5e5;
-}
-
-/* Classic Roblox Panel Frame Style */
-.content-box {
-  background: #fff;
-  border: 1px solid #b3b3b3;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-/* Form Controls */
-.form-group{
-  margin-bottom:16px;
-  position:relative;
-}
-.form-group label{
-  display:block;
-  font-weight:400;
-  font-size:14px;
-  margin-bottom:5px;
-  color:#333;
-}
-.form-control{
+/* View Switching Mechanics */
+.view-panel{
+  display:none;
   width:100%;
-  padding:8px 12px;
+}
+
+.view-panel.active{
+  display:flex;
+}
+
+/* Sidebar Styles (Right Side) */
+.sidebar{
+  width:240px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  flex-shrink:0;
+}
+
+.sidebar-box{
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/standardBox_01_bkg.png");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border:1px solid #707070;
+  padding:14px;
+}
+
+.sidebar-title{
   font-size:14px;
-  border:1px solid #a6a6a6;
-  border-radius:0;
-  background:#fff;
-  color:#333;
-}
-.form-control:focus{
-  outline:none;
-  border-color:#174d88;
+  font-weight:bold;
+  color:#000;
+  margin:0 0 10px 0;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
 }
 
-/* Tables styling */
-table.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  font-size: 14px;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-}
-table.data-table th, table.data-table td {
-  padding: 14px 15px;
-  border-bottom: 1px solid #e5e5e5;
-  text-align: left;
-  vertical-align: middle;
-}
-table.data-table th {
-  background: #f8f8f8;
-  color: #333;
-  font-weight: 700;
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #d9d9d9;
-}
-table.data-table tr:last-child td {
-  border-bottom: none;
-}
-.table-avatar {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  display: block;
+.search-form{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
-/* Toggle Switch Styling */
-.toggle-row{
+.search-input{
+  width:100%;
+  padding:5px 8px;
+  border:1px solid #707070;
+  font-size:12px;
+}
+
+.recent-article-item{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.recent-article-thumb{
+  width:40px;
+  height:40px;
+  background:#eee;
+  border:1px solid #ccc;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:12px 16px;
-  background:#fff;
-  border:1px solid #d9d9d9;
-  border-bottom:none;
-  font-size:14px;
-  color:#333;
+  justify-content:center;
+  flex-shrink:0;
 }
-.toggle-row:last-of-type{
-  border-bottom:1px solid #d9d9d9;
-}
-.switch{
-  position:relative;
-  display:inline-block;
-  width:44px;
-  height:24px;
-}
-.switch input{opacity:0;width:0;height:0}
-.slider{
-  position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;
-  background-color:#ccc;transition:.2s;border-radius:0;
-}
-.slider:before{
-  position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;
-  background-color:white;transition:.2s;border-radius:0;
-  box-shadow:0 1px 2px rgba(0,0,0,0.15);
-}
-input:checked + .slider{background-color:#174d88}
-input:checked + .slider:before{transform:translateX(20px)}
 
-/* Profile Center Wrapper */
-.profile-center{
-  text-align:center;
-  padding:15px;
-  margin-bottom:25px;
+.recent-article-thumb svg{
+  width:20px;
+  height:20px;
+  fill:#aaa;
 }
-.profile-center img{
-  width:72px;
-  height:72px;
-  border-radius:0;
-  background:#fff;
-  object-fit:cover;
-  border:1px solid #ccc;
-}
-.profile-center h2{
-  margin:12px 0 4px 0;
-  font-size:18px;
-  color:#111;
-}
-.profile-public-link{
-  display:inline-block;
-  margin-top:6px;
+
+.recent-article-title{
+  font-size:12px;
+  font-weight:bold;
   color:#174d88;
-  font-size:13px;
-  font-weight:600;
   text-decoration:none;
 }
-.profile-public-link:hover{
+
+.recent-article-title:hover{
   text-decoration:underline;
 }
 
-/* Friends Carousel Styling */
-.friends-carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 15px;
-  padding: 0 5px;
-}
-.friends-viewport {
-  overflow: hidden;
-  width: 590px;
-  margin: 0 10px;
-}
-.friends-list {
-  display: flex;
-  gap: 15px;
-  transition: transform 0.3s ease;
-  padding: 5px 0;
-}
-.friend-card {
-  text-align: center;
-  width: 70px;
-  flex: 0 0 70px;
-}
-.friend-card img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border: 1px solid #ccc;
-  margin-bottom: 4px;
-  background: #fff;
-}
-.friend-card .friend-label {
-  font-size: 10px;
-  text-transform: uppercase;
-  color: #666;
-  font-weight: 700;
-  margin-bottom: 1px;
-}
-.friend-card a {
-  color: #174d88;
-  text-decoration: none;
-  font-size: 11px;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.arrow-btn {
-  width: 17px;
-  height: 50px;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  flex: 0 0 auto;
-}
-.arrow-left {
-  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_left.png?raw=true") no-repeat 0 0;
-}
-.arrow-left:hover:not(:disabled) {
-  background-position: 0 -51px;
-}
-.arrow-left:disabled {
-  background-position: 0 bottom;
-  cursor: default;
-}
-.arrow-right {
-  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true") no-repeat 0 0;
-}
-.arrow-right:hover:not(:disabled) {
-  background-position: 0 -51px;
-}
-.arrow-right:disabled {
-  background-position: 0 bottom;
-  cursor: default;
+.tree-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  font-size:12px;
 }
 
-/* Views Container */
-.view-section{display:none;}
-.view-section.active{display:block;}
-
-/* Classic Roblox Tile Buttons */
-.btn-tile {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 75px;
-  height: 27px;
-  color: #777;
-  font-weight: 700;
-  font-size: 12px;
-  border: 1px solid #777;
-  cursor: pointer;
-  border-radius: 0;
-  text-shadow: 0 1px rgba(255,255,255,.6);
-  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn-control-large-tile.png?raw=true");
-  background-repeat: no-repeat;
-  background-size: 140px 100px;
-  background-position: 0 -34px;
-}
-.btn-tile:hover {
-  background-position: 0 bottom;
+.tree-list li{
+  padding:3px 0;
+  color:#000;
 }
 
-/* Unblock Red Action Button */
-.btn-unblock {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 63px;
-  height: 23px;
-  color: #fff;
-  font-weight: 700;
-  font-size: 11px;
-  border: 1px solid #a00000;
-  border-radius: 0;
-  cursor: pointer;
-  text-shadow: 0 -1px rgba(0,0,0,.45);
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
-  background-repeat: repeat-x;
-  background-size: auto 100px;
-  background-position: 0 -2px;
-}
-.btn-unblock:hover {
-  background-position: 0 bottom;
+.tree-list a{
+  color:#333;
+  text-decoration:none;
 }
 
-/* Link styling for usernames and tables */
-.table-link {
-  color: #174d88;
-  text-decoration: none;
-  font-weight: 600;
-}
-.table-link:hover {
-  text-decoration: underline;
+.tree-list a:hover{
+  color:#174d88;
+  text-decoration:underline;
 }
 
-/* Base Roblox Button Style - Fixed explicit dimensions and flex alignment to prevent text changes from altering size */
-.roblox-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  height: 30px;
-  padding: 0 14px;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  background-repeat: repeat-x;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-  vertical-align: middle;
-  white-space: nowrap;
-  overflow: hidden;
-  flex-shrink: 0;
+.stats-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  font-size:12px;
 }
 
-.roblox-btn-blue {
-  width: 70px;
-  min-width: 70px;
-  max-width: 70px;
-  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
-  background-repeat: no-repeat;
-  background-size: 150px 178px;
-  background-position: 0 0;
-}
-.roblox-btn-blue:hover {
-  background-position: 0 -34px;
+.stats-list li{
+  padding:4px 0;
+  color:#555;
+  font-weight:bold;
+  border-bottom:1px solid #eee;
 }
 
-.roblox-btn-red {
-  width: 130px;
-  min-width: 130px;
-  max-width: 130px;
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
-  border: 1px solid #a00000;
-  background-position: 0 -2px;
-}
-.roblox-btn-red:hover {
-  background-position: 0 bottom;
+.stats-list li:last-child{
+  border-bottom:none;
 }
 
-.btn-change-email {
-  width: 130px;
-  min-width: 130px;
-  max-width: 130px;
-  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
-  background-repeat: no-repeat;
-  background-size: 150px 178px;
-  background-position: 0 0;
-}
-.btn-change-email:hover {
-  background-position: 0 -34px;
+/* Default Feed Styles */
+.feed-content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
 }
 
-.btn-change-pass {
-  width: 160px;
-  min-width: 160px;
-  max-width: 160px;
-  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
-  background-repeat: no-repeat;
-  background-size: 160px 178px;
-  background-position: 0 0;
-}
-.btn-change-pass:hover {
-  background-position: 0 -34px;
-}
-
-.btn-logout {
-  width: 85px;
-  min-width: 85px;
-  max-width: 85px;
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
-  border: 1px solid #a00000;
-  background-position: 0 -2px;
-}
-.btn-logout:hover {
-  background-position: 0 bottom;
+.feed-card{
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/standardBox_01_bkg.png");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border:1px solid #707070;
+  padding:15px;
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
 }
 
-.btn-parent-info {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
-  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
-  background-repeat: no-repeat;
-  background-size: 160px 178px;
-  background-position: 0 0;
-}
-.btn-parent-info:hover {
-  background-position: 0 -34px;
+.feed-thumb-placeholder{
+  width:160px;
+  height:160px;
+  background:#eee;
+  border:1px solid #ccc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
 }
 
-.btn-policy-link {
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
-  border: 1px solid #a00000;
-  background-position: 0 -2px;
-}
-.btn-policy-link:hover {
-  background-position: 0 bottom;
+.feed-thumb-placeholder svg{
+  width:64px;
+  height:64px;
+  fill:#aaa;
 }
 
-.btn-tos-link {
-  width: 145px;
-  min-width: 145px;
-  max-width: 145px;
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
-  border: 1px solid #a00000;
-  background-position: 0 -2px;
-}
-.btn-tos-link:hover {
-  background-position: 0 bottom;
+.feed-details{
+  flex:1;
+  display:flex;
+  flex-direction:column;
 }
 
-.btn-submit-red{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: 130px;
-  min-width: 130px;
-  max-width: 130px;
-  height: 50px;
-  color: #fff;
-  font-weight: 700;
-  font-size: 18px;
-  border: 1px solid #a00000;
-  border-radius: 0;
-  cursor: pointer;
-  text-shadow: 0 -1px rgba(0,0,0,.45);
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
-  background-repeat: repeat-x;
-  background-size: auto 100px;
-  background-position: 0 -2px;
-  white-space: nowrap;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.btn-submit-red:hover{
-  background-position: 0 bottom;
+.feed-header-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:4px;
 }
 
-.btn-submit{
+.feed-title{
+  font-size:18px;
+  font-weight:bold;
+  color:#000;
+  margin:0;
+}
+
+.category-tag{
+  background:#174d88;
+  color:#fff;
+  font-size:11px;
+  font-weight:bold;
+  padding:2px 6px;
+  border-radius:2px;
+}
+
+.feed-meta{
+  font-size:12px;
+  color:#666;
+  margin-bottom:12px;
+}
+
+.feed-snippet{
+  font-size:13px;
+  color:#000;
+  line-height:1.4;
+  margin:0 0 15px 0;
+  flex-grow:1;
+}
+
+.read-more-btn{
+  color:#174d88;
+  font-weight:bold;
+  font-size:13px;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.read-more-btn:hover{
+  text-decoration:underline;
+}
+
+/* Main Blog Document View Styles */
+.doc-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.doc-post-card{
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/standardBox_01_bkg.png");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border:1px solid #707070;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.doc-featured-image{
+  width:100%;
+  max-height:260px;
+  background:#eee;
+  border:1px solid #ccc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.doc-featured-image svg{
+  width:64px;
+  height:64px;
+  fill:#aaa;
+  padding:40px 0;
+}
+
+.doc-header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.doc-title{
+  font-size:22px;
+  font-weight:bold;
+  color:#000;
+  margin:0;
+  line-height:1.2;
+}
+
+.doc-author-meta{
+  font-size:12px;
+  color:#666;
+  margin-top:-4px;
+}
+
+.doc-message-body{
+  font-size:13px;
+  color:#000;
+  line-height:1.45;
+  margin:0;
+  display:-webkit-box;
+  -webkit-line-clamp:8;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Action Bar Container */
+.doc-actions-bar{
+  display:flex;
+  align-items:flex-start;
+  margin-top:15px;
+  padding-top:15px;
+  border-top:1px solid #ddd;
+  gap:12px;
+}
+
+/* Column Base Mechanics */
+.action-column{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+
+/* Counter Numbers directly below each button */
+.action-count{
+  font-size:12px;
+  font-weight:bold;
+}
+
+.count-blue{
+  color:#0055b3;
+}
+
+.count-green{
+  color:#008000;
+}
+
+.count-red{
+  color:#a00000;
+}
+
+/* Base Roblox Sprite Button Styles */
+.roblox-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  box-sizing: border-box;
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
   height:30px;
+  padding:0 14px;
   color:#fff;
-  font-weight:700;
-  font-size:15px;
+  font-size:12px;
+  font-weight:bold;
+  text-decoration:none;
   border:none;
-  border-radius:0;
   cursor:pointer;
-  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-repeat:repeat-x;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.4);
+}
+
+/* --- Share, Bookmark & Like Buttons --- */
+
+/* On Hover: Shift background position to -50px */
+.roblox-btn-blue:hover,
+.roblox-btn-green:hover{
+  background-position:0 -50px;
+}
+
+.roblox-btn-blue{
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
+  border:1px solid #0055b3;
+}
+
+.roblox-btn-green{
   background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-green.png?raw=true");
-  background-repeat:no-repeat;
-  background-size:150px 178px;
-  background-position:0 0;
-  white-space: nowrap;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.btn-submit:hover{
-  background-position:0 -34px;
+  border:1px solid #008000;
 }
 
-/* Specific Purchase Section Action Buttons */
-.btn-buy-vexbucks {
-  width: 130px;
-  min-width: 130px;
-  max-width: 130px;
-  height: 30px;
-  border: none;
-  font-size: 14px;
-  background-image: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-green.png?raw=true");
-  background-repeat: no-repeat;
-  background-size: 150px 178px;
-  background-position: 0 0;
-  white-space: nowrap;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.btn-buy-vexbucks:hover {
-  background-position: 0 -34px;
+/* --- Red Button (Dislike) --- */
+/* Base position updated to -2px */
+.roblox-btn-red{
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true");
+  border:1px solid #a00000;
+  background-position:0 -2px;
 }
 
-.btn-cancel-sub {
-  width: 175px;
-  min-width: 175px;
-  max-width: 175px;
-  height: 30px;
-  border: 1px solid #a00000;
-  font-size: 14px;
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn_red_30h_t2.png?raw=true);
-  background-repeat: repeat-x;
-  background-size: auto 100px;
-  background-position: 0 -2px;
-  white-space: nowrap;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.btn-cancel-sub:hover {
-  background-position: 0 bottom;
+/* On Hover: Shift red sprite background all the way down */
+.roblox-btn-red:hover{
+  background-position:0 100%;
 }
 
-/* Modal Popup Styles */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-}
-.modal-overlay.active {
-  display: flex;
-}
-.modal-dialog {
-  background: #393939;
-  width: 430px;
-  max-width: 90%;
-  border: 1px solid #dcdcdc;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  position: relative;
-}
-.modal-header {
-  background: #dcdcdc;
-  padding: 12px 18px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  border-bottom: 1px solid #b3b3b3;
-  position: relative;
-}
-.modal-close-btn {
-  position: absolute;
-  top: -14px;
-  right: -14px;
-  width: 35px;
-  height: 35px;
-  background: url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/closeBtnCircle_35h.png?raw=true") no-repeat 0 0;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 10;
-}
-.modal-close-btn:hover {
-  background-position: 0 -35px;
-}
-.modal-body {
-  background: #fff;
-  border: 3px solid #dcdcdc;
-  padding: 25px 30px;
-  font-size: 14px;
-  color: #333;
-  text-align: center;
-}
-.modal-body p {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-.modal-form-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  font-size: 15px;
-  font-weight: 600;
+.back-btn{
+  display:inline-block;
+  margin-top:10px;
+  color:#174d88;
+  font-size:12px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
 }
 
-/* Classic Style Guide Tabs Layout */
-.subtabs-container {
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
-  padding-left: 2px;
+.back-btn:hover{
+  text-decoration:underline;
 }
 
-.tab-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 16px;
-  white-space: nowrap;
-  height: 34px;
-  color: #777;
-  font-weight: 700;
-  font-size: 13px;
-  background: #e6e6e6;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: none;
-  cursor: pointer;
-  margin-right: 4px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  position: relative;
-  bottom: -1px;
-}
-
-.tab-btn:hover {
-  background: #dcdcdc;
-  color: #333;
-}
-
-.tab-btn.selected {
-  background: #fff;
-  color: #000;
-  border-top: 2px solid #174d88;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #fff;
-  height: 35px;
-  z-index: 2;
-}
-
-/* Footer (Fully white elements & separators) */
+/* Footer */
 .lower{
   width:100%;
   height:98px;
@@ -687,7 +520,6 @@ input:checked + .slider:before{transform:translateX(20px)}
   z-index:10;
   text-align:center;
   padding:16px 20px 0;
-  color:#fff;
 }
 .footer-links{
   display:flex;
@@ -697,514 +529,208 @@ input:checked + .slider:before{transform:translateX(20px)}
   flex-wrap:wrap;
   font-size:14px;
   font-weight:700;
-  color:#fff;
 }
 .footer-links a{color:#fff;text-decoration:none}
 .footer-links a:hover{text-decoration:underline}
-.footer-links span{color:#fff;}
 .footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
 
 @media(max-width:768px){
-  .main-content{padding:20px}
+  .page-container, .view-panel{flex-direction:column}
+  .feed-card{flex-direction:column}
+  .feed-thumb-placeholder{width:100%;height:180px}
+  .sidebar{width:100%}
 }
 </style>
 </head>
 <body>
 
 <header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="javascript:void(0);" aria-label="Vextria Home"></a>
-    <div class="topbar-user">Logged in as parent@vextria.com</div>
+  <div class="first-header-minimal">
+    <div class="first-header-minimal-inner">
+      <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+      <div class="auth-buttons">
+        <a href="/Vextria/signup" class="sprite-btn signup">Sign Up</a>
+        <a href="/Vextria/login" class="sprite-btn login">Log In</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-header">
+    <ul class="navbar-links">
+      <li><a href="/Vextria/my/account">My Account</a></li>
+      <li><a href="/Vextria/games">Games</a></li>
+      <li><a href="/Vextria/catalog">Catalog</a></li>
+      <li><a href="/Vextria/browse/people">People</a></li>
+      <li><a href="/Vextria/my/account/upgrade">Upgrade</a></li>
+      <li><a href="/Vextria/contests">Contests</a></li>
+      <li><a href="/Vextria/fourms">Fourms</a></li>
+      <li><a href="/Vextria/info/parents">Parents</a></li>
+      <li><a href="/Vextria/blog/home">Blog</a></li>
+      <li><a href="/Vextria/wiki/home">Help</a></li>
+    </ul>
   </div>
 </header>
 
 <div class="page-container">
-  <main class="main-content">
 
-    <!-- VIEW 1: PARENTAL CONTROLS HOME -->
-    <div id="viewHome" class="view-section active">
-      <h1 class="page-title">Parental Controls</h1>
-
-      <div class="section-title">Your Child Vextria Accounts</div>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th style="width:70px;">Avatar</th>
-            <th>Name</th>
-            <th>Location / Last Seen</th>
-            <th>Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Avatar" class="table-avatar"></td>
-            <td><strong><a href="javascript:void(0);" class="table-link">username</a></strong></td>
-            <td>Playing <a href="javascript:void(0);" class="table-link">Adventure Worlds</a></td>
-            <td>
-              <div style="display:flex; gap:6px; align-items:center; position:relative; top:-2px;">
-                <button type="button" class="roblox-btn roblox-btn-blue" onclick="switchView('viewManage')">Manage</button>
-                <button type="button" class="roblox-btn roblox-btn-red" onclick="alert('Remove user flow')">Remove User</button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Attach User Section without outer frame -->
-      <div class="section-title">Want to Add a New Child Account?</div>
-      <div style="max-width:450px; margin-bottom:20px;">
-        <form onsubmit="event.preventDefault(); alert('Account attached successfully!');">
-          <div class="form-group">
-            <label for="newChildUser">Child's Username</label>
-            <input type="text" id="newChildUser" class="form-control" placeholder="Enter username" required>
+  <div id="default-view" class="view-panel active" style="gap:15px;">
+    
+    <main class="feed-content">
+      <article class="feed-card">
+        <div class="feed-thumb-placeholder">
+          <svg viewBox="0 0 24 24">
+            <path d="M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3L19,3z M14.14,11.86 l-3,3.87L9,13.14L6,17h12L14.14,11.86L14.14,11.86z M8.5,11C9.33,11,10,10.33,10,9.5S9.33,8,8.5,8S7,8.67,7,9.5S7.67,11,8.5,11 L8.5,11z"/>
+          </svg>
+        </div>
+        <div class="feed-details">
+          <div class="feed-header-row">
+            <h2 class="feed-title">Title</h2>
+            <span class="category-tag">Section (Game Development)</span>
           </div>
-          <div class="form-group">
-            <label for="newChildPass">Child's Password</label>
-            <input type="password" id="newChildPass" class="form-control" placeholder="Enter password" required>
+          <div class="feed-meta">By (username) at 15th August 2026 - 10:35Am BST</div>
+          <p class="feed-snippet">Few Messages</p>
+          <div>
+            <a onclick="showView('document-view')" class="read-more-btn">Read More</a>
           </div>
-          <button type="submit" class="btn-submit">Attach User</button>
+        </div>
+      </article>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Search</h3>
+        <form class="search-form" action="#" method="get" onsubmit="return false;">
+          <input type="text" class="search-input" placeholder="Search..." aria-label="Search">
+          <button type="submit" class="roblox-btn roblox-btn-blue" style="width:100%;">Search</button>
         </form>
       </div>
 
-      <div class="section-title">Manage Your Account</div>
-      <div style="padding:5px 0 10px 0;">
-        <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center; margin-bottom:15px;">
-          <button type="button" class="roblox-btn btn-change-email" onclick="alert('Change Email modal')">Change Email</button>
-          <button type="button" class="roblox-btn btn-change-pass" onclick="alert('Change Password modal')">Change Password</button>
-          <button type="button" class="roblox-btn btn-logout" onclick="alert('Logged out')">Log out</button>
-        </div>
-      </div>
-
-      <div class="section-title">Information</div>
-      <div style="padding:5px 0 20px 0;">
-        <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
-          <button type="button" class="roblox-btn btn-parent-info" onclick="alert('Redirecting to Parent Information page...')">Parent Information</button>
-          <button type="button" class="roblox-btn btn-policy-link" onclick="alert('Redirecting to Privacy Policy page...')">Privacy Policy</button>
-          <button type="button" class="roblox-btn btn-tos-link" onclick="alert('Redirecting to Terms of Service page...')">Terms of Service</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- VIEW 2: MANAGE INDIVIDUAL CHILD ACCOUNT -->
-    <div id="viewManage" class="view-section">
-      <div style="margin-bottom:20px;">
-        <span class="action-link" onclick="switchView('viewHome')" style="cursor:pointer; color:#174d88; font-weight:600;">&larr; Back to Parental Controls</span>
-      </div>
-
-      <!-- Sub-section Navigation Tabs -->
-      <div class="subtabs-container">
-        <button type="button" class="tab-btn selected" id="tabBtnInfo" onclick="switchSubTab('info')">Information</button>
-        <button type="button" class="tab-btn" id="tabBtnRestrict" onclick="switchSubTab('restrict')">Restrict Access</button>
-        <button type="button" class="tab-btn" id="tabBtnPermissions" onclick="switchSubTab('permissions')">Permissions</button>
-      </div>
-
-      <!-- SUB-SECTION 1: INFORMATION -->
-      <div id="subTabInfo" class="subtab-content">
-        <!-- 1. Profile -->
-        <div class="profile-center">
-          <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Avatar">
-          <h2>username</h2>
-          <a href="javascript:void(0);" class="profile-public-link" onclick="alert('View Public Profile flow')">View Public Profile</a>
-        </div>
-
-        <!-- 2. Friends Carousel with strict page-part pagination -->
-        <div class="section-title" style="margin-top:0;">Friends</div>
-        <div class="content-box">
-          <p style="margin-top:0; font-size:14px;"><strong>username</strong> currently has <strong>12</strong> friends.</p>
-          
-          <div class="friends-carousel-container">
-            <!-- Left Arrow -->
-            <button type="button" id="arrowLeftBtn" class="arrow-btn arrow-left" onclick="slideFriends('prev')" disabled></button>
-            
-            <div class="friends-viewport">
-              <div class="friends-list" id="friendsListContainer">
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">CoolGamer99</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">BuilderPro</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">VexDev</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">NoobMaster</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">RoboBuilder</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">PixelKnight</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">ShadowRox</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">HyperBlaze</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">StarGazer</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">SpeedyX</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">VexFanatic</a>
-                </div>
-                <div class="friend-card">
-                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Friend Avatar">
-                  <div class="friend-label">Profile</div>
-                  <a href="javascript:void(0);">EpicMaster</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Arrow -->
-            <button type="button" id="arrowRightBtn" class="arrow-btn arrow-right" onclick="slideFriends('next')"></button>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Recent Articles</h3>
+        <div class="recent-article-item">
+          <div class="recent-article-thumb">
+            <svg viewBox="0 0 24 24">
+              <path d="M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3L19,3z M14.14,11.86 l-3,3.87L9,13.14L6,17h12L14.14,11.86L14.14,11.86z M8.5,11C9.33,11,10,10.33,10,9.5S9.33,8,8.5,8S7,8.67,7,9.5S7.67,11,8.5,11 L8.5,11z"/>
+            </svg>
           </div>
+          <a href="#" onclick="showView('document-view')" class="recent-article-title">Title</a>
         </div>
-
-        <!-- 3. Recently Played Games -->
-        <div class="section-title">Recently Played Games</div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th style="width:70px;">Icon</th>
-              <th>Name</th>
-              <th>Creator</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Game Icon" class="table-avatar"></td>
-              <td><strong><a href="javascript:void(0);" class="table-link">Adventure Worlds</a></strong></td>
-              <td><a href="javascript:void(0);" class="table-link">VextriaOfficial</a></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 4. Purchases & Subscriptions -->
-        <div class="section-title">Purchases &amp; Subscriptions</div>
-        <div class="content-box">
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:15px; font-size:14px; align-items:center;">
-            <div><strong>Vexbucks:</strong> <span style="color:#174d88; font-weight:600;">0</span></div>
-            <div><strong>Tickets:</strong> <span style="color:#174d88; font-weight:600;">0</span></div>
-            <div style="grid-column: 1 / -1;"><strong>Active Subscription:</strong> 1 Month Vextria Club, Expires in 30 days</div>
-            <div style="grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 5px;">
-              <button type="button" class="roblox-btn btn-buy-vexbucks" onclick="alert('Buy Vexbucks flow')">Buy Vexbucks</button>
-              <button type="button" class="roblox-btn btn-cancel-sub" onclick="alert('Cancel Subscription flow')">Cancel Subscription</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. Moderation Reports -->
-        <div class="section-title">Moderation Reports</div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Action</th>
-              <th>Reported For</th>
-              <th>Created</th>
-              <th>Expiration date</th>
-              <th>Reason</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span style="color:#a00000; font-weight:600;">1 day ban</span></td>
-              <td>Scamming</td>
-              <td>2/9/2026 01:38am (LT)</td>
-              <td>3/9/2026 01:38am (LT)</td>
-              <td>scam</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
 
-      <!-- SUB-SECTION 2: RESTRICT ACCESS -->
-      <div id="subTabRestrict" class="subtab-content" style="display:none;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <strong style="font-size:14px; color:#333;">Block Games</strong>
-          <button type="button" class="btn-tile" onclick="openGameModal()">Add Game</button>
-        </div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th style="width:70px;">Icon</th>
-              <th>Name</th>
-              <th>Creator</th>
-              <th style="width:90px;">Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Icon" class="table-avatar"></td>
-              <td><a href="javascript:void(0);" class="table-link">Zombie Survival Arena</a></td>
-              <td><a href="javascript:void(0);" class="table-link">DarkDev</a></td>
-              <td><button type="button" class="btn-unblock" onclick="alert('Unblocked')">Unblock</button></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; margin:25px 0 8px 0;">
-          <strong style="font-size:14px; color:#333;">Block Users</strong>
-          <button type="button" class="btn-tile" onclick="openUserModal()">Add User</button>
-        </div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th style="width:70px;">Avatar</th>
-              <th style="font-size:15px;">Name</th>
-              <th style="width:90px;">Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true" alt="Avatar" class="table-avatar"></td>
-              <td style="font-size:15px; font-weight:600;"><a href="javascript:void(0);" class="table-link">BadActor123</a></td>
-              <td><button type="button" class="btn-unblock" onclick="alert('Unblocked')">Unblock</button></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Statistics</h3>
+        <ul class="stats-list">
+          <li>0 Shares All time</li>
+          <li>0 Bookmarks All time</li>
+          <li>0 Likes All time</li>
+          <li>0 Dislikes All time</li>
+        </ul>
       </div>
 
-      <!-- SUB-SECTION 3: PERMISSIONS -->
-      <div id="subTabPermissions" class="subtab-content" style="display:none;">
-        <div class="section-title" style="margin-top:0;">Communications</div>
-        <div class="toggle-row">
-          <span>In-game Chat</span>
-          <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-        </div>
-        <div class="toggle-row">
-          <span>Website Chat</span>
-          <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-        </div>
-        <div class="toggle-row">
-          <span>Inbox Messages</span>
-          <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-        </div>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Categories</h3>
+        <ul class="tree-list">
+          <li>+ <a href="#">News</a></li>
+          <li>+ <a href="#">Release Notes</a></li>
+          <li>+ <a href="#">Contests</a></li>
+          <li>+ <a href="#">Announcements</a></li>
+          <li>+ <a href="#">Gaming</a></li>
+          <li>+ <a href="#">Reviews</a></li>
+          <li>+ <a href="#">Tutroails</a></li>
+          <li>+ <a href="#">Uncategorize</a></li>
+        </ul>
+      </div>
 
-        <div class="section-title">Friends &amp; Contacts</div>
-        <div class="toggle-row">
-          <span>Team Create in Editor</span>
-          <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-        </div>
+      <div class="sidebar-box">
+        <h3 class="sidebar-title">Archives</h3>
+        <ul class="tree-list">
+          <li>+ <a href="#">Month Year</a></li>
+        </ul>
+      </div>
+    </aside>
 
-        <div class="section-title">Notifications</div>
-        <div class="toggle-row">
-          <span>Spending Notifications</span>
-          <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-        </div>
+  </div>
 
-        <div class="section-title">Visibility Settings</div>
+  <div id="document-view" class="view-panel">
+    
+    <main class="doc-main">
+      <article class="doc-post-card">
         
-        <div class="content-box">
-          <div class="form-group">
-            <label>Online Status</label>
-            <select class="form-control">
-              <option>Everyone</option>
-              <option>Best Friends</option>
-              <option>Friends</option>
-              <option>Noone</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Show Current Game</label>
-            <select class="form-control">
-              <option>Everyone</option>
-              <option>Best Friends</option>
-              <option>Friends</option>
-              <option>Noone</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>VIP Servers</label>
-            <select class="form-control">
-              <option>Everyone</option>
-              <option>Best Friends</option>
-              <option>Friends</option>
-              <option>Noone</option>
-            </select>
-          </div>
-
-          <div class="form-group" style="margin-bottom:0;">
-            <label>Inventory</label>
-            <select class="form-control">
-              <option>Everyone</option>
-              <option>Best Friends</option>
-              <option>Friends</option>
-              <option>Noone</option>
-            </select>
-          </div>
+        <div class="doc-featured-image">
+          <svg viewBox="0 0 24 24">
+            <path d="M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3L19,3z M14.14,11.86 l-3,3.87L9,13.14L6,17h12L14.14,11.86L14.14,11.86z M8.5,11C9.33,11,10,10.33,10,9.5S9.33,8,8.5,8S7,8.67,7,9.5S7.67,11,8.5,11 L8.5,11z"/>
+          </svg>
         </div>
 
-        <div style="margin-top:25px;">
-          <button type="button" class="btn-submit" style="width:150px;" onclick="alert('Settings saved successfully!')">Save Changes</button>
+        <div class="doc-header-row">
+          <h1 class="doc-title">Title</h1>
+          <span class="category-tag">Section (Game Development)</span>
         </div>
-      </div>
 
-    </div>
+        <div class="doc-author-meta">By (username) at 15th August 2026 - 10:35Am BST</div>
 
-  </main>
-</div>
+        <p class="doc-message-body">
+          Few Messages. This is the standalone main blog document view. CSS line clamping ensures that text caps strictly at 8 lines maximum.
+        </p>
 
-<!-- BLOCK GAME MODAL -->
-<div id="blockGameModal" class="modal-overlay">
-  <div class="modal-dialog">
-    <button type="button" class="modal-close-btn" onclick="closeModals()"></button>
-    <div class="modal-header">Block Game</div>
-    <div class="modal-body">
-      <p>Blocking a game will make your child unavailable to join the roblox game or view any source of the game, E.g Gamepasses</p>
-      
-      <form onsubmit="event.preventDefault(); alert('Game blocked successfully!'); closeModals();">
-        <div class="modal-form-row">
-          <label for="modalGameId">Game ID:</label>
-          <input type="text" id="modalGameId" class="form-control" style="width: 220px;" placeholder="">
+        <div class="doc-actions-bar">
+          
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-blue">Share</button>
+            <span class="action-count count-blue">0</span>
+          </div>
+
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-blue">Bookmark</button>
+            <span class="action-count count-blue">0</span>
+          </div>
+
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-green">Like</button>
+            <span class="action-count count-green">0</span>
+          </div>
+
+          <div class="action-column">
+            <button type="button" class="roblox-btn roblox-btn-red">Dislike</button>
+            <span class="action-count count-red">0</span>
+          </div>
+
         </div>
-        <div style="text-align: center; margin-top: 25px;">
-          <button type="submit" class="btn-submit-red">Block Game</button>
+
+        <div>
+          <a onclick="showView('default-view')" class="back-btn">&larr; Go Back</a>
         </div>
-      </form>
-    </div>
+
+      </article>
+    </main>
+
   </div>
-</div>
 
-<!-- BLOCK USER MODAL -->
-<div id="blockUserModal" class="modal-overlay">
-  <div class="modal-dialog">
-    <button type="button" class="modal-close-btn" onclick="closeModals()"></button>
-    <div class="modal-header">Block User</div>
-    <div class="modal-body">
-      <p>Blocking a user will restrict the blocked user to communicate or view your childs profile, Your child will also not be able to see the blocked user.</p>
-      
-      <form onsubmit="event.preventDefault(); alert('User blocked successfully!'); closeModals();">
-        <div class="modal-form-row">
-          <label for="modalUserId">User ID:</label>
-          <input type="text" id="modalUserId" class="form-control" style="width: 220px;" placeholder="">
-        </div>
-        <div style="text-align: center; margin-top: 25px;">
-          <button type="submit" class="btn-submit-red">Block User</button>
-        </div>
-      </form>
-    </div>
-  </div>
 </div>
 
 <footer class="lower">
   <nav class="footer-links" aria-label="Footer">
-    <a href="javascript:void(0);">Privacy Policy</a><span>|</span>
-    <a href="javascript:void(0);">Contact Us</a><span>|</span>
-    <a href="javascript:void(0);">About Us</a><span>|</span>
-    <a href="javascript:void(0);">Careers</a><span>|</span>
-    <a href="javascript:void(0);">Blog</a><span>|</span>
-    <a href="javascript:void(0);">Parents</a><span>|</span>
-    <a href="javascript:void(0);">Help</a><span>|</span>
-    <a href="javascript:void(0);">Guidelines</a><span>|</span>
-    <a href="javascript:void(0);">Terms of Service</a>
+    <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
+    <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
+    <a href="/Vextria/info/about-us">About Us</a><span>|</span>
+    <a href="/Vextria/info/careers">Careers</a><span>|</span>
+    <a href="/Vextria/blog/home">Blog</a><span>|</span>
+    <a href="/Vextria/info/parents">Parents</a><span>|</span>
+    <a href="/Vextria/wiki/home">Help</a><span>|</span>
+    <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
+    <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
   </nav>
   <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
 </footer>
 
 <script>
-  window.switchView = function(viewId) {
-    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-    document.getElementById(viewId).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  window.switchSubTab = function(tabName) {
-    document.getElementById('subTabInfo').style.display = 'none';
-    document.getElementById('subTabRestrict').style.display = 'none';
-    document.getElementById('subTabPermissions').style.display = 'none';
-
-    document.getElementById('tabBtnInfo').classList.remove('selected');
-    document.getElementById('tabBtnRestrict').classList.remove('selected');
-    document.getElementById('tabBtnPermissions').classList.remove('selected');
-
-    if (tabName === 'info') {
-      document.getElementById('subTabInfo').style.display = 'block';
-      document.getElementById('tabBtnInfo').classList.add('selected');
-    } else if (tabName === 'restrict') {
-      document.getElementById('subTabRestrict').style.display = 'block';
-      document.getElementById('tabBtnRestrict').classList.add('selected');
-    } else if (tabName === 'permissions') {
-      document.getElementById('subTabPermissions').style.display = 'block';
-      document.getElementById('tabBtnPermissions').classList.add('selected');
-    }
-  };
-
-  let currentFriendPage = 0;
-  window.slideFriends = function(direction) {
-    const container = document.getElementById('friendsListContainer');
-    const totalCards = container.children.length;
-    const cardsPerView = 7;
-    const maxPages = Math.ceil(totalCards / cardsPerView) - 1;
-
-    if (direction === 'next') {
-      if (currentFriendPage < maxPages) {
-        currentFriendPage++;
-      }
-    } else {
-      if (currentFriendPage > 0) {
-        currentFriendPage--;
-      }
-    }
-
-    const shiftDistance = currentFriendPage * (cardsPerView * 85);
-    container.style.transform = `translateX(-${shiftDistance}px)`;
-
-    const leftBtn = document.getElementById('arrowLeftBtn');
-    const rightBtn = document.getElementById('arrowRightBtn');
-
-    if (currentFriendPage <= 0) {
-      leftBtn.setAttribute('disabled', 'true');
-    } else {
-      leftBtn.removeAttribute('disabled');
-    }
-
-    if (currentFriendPage >= maxPages) {
-      rightBtn.setAttribute('disabled', 'true');
-    } else {
-      rightBtn.removeAttribute('disabled');
-    }
-  };
-
-  window.openGameModal = function() {
-    document.getElementById('blockGameModal').classList.add('active');
-  };
-
-  window.openUserModal = function() {
-    document.getElementById('blockUserModal').classList.add('active');
-  };
-
-  window.closeModals = function() {
-    document.getElementById('blockGameModal').classList.remove('active');
-    document.getElementById('blockUserModal').classList.remove('active');
-  };
+function showView(viewId) {
+  document.querySelectorAll('.view-panel').forEach(panel => {
+    panel.classList.remove('active');
+  });
+  document.getElementById(viewId).classList.add('active');
+  window.scrollTo(0, 0);
+}
 </script>
 
 </body>
