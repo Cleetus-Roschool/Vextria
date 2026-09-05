@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria - Guidelines</title>
+  <link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
+<link rel="icon" type="image/png" href="/Vextria/favicon.png">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{
+  background-color:#000443;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  animation:bodyBkgScroll 40s linear infinite;
+  color:#fff;
+  overflow-x:hidden;
+}
+@keyframes bodyBkgScroll{
+  from{background-position:0 0;}
+  to{background-position:-1000px 0;}
+}
+
+/* Top banner - 3rd Standard signed-in banner (from admin/templates/banners), stripped of currency/settings/logout */
+.topbar{
+  position:relative;
+  margin-bottom:0;
+  z-index:100;
+  width:100%;
+}
+.classic-roblox-header{
+  width:100%;
+  height:40px;
+  background:#2d528f;
+  position:relative;
+  z-index:100;
+}
+.classic-roblox-header-inner{
+  max-width:none;
+  width:100%;
+  height:40px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+  position:relative;
+  overflow:visible;
+}
+.classic-left-group{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  height:100%;
+  position:relative;
+  overflow:visible;
+}
+.classic-nav-links{
+  display:flex;
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:100%;
+  gap:13px;
+  align-items:center;
+  position:relative;
+  overflow:visible;
+}
+.classic-nav-links > li{
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:visible;
+}
+.classic-nav-links a{
+  color:#fff;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:30px;
+  padding:0 8px;
+  margin:0;
+  border-radius:4px;
+  transition:background-color 0.1s ease;
+}
+.classic-nav-links > li > a:hover{
+  background:#27487e;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.15);
+  color:#fff;
+  text-shadow:0 -1px rgba(0,0,0,0.45);
+}
+.brand{
+  display:block;width:120px;height:34px;
+  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat
+}
+
+/* Page Layout Container */
+.page-container{
+  max-width:1100px;margin:0 auto;min-height:calc(100vh - 152px);
+  display:flex;background:rgb(220, 220, 220);color:#333;
+  border-left:1px solid rgba(0,0,0,.2);border-right:1px solid rgba(0,0,0,.2);
+}
+
+/* Content Area */
+.legal-content{
+  flex-grow:1;padding:25px 30px;color:#222;
+  font-size:14px;line-height:1.6;
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/containerBkg_01.png");
+  background-repeat:repeat;
+}
+.legal-content h1{
+  font-size:22px;
+  margin-top:0;
+  margin-bottom:16px;
+  color:#000;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+}
+.legal-content h2{font-size:18px;margin-top:25px;margin-bottom:10px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
+.legal-content h3{font-size:14px;margin-top:18px;margin-bottom:4px;color:#000;font-weight:700}
+.legal-content ul{margin:8px 0 15px 20px;padding:0}
+.legal-content ol{margin:8px 0 15px 20px;padding:0}
+.legal-content li{margin-bottom:8px;color:#000}
+.legal-content p{margin:8px 0 15px 0;color:#000}
+.legal-content a{color:#0000cc;text-decoration:none}
+.legal-content a:hover{text-decoration:none}
+.meta-date{font-style:italic;color:#666;font-size:12px;margin-bottom:20px}
+
+/* Footer */
+.lower{
+  width:100%;
+  height:98px;
+  min-height:98px;
+  background:#174d88;
+  border-top:1px solid rgba(255,255,255,.55);
+  position:relative;
+  z-index:10;
+  text-align:center;
+  padding:16px 20px 0;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:14px;
+  font-weight:700;
+}
+.footer-links a{color:#fff;text-decoration:none}
+.footer-links a:hover{text-decoration:underline}
+.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+
+@media(max-width:768px){
+  .page-container{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="classic-roblox-header">
+    <div class="classic-roblox-header-inner">
+      <div class="classic-left-group">
+        <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+        <ul class="classic-nav-links">
+          <li><a href="/Vextria/info/terms-of-Service">Terms of Service</a></li>
+          <li><a href="/Vextria/info/privacy-policy">Privacy policy</a></li>
+          <li><a href="/Vextria/info/about-us">About Us</a></li>
+          <li><a href="/Vextria/info/guidelines">Guidelines</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-container">
+  <main class="legal-content">
+    <h1>Community Guidelines</h1>
+    <div class="meta-date">Last Updated: September 1, 2026</div>
+
+    <p>Welcome to the community guidelines, Theses guidelines are to make a community that feels safe and welcoming for everyone, and a palce where you can be yourself and make friends.</p>
+
+    <h2>Strike System</h2>
+
+    <p>At Vextira we have a simple strike system for dealing with Abuse Reports. When a player is reported a moderator checks what was going on at all times to make sure its a real offense. The real offenses is listed below. Once we've decided the player did something wrong by our standards then the following actions are taken.</p>
+
+    <ol>
+      <li><strong>Reminder</strong> - Kicked out of their current game and asked to read the Terms of Service and Community Guidelines</li>
+      <li><strong>Warning</strong> - Kicked out again of their game as a final warning to read the Terms of Service and Community Guidelines</li>
+      <li><strong>Chat Banned</strong> - User won't be kicked out but unable to chat to any users e.g Fourms, Livechats, comments, ingame etc for the set period "1 day, 7 days, 1 month"</li>
+      <li><strong>Temporary Bans</strong> - Kicked out and not let back in for the temporary ban days, Which are "1 Hour, 12 hours, 1 day, 3 days, 7 days, 14 days, 31 days, 180 days, 365 days"</li>
+      <li><strong>Permanent Bans</strong> - Kicked out and not allowed to access Vextira on that account. "Account Deleted" some users might get "IP / Device ban" which will not allow them to make an account.</li>
+    </ol>
+
+    <p>If a member has false reporting or threats of being reported Well, the moderators look at the entire chatlog from the server, and look to see if anyone was doing anything against the rules, Sending in a report does not mean that the person you reported is going to be automatically banned, It means that one of our moderators will look at what everyone was saying and decide the proper action. Accusing someone is not enough to get them banend and reproting people for silly things just waste our time as moderators. Spamming the report system is not tolerated and will result in action taken against you instead of the person you reported.</p>
+
+    <h2>Reportable Offenses</h2>
+
+    <h3>Minor Swearing / Profanity / Slurs</h3>
+    <p>Use of bad langague during in-game chat or on forum this includes using fake letters like @, * or disguise the swearing or shortening a phrase to just the first letter. If we as moderators can figure out what the swear word would be then it counts as profanity</p>
+
+    <h3>Threatening or Intimidating</h3>
+    <p>Any action or verbal dialog that may threaten or intimidate another player for example ddoxing, violence, someone's property/account or Coercive threats is prohibited. Don't say things like, "I'm going to find you and hurt you" which is a real world threat.</p>
+
+    <h3>Spamming</h3>
+    <p>Sending useless messages to another user is prohibited. Posting lots of useless text is prohibtied aswell.</p>
+
+    <h3>Advertising / Directing Users Off-Platform</h3>
+    <p>Messages of all Vextira user-created assets, E.g Games, Groups, Catalog items are welcoemd throughout the websuite and game. Any promotion of other products or services on Vextrai is prohibited</p>
+
+    <h3>Adult Content / NSFW Content / Inappropriate Content</h3>
+    <p>Any NSFW content e.g assets, chat messages or behaviour is prohibited such as "P#####ry Behaviour" this includes trying to get players to date you.</p>
+
+    <h3>Discriminatory, Harassment, Bullying, Personal Attacks</h3>
+    <p>Any harrasments towards a player</p>
+
+    <h3>Asking for/Sharing Identifying information</h3>
+    <p>Asking for any information about another user e.g age, location, phone number, email, address, name, school etc is prohibited. This allows people to find you which would be a bad thing, Hobbies or game you play would be ok but not revealing information.</p>
+
+    <h3>Bad Assets</h3>
+    <p>Since every asset is created by players sometimes an inappropriate asset will get made. The moderators may decide a asset is abd for the community and clear the asset and delete the title, description, Icons theses include:</p>
+    <ul>
+      <li>No natural disasters from within the last 2 years</li>
+      <li>No Terroism</li>
+      <li>No National disasters for example pretending to be war leaders. War games are fine</li>
+      <li>No Dating</li>
+      <li>Always follow the Terms of Service and Guidelines</li>
+    </ul>
+
+    <h3>Offensive Account Names, Profiles, Place descriptions</h3>
+    <p>Accounts with obviously offensive text will be immediately banned</p>
+
+    <h3>Impersonating a administrator</h3>
+    <p>Any user who impersonates a administrator either through chat or their profile will have their account taken down immediately</p>
+
+    <h3>Accessing another user's account</h3>
+    <p>Maliciously accessing another user's accoutn with result in immediate take-down of your account.</p>
+
+    <h3>Using Expliots, Glitches or misusing systems</h3>
+    <p>Using expliots or misusing our systems to distrub other user's gameplay is not allowed and may lead your account to be banned</p>
+
+    <h3>D##gs or Alc###l</h3>
+    <p>Any comments about theses types of stuff is probitited</p>
+
+    <h3>S####de/Self-####</h3>
+    <p>Any coments of hurting yourself or another player is not allowed.</p>
+
+    <h3>Clickbait Assets / Misleading Content</h3>
+    <p>Making clickbait games or asssets designed to scam users out of Vexbucks, Real life money, cookies or anything else is not allowed and may lead to a removal of account</p>
+
+    <h3>Billing/ChargeBacks</h3>
+    <p>Refunding via other services than support might get your account a chargeback. This may lead a account removal.</p>
+
+    <h3>Copyright</h3>
+    <p>Creating assets which are not in your IP will get a Legal Strike, Please see Terms of Service about Copyright.</p>
+
+    <h3>Encouraging Dangerous Behavior</h3>
+    <p>Encouraging dangerous behaviour is not allowed this includes in real life such as to hurt you or other people.</p>
+
+    <h3>Dating and Romantic Content</h3>
+    <p>Dating e.g "Boyfriend", "Girlfriend", "Husbands", "Wifes", "Fiancé", "Fiancée", "Partner", "Spouse", "Significant Other" is not allowed. content like "Kissing" "NSFW Content" is also not allowed,</p>
+  </main>
+</div>
+
+<footer class="lower">
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
+    <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
+    <a href="/Vextria/info/about-us">About Us</a><span>|</span>
+    <a href="/Vextria/info/careers">Careers</a><span>|</span>
+    <a href="/Vextria/blog/home">Blog</a><span>|</span>
+    <a href="/Vextria/info/parents">Parents</a><span>|</span>
+    <a href="/Vextria/wiki/home">Help</a><span>|</span>
+    <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
+    <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
+  </nav>
+  <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
+</footer>
+
+</body>
+</html>
