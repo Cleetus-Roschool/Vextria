@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria - Scheduled Maintenance</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/favicon.png">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%;font-family:"Source Sans Pro",Arial,Helvetica,sans-serif}
+body{
+  background-color:#000443;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  animation:bodyBkgScroll 40s linear infinite;
+  color:#333;
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+@keyframes bodyBkgScroll{
+  from{background-position:0 0;}
+  to{background-position:-1000px 0;}
+}
+
+.error-card{
+  max-width: 950px;
+  margin: 0 auto;
+  /* background-color: #fff; */
+  /* border: 1px solid #707070; */
+  padding: 32px 30px;
+  text-align: center;
+}
+
+.error-icon{
+  width:480px;
+  height:480px;
+  object-fit:contain;
+  margin:0 auto 18px auto;
+  display:block;
+}
+
+.error-header{
+  font-size:35px;
+  font-weight:750;
+  color:#fff;
+  margin:0 0 12px 0;
+}
+
+.error-text{
+  font-size:17px;
+  color:#fff;
+  line-height:1.6;
+  margin:0 0 8px 0;
+}
+.error-text:last-of-type{margin-bottom:0;}
+
+</style>
+</head>
+<body>
+
+    <div class="error-card">
+      <img class="error-icon" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/8DIErKrWGgAAAABJRU5ErkJggg.png?raw=true" alt="Scheduled Maintenance">
+      <h1 class="error-header">Scheduled Maintenance</h1>
+      <p class="error-text">We are currently performing a scheduled maintenance.</p>
+      <p class="error-text">Our site will be back online shortly!</p>
+    </div>
+
+</body>
+</html>
