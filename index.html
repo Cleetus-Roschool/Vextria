@@ -4,138 +4,510 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vextria - Adventure Awaits</title>
-<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/asdo.png?raw=true">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
 body{background:#174d88;color:#fff;overflow-x:hidden}
 
-/* Top banner */
-.topbar{
-  height:54px;background:#174d88;
+/* ===== Classic Roblox-style banner (matches signed-in pages) ===== */
+.topbar.classic-topbar{position:relative;width:100%;z-index:1000}
+.classic-roblox-header{
+  width:100%;height:36px;background-color:#114081;position:relative;z-index:100;
   border-bottom:1px solid rgba(0,0,0,.18);
-  position:relative;z-index:20
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-rbx_header.png?raw=true");
+  background-repeat:repeat-x;
 }
-.topbar-inner{
-  height:54px;max-width:1500px;margin:auto;
-  display:flex;align-items:center;justify-content:space-between
+.classic-roblox-header-inner{
+  max-width:1000px;height:36px;margin:auto;display:flex;align-items:center;justify-content:space-between;
+  padding:0 15px;position:relative;overflow:visible;
 }
+.classic-left-group{display:flex;align-items:center;gap:6px;height:100%;position:relative;overflow:visible;}
 .brand{
-  display:block;width:145px;height:48px;margin-left:6px;
-  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png?raw=true") center/contain no-repeat
+  display:block;width:110px;height:40px;
+  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/2e52223b-f44c-419a-a9ad-6bb9b2df122d-removebg-preview%20(1).png?raw=true") center/contain no-repeat;
 }
+.classic-nav-links{display:flex;list-style:none;margin:0;padding:0;height:100%;gap:1px;position:relative;overflow:visible;}
+.classic-nav-links>li{position:relative;height:100%;display:flex;align-items:center;overflow:visible;}
+.classic-nav-links a{
+  color:#fff;text-decoration:none;font-size:15px;font-family:'Source Sans Pro', sans-serif;font-weight:600;
+  display:flex;align-items:center;height:100%;padding:0 5px;
+}
+.classic-nav-links>li>a:hover{background:rgba(255,255,255,.15);text-decoration:none;}
+
+/* Dropdown Arrow Sprite */
+#more-arrow {
+  display:inline-block;
+  width:7px;
+  height:6px;
+  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-drop_down_arrow.png?raw=true") no-repeat 0 0;
+  margin-left:4px;
+}
+.dropdown-container.moreLink:hover #more-arrow,
+.moreLink.active #more-arrow {
+  background-position:0 -6px;
+}
+
+.moreLink.active #hlMore,
+.dropdown-container.moreLink:hover #hlMore{color:#000;background-color:#efefef;}
+.dropdown-container{position:relative!important;overflow:visible!important;z-index:101!important;}
+.dropdown-menu{
+  display:none;position:absolute;top:36px;left:0;background:#f1f1f1;
+  border-left:1px solid #efefef;border-right:1px solid #efefef;border-bottom:1px solid #efefef;
+  box-shadow:0 4px 12px rgba(0,0,0,.5);list-style:none;margin:0;padding:0;min-width:140px;z-index:9999!important;
+}
+.dropdown-container:hover .dropdown-menu,
+.dropdown-container.active .dropdown-menu{display:block;}
+.dropdown-menu li{height:auto!important;}
+.dropdown-menu li a{
+  display:block;padding:4px 15px;color:#333;font-size:15px;font-weight:600;
+  text-decoration:none;height:auto;background:none!important;
+}
+.dropdown-menu li a:hover{background:#d8d8d8!important;color:#000;}
+
 .account{display:flex;gap:6px;align-items:center}
-.sprite-btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  color:#fff;text-decoration:none;font-weight:700;
-  font-size:17px;
-  text-shadow:0 -1px rgba(0,0,0,.45);
-  background-repeat:no-repeat;
+.account-signup{
+  color:#fff;text-decoration:none;font-weight:700;font-size:13px;text-shadow:0 1px 2px rgba(0,0,0,.5);
 }
-
-/* Tiny Buttons: Frame = {0, 92},{0, 34} | Sprite Sheet Scaled to 92px 178px */
-.signup,.login{
-  width:92px;
-  height:34px;
-  background-size:92px 178px;
+.account-signup:hover{text-decoration:underline;}
+.account-or{color:#bacce1;font-size:13px;}
+.account-login{
+  display:inline-flex;align-items:center;justify-content:center;gap:4px;
+  width:78px;height:27px;box-sizing:border-box;
+  color:#222;text-decoration:none;font-weight:700;font-size:13px;
+  padding:0;border-radius:0;border:1px solid transparent;
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/btn-control-large-tile.png?raw=true");
+  background-repeat:repeat-x;
   background-position:0 0;
+  background-size:auto 80px;
 }
-.signup{
-  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-green.png?raw=true");
+.account-login:hover{
+  background-position:0 100%;
 }
-.login{
-  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
+.login-container.active .account-login,
+.login-container.active .account-login:hover{
+  background-image:none;
+  background-color:#e1e1e1;
+  border:1px solid #0c3060;
+  color:#222;
 }
+.account-login .caret{font-size:10px;}
 
-/* Hover State */
-.signup:hover,.login:hover{
-  background-position:0 -34px;
+/* Login dropdown panel */
+.login-container{position:relative!important;overflow:visible!important;z-index:101!important;}
+.login-dropdown{
+  display:none;position:absolute;top:100%;right:0;margin-top:0;
+  background:#e1e1e1;border:1px solid #0c3060;border-top:none;border-radius:0;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  padding:8px;width:350px;height:100px;text-align:left;color:#333;z-index:9999;
 }
+.login-container.active .login-dropdown{display:block;}
+.login-fields{display:flex;gap:10px;margin-bottom:8px;}
+.login-field{display:flex;flex-direction:column;}
+.login-field label{font-size:12px;font-weight:700;color:#333;margin-bottom:3px;}
+.login-field input{
+  width:160px;height:23px;padding:4px 8px;border:1px solid #ccc;border-radius:0;font-size:13px;
+  font-family:Arial,Helvetica,sans-serif;box-sizing:border-box;
+}
+.login-row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.login-signup-link{font-size:12px;color:#999;text-decoration:none;}
+.login-signup-link strong{color:#0055B3;font-weight:700;}
+.login-signup-link:hover strong{text-decoration:underline;}
+.login-submit{
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  background-size:auto 120px;
+  color:#fff;border:none;padding:0;border-radius:0;
+  width:56px;height:23px;box-sizing:border-box;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;
+}
+.login-submit:hover{background-position:0 -23px;}
 
 /* Main animated background */
 .hero{
   position:relative;min-height:calc(100vh - 152px);overflow:hidden;
-  background:#2864af
+  background:#FFF;
 }
 .hero:before{
   content:"";position:absolute;inset:0;
-  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/437004fbc01bf6a613547a40aabde10a.png?raw=true");
   background-repeat:repeat-x;
   background-position:0 0;
   background-size:auto 686px;
-  animation:city-scroll 32s linear infinite;
   z-index:0
 }
 .hero:after{
   content:"";position:absolute;inset:0;
-  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/161d0d393d74c103e5f50eef988b7217.png?raw=true");
   background-repeat:repeat-x;
   background-position:0 bottom;
   background-size:auto 100%;
-  animation:city-scroll 32s linear infinite;
   pointer-events:none;z-index:1
-}
-@keyframes city-scroll{
-  from{background-position-x:0}
-  to{background-position-x:-1000px}
 }
 
 .hero-content{
-  position:relative;z-index:5;width:100%;max-width:1868px;
-  margin:auto;text-align:center;
-  padding-top:50px;
+  position:relative;z-index:5;width:100%;max-width:1000px;
+  margin:auto;text-align:left;
+  padding-top:20px;
   display:flex;
   flex-direction:column;
-  align-items:center;
+  align-items:stretch;
 }
-h1{
-  margin:0;font-size:76px;line-height:1.05;
-  font-weight:700;letter-spacing:-2px
-}
-.subtitle{
-  margin:10px 0 30px 0;
-  font-size:35px;line-height:1.2
-}
-
-/* Play Button: Frame = {0, 380},{0, 68} | Sprite Image Size = 380px x 68px */
+/* Play Button: scaled to 220px wide (orig sprite 380x68/frame, 380x136 total) */
 .play-button{
-  width:380px !important;
-  height:68px !important;
-  margin:0 auto 30px !important;
+  width:220px !important;
+  height:39px !important;
+  margin:0 0 14px !important;
   position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
   color:#fff;
   text-decoration:none;
-  font-size:31px;
+  font-size:18px;
   font-weight:700;
   text-shadow:0 -1px rgba(0,0,0,.55);
   background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-lg-green-play.png?raw=true");
   background-repeat:no-repeat;
   background-position:0 0;
-  background-size:380px 136px;
+  background-size:220px 79px;
   overflow:hidden;
 }
 
-/* Hover ImageRectOffset shift set to -68px */
+/* Hover ImageRectOffset shift, scaled to new frame height */
 .play-button:hover{
-  background-position:0 -68px;
+  background-position:0 -39px;
 }
 
-/* Perfectly Centered Image: {0, 380},{0, 250} */
+/* Smaller variant used inside the promo banner strip */
+.play-button.small{
+  width:150px !important;
+  height:27px !important;
+  margin:0 !important;
+  font-size:13px;
+  background-size:150px 54px;
+}
+.play-button.small:hover{background-position:0 -27px;}
+
+/* Character image reused inside the promo banner */
 .town-image{
-  width:380px;
-  height:250px;
+  width:120px;
+  height:100px;
   object-fit:cover;
   display:block;
-  margin:0 auto;
-  border:4px solid #008b00;
+  border:3px solid #008b00;
   box-shadow:0 0 0 1px rgba(0,0,0,.25);
+  flex:0 0 auto;
 }
-.tagline{
-  margin-top:30px;
-  font-size:20px;line-height:1.3
+
+/* ===== Signed-out homepage layout, classic 3-part structure ===== */
+.panel{
+  background:#fff;color:#333;
+  border:1px solid #b9b9b9;
+  box-shadow:0 1px 3px rgba(0,0,0,.25);
+}
+.panel-head{
+  background:#0c3060;
+  background-image:linear-gradient(#3b6ea5,#0c3060);
+  color:#fff;font-size:12px;font-weight:700;letter-spacing:.5px;
+  padding:6px 10px;
+  text-transform:uppercase;
+}
+
+/* ---- Row 1: Member Login | Ad slot | Play Now circle ---- */
+.hero-top-row{
+  display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap;
+  padding:20px 20px 18px;max-width:1000px;margin:0 auto;width:100%;
+}
+.member-login-box{
+  width:270px;height:auto;flex:0 0 auto;box-sizing:border-box;
+  background:#e1e1e1;border:1px solid #bcbcbc;
+  margin-right:15px;
+}
+.top-ad-slot{width:400px;flex:0 0 auto;max-width:400px;margin-right:45px}
+.play-now-wrap{width:220px;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+.hero-ad-row{width:100%;max-width:1000px;margin:0 auto 20px;display:flex;align-items:flex-start;justify-content:center;gap:10px;padding:0 20px 0;box-sizing:border-box;flex-wrap:wrap;border-top:1px solid #bcbcbc}
+.hero-ad-col{width:648px;max-width:100%;box-sizing:border-box}
+.hero-ad-banner{
+  width:648px;height:90px;max-width:100%;box-sizing:border-box;margin-top:10px;
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/asdp%5Dasdsa.png?raw=true");
+  background-size:648px 180px;background-position:0 0;background-repeat:no-repeat;
+  display:flex;align-items:center;justify-content:center;
+  color:#999;font-size:16px;font-weight:700;letter-spacing:.5px;
+}
+.hero-ad-banner:hover{background-position:0 -90px}
+.hero-ad-banner-2{
+  width:648px;height:90px;max-width:100%;box-sizing:border-box;margin-top:10px;
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Add%20a%20heading%20(5).png?raw=true");
+  background-size:648px 180px;background-position:0 0;background-repeat:no-repeat;
+  border:none;
+  display:flex;align-items:center;justify-content:center;
+  color:#999;font-size:12px;font-weight:700;letter-spacing:.5px;
+}
+.hero-ad-banner-2:hover{background-position:0 -90px}
+.hero-featured-game{margin-top:15px}
+.hero-more-favorites{margin-top:20px}
+.hero-more-favorites-heading{font-size:16px;font-weight:700;color:#000;margin-bottom:10px}
+.hero-more-favorites-thumbs{display:flex;gap:10px;flex-wrap:wrap}
+.hero-more-favorites-thumbs img{width:120px;height:70px;object-fit:cover;border:1px solid #ccc;flex:0 0 auto}
+.hero-social-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.social-btn{
+  width:auto;height:26px;box-sizing:border-box;padding:0 12px;margin:0;
+  border:1px solid #bcbcbc;border-radius:0;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;
+}
+.social-btn svg{width:16px;height:16px;flex:0 0 auto}
+.social-btn.follow{
+  background-color:#0055B3;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/btn-control-large-tile.png");
+  background-repeat:repeat-x;background-position:0 0;background-size:auto 96px;
+  color:#1a8cd8;
+}
+.social-btn.follow:hover{background-position:0 100%}
+.social-btn.follow svg{fill:#1a8cd8}
+.social-btn.subscribe{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/btn-control-large-tile.png");
+  background-repeat:repeat-x;background-position:0 0;background-size:auto 96px;
+  color:#ff0000;
+}
+.social-btn.subscribe:hover{background-position:0 100%}
+.social-btn.subscribe svg{fill:#ff0000}
+.social-btn.learn{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/btn-control-large-tile.png");
+  background-repeat:repeat-x;background-position:0 0;background-size:auto 96px;
+  color:#000;
+}
+.social-btn.learn:hover{background-position:0 100%}
+.hero-featured-heading{
+  font-family:Arial,'Source Sans Pro',sans-serif;font-weight:900;
+  font-size:40px;letter-spacing:.5px;color:#000000;
+  margin-bottom:6px;
+}
+.hero-featured-name{display:block;font-family:Arial,sans-serif;font-size:17px;font-weight:900;color:#000000;text-decoration:none;margin-bottom:8px}
+.hero-featured-name:hover{text-decoration:underline}
+.hero-featured-thumb{width:420px;height:230px;max-width:100%;display:block;border:1px solid #ccc;flex:0 0 auto}
+.hero-featured-body{display:flex;gap:16px;margin-top:10px}
+.hero-featured-info{display:flex;flex-direction:column;gap:8px;min-width:0}
+.hero-creator-avatar{width:40px;height:40px;border:1px solid #ccc;background:#eee;flex:0 0 auto}
+.hero-frame-box{
+  width:300px;max-width:100%;box-sizing:border-box;
+  background:transparent;border:none;border-left:1px solid #bcbcbc;
+  margin-top:10px;
+}
+.hero-frame-section{position:relative;padding:24px 10px 12px}
+.hero-frame-section + .hero-frame-section{border-top:1px solid #bcbcbc;margin-top:10px}
+.hero-frame-section.ad-section{padding-top:10px}
+.hero-frame-heading{
+  position:absolute;top:5px;left:10px;
+  font-family:'Source Sans Pro',sans-serif;font-weight:600;
+  font-size:15px;letter-spacing:.5px;color:#000000;text-transform:uppercase;
+}
+.parents-section .hero-frame-heading{top:10px}
+.hero-frame-box .facts-viewport{height:170px}
+.hero-frame-box .fact-item{font-size:14px}
+.hero-frame-box .parents-section{padding-top:32px}
+.hero-frame-box .parents-corner-body p{font-size:12px;line-height:1.5;color:#444;margin:0 0 8px}
+.hero-frame-box .parents-corner-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;min-width:0}
+.parent-link-btn{
+  width:auto;height:25px;box-sizing:border-box;padding:0 10px;
+  display:flex;align-items:center;justify-content:center;
+  background-repeat:repeat-x;background-position:0 0;background-size:auto 132px;
+  color:#fff;text-decoration:none;font-weight:300;font-size:12px;
+  border:none;border-radius:0;white-space:nowrap;
+}
+.parent-link-btn:hover{background-position:0 -25px}
+.parent-link-btn.blue{background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");}
+.parent-link-btn.gray{background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-gray.png?raw=true");}
+.hero-frame-box .ad-250x300{
+  width:300px;height:250px;max-width:100%;box-sizing:border-box;
+  background:repeating-linear-gradient(45deg,#eee,#eee 10px,#e2e2e2 10px,#e2e2e2 20px);
+  border:1px solid #ccc;
+  display:flex;align-items:center;justify-content:center;
+  color:#999;font-size:12px;font-weight:700;letter-spacing:.5px;
+}
+
+.play-circle{
+  display:block;width:220px;height:220px;
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/asojdjosad.png?raw=true");
+  background-repeat:no-repeat;
+  background-position:0 0;
+  background-size:220px 440px;
+}
+.play-circle:hover{background-position:0 100%}
+
+/* ---- Row 2: Full-width promo banner ---- */
+.promo-banner{
+  width:100%;max-width:1000px;margin:0 auto 20px;box-sizing:border-box;
+  display:flex;align-items:center;gap:16px;
+  padding:14px 20px;
+  background-color:#111;
+  background-image:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-rbx_header.png?raw=true");
+  background-repeat:repeat-x;background-position:0 0;background-size:auto 120px;
+  border-top:2px solid #ffb400;border-bottom:2px solid #ffb400;
+}
+.promo-banner-text{flex:1 1 auto;min-width:0}
+.promo-banner-brand{
+  font-family:'Source Sans Pro',sans-serif;font-weight:600;
+  color:#ff5a1f;font-size:26px;letter-spacing:.5px;line-height:1.1;
+  text-shadow:0 2px 2px rgba(0,0,0,.6);
+}
+.promo-banner-tag{color:#fff;font-size:14px;font-weight:700;margin-top:4px}
+
+/* ---- Row 3: Featured Free Game (left) + Sidebar (right) ---- */
+.main-columns{
+  display:flex;align-items:flex-start;justify-content:center;gap:20px;flex-wrap:wrap;
+  padding:0 20px 30px;max-width:1000px;margin:0 auto;width:100%;box-sizing:border-box;
+}
+.featured-column{width:600px;flex:1 1 460px;max-width:600px}
+.sidebar-column{width:250px;flex:0 0 auto;display:flex;flex-direction:column;gap:14px}
+
+.game-title-row{padding:12px 12px 0}
+.game-name{color:#111;font-size:16px;font-weight:800;text-decoration:none}
+.game-name:hover{text-decoration:underline}
+.game-creator{font-size:13px;color:#666;font-weight:400}
+.game-creator a{color:#0055B3;text-decoration:none}
+.game-creator a:hover{text-decoration:underline}
+
+.featured-body-lg{padding:12px;display:flex;gap:16px}
+.featured-thumb-lg{
+  width:340px;height:230px;object-fit:cover;border:1px solid #ccc;flex:0 0 auto;background:#eee;
+}
+.featured-info-lg{display:flex;flex-direction:column;gap:8px;min-width:0}
+.play-this{
+  align-self:flex-start;
+  width:112px;height:34px;box-sizing:border-box;
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/149e8aed68b5902254193cdc9923f024.png?raw=true");
+  background-repeat:no-repeat;background-size:auto 68px;background-position:0 0;
+  color:#fff;font-size:13px;font-weight:700;
+  text-decoration:none;border-radius:0;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.play-this:hover{background-position:0 -34px}
+.featured-stats-lg{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:700;color:#555;line-height:1.3}
+.featured-stat-row strong{display:block;color:#888;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+
+/* Member login box */
+.member-login-box .panel-body{padding:10px}
+.login-box-heading{
+  font-family:'Source Sans Pro',sans-serif;
+  font-size:19px;font-weight:600;color:#111;letter-spacing:.2px;
+  margin:0 0 10px;text-transform:uppercase;text-align:center;
+}
+.login-field-row{display:flex;align-items:center;gap:6px;margin:6px 0 2px}
+.member-login-box label{
+  flex:0 0 auto;font-size:12px;font-weight:700;color:#333;margin:0;white-space:nowrap;
+}
+.member-login-box input{
+  flex:1 1 auto;min-width:0;box-sizing:border-box;height:22px;padding:3px 6px;
+  border:1px solid #ccc;font-size:12px;font-family:Arial,Helvetica,sans-serif;
+}
+#heroPassword{font-size:12px}
+.login-actions{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px}
+.forgot-link{font-size:10px;color:#0055B3;text-decoration:none;text-align:center}
+.forgot-link:hover{text-decoration:underline}
+.login-error{
+  display:none;color:#c00;font-size:11px;font-weight:700;
+  text-align:center;margin-top:-2px;
+}
+.login-error.show{display:block}
+.sign-in-btn{
+  width:90px;height:32px;margin:0;box-sizing:border-box;
+  background-color:#0055B3;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/btn-control-large-tile.png");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  background-size:auto 96px;
+  color:#000;border:1px solid #bcbcbc;
+  font-size:16px;font-weight:700;cursor:pointer;border-radius:0;
+}
+.sign-in-btn:hover{background-position:0 100%}
+.login-divider{width:100%;height:1px;background:#bcbcbc;margin-top:10px;border:none}
+.login-extra{margin-top:8px;padding-top:0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.login-extra-row{display:flex;align-items:center;justify-content:center;gap:6px}
+.login-extra-row span{font-size:11px;color:#666}
+.extra-btn{
+  width:auto;height:34px;box-sizing:border-box;padding:0 12px;
+  display:flex;align-items:center;justify-content:center;
+  background-repeat:repeat-x;background-position:0 0;background-size:auto 180px;
+  color:#fff;text-decoration:none;font-weight:300;font-size:18px;
+  border:none;border-radius:0;white-space:nowrap;
+}
+.extra-btn:hover{background-position:0 -35px}
+.extra-btn.signup{background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");}
+.extra-btn.parent{background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-gray.png?raw=true");}
+
+/* Ad slots (top strip + sidebar) */
+.banner-ad .panel-body{padding:0}
+.ad-slot{
+  height:100px;display:flex;align-items:center;justify-content:center;
+  background:repeating-linear-gradient(45deg,#eee,#eee 10px,#e2e2e2 10px,#e2e2e2 20px);
+  color:#999;font-size:12px;font-weight:700;letter-spacing:.5px;
+}
+.top-ad-slot .ad-slot{height:100%;min-height:120px}
+.top-ad-image{width:100%;height:100%;min-height:120px;object-fit:cover;display:block}
+.ad-footer{
+  display:flex;justify-content:space-between;
+  padding:5px 8px;background:#f4f4f4;border-top:1px solid #e2e2e2;
+}
+.ad-footer a{font-size:10px;color:#888;text-decoration:none}
+.ad-footer a:hover{text-decoration:underline}
+
+/* Vextria News panel */
+.news-list{list-style:none;margin:0;padding:8px 10px}
+.news-list li{padding:5px 0;border-bottom:1px solid #eee;font-size:12px;line-height:1.4}
+.news-list li:last-child{border-bottom:none}
+.news-list a{color:#0055B3;text-decoration:none}
+.news-list a:before{content:"\25B8 ";color:#0055B3}
+.news-list a:hover{text-decoration:underline}
+.see-more{display:block;padding:0 10px 10px;font-size:12px;color:#0055B3;text-decoration:none}
+.see-more:hover{text-decoration:underline}
+
+/* Follow row */
+.follow-row{max-width:1000px;margin:0 auto;padding:0 20px 30px}
+.follow-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;border:1px solid #cfd9df;border-radius:3px;
+  padding:5px 10px;font-size:12px;font-weight:700;color:#1a8cd8;text-decoration:none;
+}
+.follow-btn:hover{background:#f4faff}
+.follow-btn svg{width:14px;height:14px;flex:0 0 auto}
+
+/* Vextria Facts ticker */
+.vextria-facts .panel-body{padding:0}
+.facts-viewport{
+  position:relative;height:90px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 18px,#000 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 18px,#000 100%);
+}
+.facts-track{
+  position:absolute;left:0;top:0;width:100%;
+  animation:facts-scroll 60s linear infinite;
+}
+.facts-viewport:hover .facts-track{animation-play-state:paused}
+.fact-item{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;font-size:16px;line-height:1.3;color:#444;
+}
+.fact-item img{width:30px;height:30px;flex:0 0 auto}
+.fact-item a{color:#0055B3;text-decoration:none}
+.fact-item a:hover{text-decoration:underline}
+@keyframes facts-scroll{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-50%)}
+}
+
+/* (old Parent's Corner sidebar styles removed — content now lives in .hero-frame-box) */
+
+@media(max-width:820px){
+  .hero-top-row{flex-direction:column;align-items:center}
+  .member-login-box,.top-ad-slot,.featured-column{width:min(92vw,390px);max-width:min(92vw,390px)}
+  .main-columns{flex-direction:column;align-items:center}
+  .sidebar-column{width:min(92vw,390px)}
+  .promo-banner{flex-wrap:wrap;justify-content:center;text-align:center}
 }
 
 /* Footer */
@@ -143,8 +515,8 @@ h1{
   width:100%;
   height:98px;
   min-height:98px;
-  background:#174d88;
-  border-top:1px solid rgba(255,255,255,.55);
+  background:#e6e6e6;
+  border-top:1px solid #aaa;
   position:relative;
   z-index:10;
   text-align:center;
@@ -156,51 +528,293 @@ h1{
   align-items:center;
   gap:10px;
   flex-wrap:wrap;
-  font-size:14px;
+  font-size:12px;
+  font-family:Verdana,sans-serif;
   font-weight:700;
 }
-.footer-links a{color:#fff;text-decoration:none}
+.footer-links a{color:#095fb5;text-decoration:none;font-size:12px;font-family:Verdana,sans-serif}
 .footer-links a:hover{text-decoration:underline}
-.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+.footer-links span{color:#aaa}
+.footer-copy{margin:14px 0 0;font-size:12px;font-family:Verdana,sans-serif;color:#aaa;line-height:1.25}
 
 @media(max-width:900px){
-  .topbar-inner{padding:0 10px}
+  .classic-roblox-header-inner{padding:0 10px}
   .hero-content{padding-top:50px}
   h1{font-size:54px}.subtitle{font-size:26px}
 }
 @media(max-width:520px){
-  .brand{width:115px}
-  .signup,.login{width:92px;height:34px}
+  .classic-nav-links{display:none}
   h1{font-size:40px}.subtitle{font-size:20px}
-  .play-button{width:min(90vw,380px) !important;height:68px !important}
-  .town-image{width:min(92vw,380px);height:auto;aspect-ratio:380/250}
+  .play-circle{width:150px;height:150px;font-size:24px}
+  .promo-banner{flex-direction:column}
+  .town-image{width:100%;height:110px}
+  .featured-body-lg{flex-direction:column}
+  .featured-thumb-lg{width:100%;height:200px}
 }
 </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="/Vextria/" aria-label="Vextria"></a>
-    <nav class="account">
-      <a class="sprite-btn signup" href="/Vextria/signup">Sign Up</a>
-      <a class="sprite-btn login" href="/Vextria/login">Login</a>
-    </nav>
+<header class="topbar classic-topbar">
+  <div class="classic-roblox-header">
+    <div class="classic-roblox-header-inner">
+      <div class="classic-left-group">
+        <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+        <ul class="classic-nav-links">
+          <li><a href="/Vextria/">Home</a></li>
+          <li><a href="/Vextria/games">Games</a></li>
+          <li><a href="/Vextria/catalog">Catalog</a></li>
+          <li><a href="/Vextria/my/account/upgrade">Builders Club</a></li>
+          <li><a href="/Vextria/fourms">Forum</a></li>
+          <li class="dropdown-container moreLink">
+            <a href="javascript:void(0);" id="hlMore">More<span id="more-arrow"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/Vextria/browse/people">People</a></li>
+              <li><a href="/Vextria/contests">Contests</a></li>
+              <li><a href="/Vextria/info/parents">Parents</a></li>
+              <li><a href="/Vextria/blog/home">Blog</a></li>
+              <li><a href="/Vextria/wiki/home">Help</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <nav class="account">
+        <a class="account-signup" href="/Vextria/signup">Sign Up</a>
+        <span class="account-or">or</span>
+        <div class="login-container" id="loginContainer">
+          <a class="account-login" href="javascript:void(0);" id="loginToggle">Login <span class="caret">&#9660;</span></a>
+          <div class="login-dropdown">
+            <div class="login-fields">
+              <div class="login-field">
+                <label for="loginUsername">Username</label>
+                <input id="loginUsername" type="text" autocomplete="username">
+              </div>
+              <div class="login-field">
+                <label for="loginPassword">Password</label>
+                <input id="loginPassword" type="password" autocomplete="current-password">
+              </div>
+            </div>
+            <div class="login-row">
+              <a class="login-signup-link" href="/Vextria/signup">Not a member? <strong>Sign up!</strong></a>
+              <button type="button" class="login-submit">Login</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
 
 <main>
   <section class="hero">
     <div class="hero-content">
-      <h1>Adventure Awaits</h1>
-      <div class="subtitle">Create and explore millions of games with friends!</div>
 
-      <a class="play-button" href="#" aria-label="Play Now">Play Now</a>
+      <!-- Row 1: Member Login | Ad slot | Play Now circle -->
+      <div class="hero-top-row">
+        <div class="member-login-box panel">
+          <div class="panel-body">
+            <div class="login-box-heading">Member Login</div>
+            <div class="login-field-row">
+              <label for="heroUsername">Username:</label>
+              <input id="heroUsername" type="text" autocomplete="username">
+            </div>
+            <div class="login-field-row">
+              <label for="heroPassword">Password:</label>
+              <input id="heroPassword" type="password" autocomplete="current-password">
+            </div>
+            <div class="login-actions">
+              <a class="forgot-link" href="/Vextria/login/forgotpassword">Forgot your password?</a>
+              <div class="login-error" id="heroLoginError">Incorrect password</div>
+              <button type="button" class="sign-in-btn" id="heroSignInBtn">Sign In</button>
+            </div>
+            <hr class="login-divider">
+            <div class="login-extra">
+              <div class="login-extra-row">
+                <span>Not a Member?</span>
+                <a class="extra-btn signup" href="/Vextria/signup">Sign Up</a>
+              </div>
+              <div class="login-extra-row">
+                <span>A Parent?</span>
+                <a class="extra-btn parent" href="/Vextria/parents/login">Parent Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <img class="town-image"
-           src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/a53fcaef613b178ec86dc2937d677451.jpg?raw=true"
-           alt="Game world">
+        <div class="top-ad-slot panel">
+          <div class="panel-body">
+            <img class="top-ad-image" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/a53fcaef613b178ec86dc2937d677451%20(2).jpg?raw=true" alt="Advertisement">
+          </div>
+        </div>
 
-      <div class="tagline">Join hundreds of players today and explore their creations</div>
+        <div class="play-now-wrap">
+          <a class="play-circle" href="/Vextria/games" aria-label="Play Now"></a>
+        </div>
+      </div>
+
+      <!-- Ad banner below Member Login row -->
+      <div class="hero-ad-row">
+        <div class="hero-ad-col">
+          <a class="hero-ad-banner" href="/Vextria/games" aria-label="Browse games"></a>
+          <a class="hero-ad-banner-2" href="/Vextria/builderclub" aria-label="Builders Club"></a>
+          <div class="hero-featured-game">
+            <div class="hero-featured-heading">Featured Free Game</div>
+            <a class="hero-featured-name" href="/Vextria/games/0/Game-Name">Game Name</a>
+            <div class="hero-featured-body">
+              <img class="hero-featured-thumb" src="https://via.placeholder.com/420x230.png?text=Thumbnail" alt="Featured game thumbnail">
+              <div class="hero-featured-info">
+                <a class="play-this" href="/Vextria/games/0/Game-Name" aria-label="Play This"></a>
+                <div class="featured-stats-lg">
+                  <div class="featured-stat-row"><strong>Updated:</strong> 4 months ago</div>
+                  <div class="featured-stat-row"><strong>Favorited:</strong> 205,449 times</div>
+                  <div class="featured-stat-row"><strong>Visited:</strong> 9,680,203 times</div>
+                  <div class="featured-stat-row"><strong>Creator:</strong> Username</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-more-favorites">
+            <div class="hero-more-favorites-heading">Come check out some of more of our favorites Roblox Places!</div>
+            <div class="hero-more-favorites-thumbs">
+              <img src="https://via.placeholder.com/120x70.png?text=%20" alt="">
+              <img src="https://via.placeholder.com/120x70.png?text=%20" alt="">
+              <img src="https://via.placeholder.com/120x70.png?text=%20" alt="">
+              <img src="https://via.placeholder.com/120x70.png?text=%20" alt="">
+              <img src="https://via.placeholder.com/120x70.png?text=%20" alt="">
+            </div>
+            <div class="hero-social-row">
+              <a class="social-btn follow" href="https://twitter.com/@vextria">
+                <svg viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z"/></svg>
+                Follow @Vextria
+              </a>
+              <a class="social-btn subscribe" href="https://youtube.com/@vextriacommunity">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.117C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.391.524A2.994 2.994 0 0 0 .502 6.186 31.26 31.26 0 0 0 0 12a31.26 31.26 0 0 0 .502 5.814 2.994 2.994 0 0 0 2.107 2.117c1.886.524 9.391.524 9.391.524s7.505 0 9.391-.524a2.994 2.994 0 0 0 2.107-2.117A31.26 31.26 0 0 0 24 12a31.26 31.26 0 0 0-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/></svg>
+                Subscribe @Vextria
+              </a>
+              <a class="social-btn learn" href="/Vextria/blog/home">Learn More @ Vextria News</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-frame-box">
+          <div class="hero-frame-section facts-section">
+            <div class="hero-frame-heading">VEXTRIA FACTS</div>
+            <div class="facts-viewport">
+              <div class="facts-track">
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/House.png?raw=true" alt="">
+                  <span><a href="/Vextria/games/0/Game-Name">"Game Name"</a> has been visited <strong>xxxx</strong> times today.</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Forummod.webp?raw=true" alt="">
+                  <span><strong>X</strong> fourm moderators are providing help in the <a href="/Vextria/fourms">"fourms"</a></span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/ShoppingBag.png?raw=true" alt="">
+                  <span><strong>X</strong> items have been released on the <a href="/Vextria/catalog">"catalog"</a> today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Shield.png?raw=true" alt="">
+                  <span>there are <strong>xx</strong> <a href="/Vextria/info/parents">"parents"</a> keeping track of their kids on Vextria</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/House.png?raw=true" alt="">
+                  <span><strong>X</strong> <a href="#">"Name"</a> has been favorited <strong>X</strong> times today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Bux.png?raw=true" alt="">
+                  <span>xx Vexbucks buys about <strong>xxx</strong> tickets on the <a href="/Vextria/currency/exchange">"Currency Exchange"</a> right now</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Veteran_badge.webp?raw=true" alt="">
+                  <span><strong>x</strong> Users have joined Vextria 1 year ago today.</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Ambassador-256x256.webp?raw=true" alt="">
+                  <span><strong>x</strong> Users have joined Vextria today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Badge_-_Bricksmith_Badge_-_Original.webp?raw=true" alt="">
+                  <span><strong>x</strong> new <a href="/Vextria/games">"games"</a> have been published by our users today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Bloxxer-75x75.webp?raw=true" alt="">
+                  <span><strong>x</strong> users have won a badge after beating a 250 or more Knockouts in our <a href="/Vextria/games/brickbattles">"brickbattles"</a></span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Oldbchardhat.webp?raw=true" alt="">
+                  <span><strong>x</strong> new users have joined builders club <a href="/Vextria/upgrade">"Be one of them!"</a></span>
+                </div>
+                <!-- duplicated set so the loop appears seamless -->
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/House.png?raw=true" alt="">
+                  <span><a href="/Vextria/games/0/Game-Name">"Game Name"</a> has been visited <strong>xxxx</strong> times today.</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Forummod.webp?raw=true" alt="">
+                  <span><strong>X</strong> fourm moderators are providing help in the <a href="/Vextria/fourms">"fourms"</a></span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/ShoppingBag.png?raw=true" alt="">
+                  <span><strong>X</strong> items have been released on the <a href="/Vextria/catalog">"catalog"</a> today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Shield.png?raw=true" alt="">
+                  <span>there are <strong>xx</strong> <a href="/Vextria/info/parents">"parents"</a> keeping track of their kids on Vextria</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/House.png?raw=true" alt="">
+                  <span><strong>X</strong> <a href="#">"Name"</a> has been favorited <strong>X</strong> times today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Bux.png?raw=true" alt="">
+                  <span>xx Vexbucks buys about <strong>xxx</strong> tickets on the <a href="/Vextria/currency/exchange">"Currency Exchange"</a> right now</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Veteran_badge.webp?raw=true" alt="">
+                  <span><strong>x</strong> Users have joined Vextria 1 year ago today.</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Ambassador-256x256.webp?raw=true" alt="">
+                  <span><strong>x</strong> Users have joined Vextria today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Badge_-_Bricksmith_Badge_-_Original.webp?raw=true" alt="">
+                  <span><strong>x</strong> new <a href="/Vextria/games">"games"</a> have been published by our users today</span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Bloxxer-75x75.webp?raw=true" alt="">
+                  <span><strong>x</strong> users have won a badge after beating a 250 or more Knockouts in our <a href="/Vextria/games/brickbattles">"brickbattles"</a></span>
+                </div>
+                <div class="fact-item">
+                  <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Oldbchardhat.webp?raw=true" alt="">
+                  <span><strong>x</strong> new users have joined builders club <a href="/Vextria/upgrade">"Be one of them!"</a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-frame-section parents-section">
+            <div class="hero-frame-heading">Parents' Information</div>
+            <div class="parents-corner-body">
+              <p>Vextria is a kid-friendly place on the internet where your child can exercise their creativity in a safe, moderated online environment</p>
+              <p>Vextria is not affiliated with ROBLOX Corporation</p>
+              <div class="parents-corner-links">
+                <a class="parent-link-btn blue" href="/Vextria/info/parents">Learn More</a>
+                <a class="parent-link-btn blue" href="/Vextria/parents/signup">Parent Account</a>
+                <a class="parent-link-btn gray" href="/Vextria/info/privacy-policy">Privacy Policy</a>
+                <a class="parent-link-btn gray" href="/Vextria/info/terms-of-Service">Terms of Service</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-frame-section ad-section">
+            <div class="ad-250x300">Ad</div>
+            <div class="ad-footer">
+              <a href="#">Why am I seeing ads?</a>
+              <a href="#">Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -209,8 +823,8 @@ h1{
     <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
     <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
     <a href="/Vextria/info/about-us">About Us</a><span>|</span>
-    <a href="/Vextria/info/careers">Careers</a><span>|</span>
     <a href="/Vextria/blog/home">Blog</a><span>|</span>
+    <a href="/Vextria/info/careers">Careers</a><span>|</span>
     <a href="/Vextria/info/parents">Parents</a><span>|</span>
     <a href="/Vextria/wiki/home">Help</a><span>|</span>
     <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
@@ -219,5 +833,45 @@ h1{
   <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
 </footer>
 
+<script>
+(function(){
+  var container = document.getElementById('loginContainer');
+  var toggle = document.getElementById('loginToggle');
+  if(!container || !toggle) return;
+
+  toggle.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    container.classList.toggle('active');
+  });
+
+  document.addEventListener('click', function(e){
+    if(!container.contains(e.target)){
+      container.classList.remove('active');
+    }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      container.classList.remove('active');
+    }
+  });
+})();
+
+(function(){
+  var signInBtn = document.getElementById('heroSignInBtn');
+  var passwordInput = document.getElementById('heroPassword');
+  var errorMsg = document.getElementById('heroLoginError');
+  if(!signInBtn || !passwordInput || !errorMsg) return;
+
+  signInBtn.addEventListener('click', function(){
+    errorMsg.classList.add('show');
+  });
+
+  passwordInput.addEventListener('input', function(){
+    errorMsg.classList.remove('show');
+  });
+})();
+</script>
 </body>
 </html>
