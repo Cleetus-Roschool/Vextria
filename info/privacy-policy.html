@@ -4,142 +4,74 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vextria - Privacy Policy</title>
-  <link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
-<link rel="icon" type="image/png" href="/Vextria/favicon.png">
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/asdo.png?raw=true">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
 body{
-  background-color:#000443;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
-  background-repeat:repeat-x;
-  background-position:0 0;
-  animation:bodyBkgScroll 40s linear infinite;
-  color:#fff;
+  background-color:#fff;
+  color:#333;
   overflow-x:hidden;
 }
-@keyframes bodyBkgScroll{
-  from{background-position:0 0;}
-  to{background-position:-1000px 0;}
-}
 
-/* Top banner - 3rd Standard signed-in banner (from admin/templates/banners), stripped of currency/settings/logout */
-.topbar{
-  position:relative;
-  margin-bottom:0;
-  z-index:100;
-  width:100%;
-}
+/* ===== Classic Roblox-style banner (matches homepage) ===== */
+.topbar.classic-topbar{position:relative;width:100%;z-index:1000}
 .classic-roblox-header{
-  width:100%;
-  height:40px;
-  background:#2d528f;
-  position:relative;
-  z-index:100;
+  width:100%;height:36px;background-color:#114081;position:relative;z-index:100;
+  border-bottom:1px solid rgba(0,0,0,.18);
+  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-rbx_header.png?raw=true");
+  background-repeat:repeat-x;
 }
 .classic-roblox-header-inner{
-  max-width:none;
-  width:100%;
-  height:40px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 15px;
-  position:relative;
-  overflow:visible;
+  max-width:1000px;height:36px;margin:auto;display:flex;align-items:center;justify-content:flex-start;
+  padding:0 15px;position:relative;overflow:visible;
 }
-.classic-left-group{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  height:100%;
-  position:relative;
-  overflow:visible;
-}
-.classic-nav-links{
-  display:flex;
-  list-style:none;
-  margin:0;
-  padding:0;
-  height:100%;
-  gap:13px;
-  align-items:center;
-  position:relative;
-  overflow:visible;
-}
-.classic-nav-links > li{
-  position:relative;
-  display:flex;
-  align-items:center;
-  overflow:visible;
-}
-.classic-nav-links a{
-  color:#fff;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:30px;
-  padding:0 8px;
-  margin:0;
-  border-radius:4px;
-  transition:background-color 0.1s ease;
-}
-.classic-nav-links > li > a:hover{
-  background:#27487e;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,0.15);
-  color:#fff;
-  text-shadow:0 -1px rgba(0,0,0,0.45);
-}
+.classic-left-group{display:flex;align-items:center;gap:6px;height:100%;position:relative;overflow:visible;}
 .brand{
-  display:block;width:120px;height:34px;
-  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat
+  display:block;width:110px;height:40px;
+  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/2e52223b-f44c-419a-a9ad-6bb9b2df122d-removebg-preview%20(1).png?raw=true") center/contain no-repeat;
 }
 
 /* Page Layout Container */
 .page-container{
-  max-width:1100px;margin:0 auto;min-height:calc(100vh - 152px);
+  max-width:1000px;margin:0 auto;min-height:calc(100vh - 152px);
   display:flex;background:rgb(220, 220, 220);color:#333;
-  border-left:1px solid rgba(0,0,0,.2);border-right:1px solid rgba(0,0,0,.2);
 }
 
 /* Content Area */
 .legal-content{
-  flex-grow:1;padding:25px 30px;color:#222;
-  font-size:14px;line-height:1.6;
+  flex-grow:1;padding:25px 30px;
+  font-family:'Source Sans Pro', Arial, Helvetica, sans-serif;
+  color:#343434;
+  font-size:14px;
+  line-height:1.428;
   background-color:#fff;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/containerBkg_01.png");
-  background-repeat:repeat;
 }
 .legal-content h1{
-  font-size:22px;
+  font-size:30px;
   margin-top:0;
   margin-bottom:16px;
-  color:#000;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.3px;
+  color:#343434;
+  font-weight:normal;
 }
-.legal-content h2{font-size:18px;margin-top:25px;margin-bottom:10px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
-.legal-content h3{font-size:14px;margin-top:18px;margin-bottom:4px;color:#000;font-weight:700}
+.legal-content h2{font-size:1.5em;margin-top:25px;margin-bottom:10px;color:#343434;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
+.legal-content h3{font-size:14px;margin-top:18px;margin-bottom:4px;color:#343434;font-weight:700}
 .legal-content ul{margin:8px 0 15px 20px;padding:0}
 .legal-content ol{margin:8px 0 15px 20px;padding:0}
-.legal-content li{margin-bottom:8px;color:#000}
-.legal-content p{margin:8px 0 15px 0;color:#000}
+.legal-content li{margin-bottom:8px;color:#343434}
+.legal-content p{margin:8px 0 15px 0;color:#343434}
 .legal-content a{color:#0000cc;text-decoration:none}
 .legal-content a:hover{text-decoration:none}
 .meta-date{font-style:italic;color:#666;font-size:12px;margin-bottom:20px}
 
-/* Footer */
+/* Footer (matches homepage) */
 .lower{
   width:100%;
   height:98px;
   min-height:98px;
-  background:#174d88;
-  border-top:1px solid rgba(255,255,255,.55);
+  background:#e6e6e6;
+  border-top:1px solid #aaa;
   position:relative;
   z-index:10;
   text-align:center;
@@ -151,31 +83,29 @@ body{
   align-items:center;
   gap:10px;
   flex-wrap:wrap;
-  font-size:14px;
+  font-size:12px;
+  font-family:Verdana,sans-serif;
   font-weight:700;
 }
-.footer-links a{color:#fff;text-decoration:none}
+.footer-links a{color:#095fb5;text-decoration:none;font-size:12px;font-family:Verdana,sans-serif}
 .footer-links a:hover{text-decoration:underline}
-.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+.footer-links span{color:#aaa}
+.footer-copy{margin:14px 0 0;font-size:12px;font-family:Verdana,sans-serif;color:#aaa;line-height:1.25}
 
 @media(max-width:768px){
   .page-container{flex-direction:column}
 }
+@media(max-width:900px){
+  .classic-roblox-header-inner{padding:0 10px}
+}
 </style>
 </head>
 <body>
-
-<header class="topbar">
+<header class="topbar classic-topbar">
   <div class="classic-roblox-header">
     <div class="classic-roblox-header-inner">
       <div class="classic-left-group">
         <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
-        <ul class="classic-nav-links">
-          <li><a href="/Vextria/info/terms-of-Service">Terms of Service</a></li>
-          <li><a href="/Vextria/info/privacy-policy">Privacy policy</a></li>
-          <li><a href="/Vextria/info/about-us">About Us</a></li>
-          <li><a href="/Vextria/info/guidelines">Guidelines</a></li>
-        </ul>
       </div>
     </div>
   </div>
@@ -186,186 +116,153 @@ body{
     <h1>Vextria Privacy Policy</h1>
     <div class="meta-date">Last Updated: September 1, 2026</div>
 
-    <p>Vextria is a gaming platform which operates in the United Kingdom of Great Britain. This Privacy Policy explains how Vextria collects, uses, stores and protects information relating to people who use our website, games, applications and services.</p>
+    <h2>About Vextria</h2>
+    <p>Vextria is an online gaming platform operated in the United Kingdom of Great Britain and Northern Ireland. Vextria provides an online environment where users can create accounts, create and play games, customise virtual characters, create and upload content, communicate with other users, and participate in other activities made available through the Vextria platform.</p>
+    <p>Your privacy is important to us. This Privacy Policy has been created to explain what information Vextria collects, how that information is used, when it may be shared, and the choices available to you regarding your information. This Privacy Policy applies to the Vextria website, games, applications, game clients, and other services operated by Vextria that refer to this Privacy Policy.</p>
+    <p>Vextria is designed to allow users to participate in an online community without requiring them to publicly disclose their real identity. Users may select a username and create an avatar or other virtual identity for use throughout the platform. Users may create games and other experiences, discover and play games created by other users, communicate with other members of the Vextria community, and create or upload digital content.</p>
+    <p>Because Vextria is a user-created platform, information that you choose to publish may be viewed by other users. We therefore encourage all users to consider carefully what information they place in their profile, games, comments, messages, or other publicly accessible areas of the service.</p>
 
-    <h2>1. Information We Collect</h2>
-    <p>Vextria may collect information that you provide directly and information that is automatically generated when you use our services.</p>
-    
-    <p><strong>Information You Provide</strong></p>
-    <p>When creating or using a Vextria account, you may provide:</p>
-    <ul>
-      <li>Username</li>
-      <li>Password</li>
-      <li>Email Address</li>
-      <li>Phone Numbers</li>
-      <li>2 Step access</li>
-      <li>Date of Birth</li>
-      <li>Account Preferences</li>
-      <li>Profile Information</li>
-      <li>Information included in support requests</li>
-    </ul>
-    <p>We only request information that is reasonably necessary for the relevant service or feature.</p>
+    <h2>Information You Provide to Vextria</h2>
+    <p>When you create or use a Vextria account, we may ask you to provide certain information necessary to create and maintain your account. This may include a username, password, email address, telephone number, date of birth, account preferences, profile information, and information that you provide when contacting Vextria for support.</p>
+    <p>Some information may be optional depending on the feature you are using. We generally attempt to collect only information that is reasonably necessary to provide the service or feature for which it is requested.</p>
+    <p>Your username is used to identify you within Vextria and may be visible to other users. Your username is not intended to identify you outside of Vextria, and we recommend that you choose a username that does not contain your real name, address, telephone number, email address, or other information that could identify you personally.</p>
+    <p>Your password is used to protect access to your account. Vextria should not store passwords in readable plain-text form. Passwords should be protected using appropriate cryptographic hashing and security practices. Vextria employees and support personnel should not need to ask you for your password, and you should never provide your password to another person.</p>
 
-    <p><strong>Information Collected Automatically</strong></p>
-    <p>When you access Vextria, our system may automatically receive:</p>
-    <ul>
-      <li>IP Address</li>
-      <li>Operating System &amp; Device Type</li>
-      <li>Date &amp; time of connection</li>
-      <li>Browser type</li>
-      <li>Language preferences</li>
-      <li>Error and Crash information</li>
-      <li>Connection information</li>
-      <li>General technical information</li>
-    </ul>
-    <p>Some of these informations may be considered personal data under UK data-protection law.</p>
+    <h2>Account and Platform Information</h2>
+    <p>When you use Vextria, information relating to your account and your activity on the platform may be collected or stored. This may include information about when you sign into your account, games you visit or play, games you create or publish, your avatar, your account settings, content associated with your account, and other activity necessary to provide and maintain the Vextria service.</p>
+    <p>This information allows Vextria to remember your account, provide the features you request, maintain your progress and content, provide customer support, investigate reports, maintain platform security, and operate the service.</p>
 
-    <h2>2. Information About Your Use of Vextria</h2>
-    <p>When you use Vextria, certain information may be associated with your account. This may include:</p>
-    <ul>
-      <li>Login History</li>
-      <li>Games you visit and Create</li>
-      <li>Account activity</li>
-      <li>Avatar Information</li>
-      <li>In-game information</li>
-      <li>Public profile information</li>
-    </ul>
-    <p>The following information is used to provide the service and maintain your accounts status.</p>
+    <h2>User-Created Content</h2>
+    <p>One of the primary purposes of Vextria is to allow users to create and share content. Users may create games, experiences, profiles, models, images, audio, avatar items, gamepasses, badges, descriptions, comments, forum posts, messages, and other forms of content.</p>
+    <p>When you upload or publish content to Vextria, that content may be stored on our systems and processed so that it can be displayed, delivered, moderated, or otherwise made available through the features you have chosen to use.</p>
+    <p>Content that you deliberately make public may be visible to other users. For example, a published game, public profile, username, avatar, game description, public comment, or other publicly available creation may be viewed by members of the Vextria community.</p>
+    <p>You should not place personal information that you do not want others to see into publicly accessible content. Vextria cannot guarantee that information voluntarily published in a public area will remain private.</p>
 
-    <h2>3. User-Created Information</h2>
-    <p>Vextria may store information that you choose to submit to the platform. This can include:</p>
-    <ul>
-      <li>Game information (Names, Descriptions, Icons, Thumbnails, Gamepasses, Badges)</li>
-      <li>Profile Information</li>
-      <li>Messages (Inbox or Website Chat or Ingame chat or Forum Posts)</li>
-      <li>Uploaded Assets (Catalog items, Images, Models, Audios)</li>
-      <li>Other content associated with your account</li>
-    </ul>
-    <p>Information that you deliberately make public may be visible to other users. You should avoid placing personal information in publicly visible content.</p>
+    <h2>Communications</h2>
+    <p>Vextria may provide users with communication features, including website chat, in-game chat, direct messages, forums, comments, and other communication systems.</p>
+    <p>Information sent through these features may be processed and stored as necessary to provide the communication service. Communications may also be reviewed or processed for purposes such as responding to abuse reports, enforcing Vextria's rules, preventing harmful activity, protecting users, maintaining security, and complying with legal obligations.</p>
+    <p>Users should not use Vextria communication features to share passwords, financial information, home addresses, telephone numbers, email addresses, or other sensitive personal information.</p>
 
-    <h2>4. Why We Collect Information</h2>
-    <p>Vextria may process personal information for purposes including:</p>
-    <ul>
-      <li>Creating Accounts</li>
-      <li>Providing access to Vextria</li>
-      <li>Maintaining account sessions</li>
-      <li>Saving account information</li>
-      <li>Providing requested features</li>
-      <li>Providing customer support</li>
-      <li>Maintaining technical functionality</li>
-      <li>Diagnosing errors</li>
-      <li>Protecting the security of our systems</li>
-      <li>Preventing unauthorised access</li>
-      <li>Maintaining reliable servers</li>
-      <li>Meeting legal obligations</li>
-    </ul>
-    <p>We will not collect/send your personal information to outside 3rd parties.</p>
+    <h2>Safety and Moderation</h2>
+    <p>Vextria is intended to be a community where users can create and interact with content safely. To help maintain the security and integrity of the platform, Vextria may use automated systems, human review, or a combination of both to identify and respond to inappropriate content, abuse, harassment, spam, scams, attempts to obtain personal information, fraud, security threats, or violations of Vextria's policies.</p>
+    <p>Depending on the circumstances, this may involve processing user-generated text, images, audio, games, profiles, reports, account activity, or other information submitted to or generated through the platform.</p>
+    <p>Automated moderation systems may not always operate perfectly. Vextria may therefore use human review where appropriate, particularly when investigating reports, appeals, serious violations, or matters involving account security or user safety.</p>
 
-    <h2>5. Legal Basis for Processing</h2>
-    <p>Where the UK GDPR applies, Vextria processes personal data using appropriate legal bases. These may include:</p>
-    <p><strong>Contract:</strong> When processing is necessary to provide a service you have requested, such as maintaining your Vextria account.</p>
-    <p><strong>Legitimate interests:</strong> When processing is reasonably necessary for purposes such as security, fraud prevention, maintaining our infrastructure, or improving the reliability of our services.</p>
-    <p><strong>Consent:</strong> Where applicable law requires us to obtain your consent before processing certain information.</p>
-    <p><strong>Legal obligation:</strong> Where processing is necessary to comply with a legal requirement.</p>
+    <h2>Information Collected Automatically</h2>
+    <p>When you access Vextria, certain information may be automatically received by our systems. This can include your IP address, operating system, device type, browser type, browser version, language settings, date and time of connection, connection information, session information, error information, crash information, and other technical information relating to the software or device being used to access Vextria.</p>
+    <p>This information is generally used to operate and maintain Vextria, provide technical support, diagnose errors, understand performance, protect accounts, detect suspicious activity, prevent abuse, and maintain the security and reliability of our servers.</p>
+    <p>Some of this information may constitute personal data under applicable UK data-protection law.</p>
 
-    <h2>6. Cookies</h2>
-    <p>Vextria may use cookies and similar technologies. Essential cookies may be used to:</p>
-    <ul>
-      <li>Maintain login sessions</li>
-      <li>Keep accounts secure</li>
-      <li>Remember necessary settings</li>
-      <li>Operate website features</li>
-      <li>Maintain session information</li>
-    </ul>
-    <p>Where consent is legally required for non-essential cookies, Vextria will request consent before using them. You may be able to control cookies through your browser or device settings. Disabling essential cookies may prevent some parts of Vextria from functioning correctly.</p>
+    <h2>Cookies</h2>
+    <p>Vextria may use cookies and similar technologies when you access our website or services. Cookies are small pieces of information that may be stored by your browser or device and can allow a website to remember information between visits.</p>
+    <p>Vextria may use cookies for purposes such as maintaining login sessions, protecting accounts, remembering necessary settings, operating website features, maintaining session information, and understanding technical performance.</p>
+    <p>Where applicable law requires consent before non-essential cookies or similar technologies are used, Vextria will request that consent. You may also be able to control cookies through your browser or device settings. Disabling cookies may prevent certain parts of Vextria from functioning correctly.</p>
 
-    <h2>7. IP Addresses</h2>
-    <p>Vextria may record IP addresses when users connect to our services. IP addresses may be used for purposes such as:</p>
-    <ul>
-      <li>Security</li>
-      <li>Preventing abuse of our infrastructure</li>
-      <li>Detecting suspicious activity</li>
-      <li>Diagnosing technical problems</li>
-      <li>Maintaining server logs</li>
-      <li>Protecting accounts</li>
-    </ul>
-    <p>IP addresses may be retained for a reasonable period based on their purpose. Your IP address will NOT be shared with our staff members and will not always be saved and we might use your Current IP address.</p>
+    <h2>IP Addresses and Technical Information</h2>
+    <p>When you connect to Vextria, our servers may receive your IP address. IP addresses may be used to protect accounts, prevent abuse of our infrastructure, detect suspicious activity, investigate security incidents, diagnose technical problems, maintain server logs, and protect the integrity of Vextria.</p>
+    <p>An IP address may be considered personal data under UK data-protection law. Vextria may retain IP-address information for a reasonable period depending on the purpose for which it was collected.</p>
+    <p>Vextria may also use a user's current IP address for security or technical purposes without necessarily retaining that address permanently as part of the user's account information.</p>
+    <p>Access to IP-address information should be limited to authorised personnel and service providers who have a legitimate reason to access it.</p>
 
-    <h2>8. Children's Privacy</h2>
-    <p>Vextria will be used by children and young people. We recognise that children's personal information requires additional protection.</p>
-    <p>Vextria aims to minimise the collection of children's personal data and will not knowingly request unnecessary personal information from children. Where UK law requires additional protections for children, Vextria will take those requirements into account.</p>
-    <p>We also consider the principles of the UK's Age Appropriate Design Code where it applies to our services. Children should not provide unnecessary personal information through their Vextria profile, games, comments, messages, or other publicly accessible areas. Parents or guardians with privacy concerns regarding a child's information may contact Vextria.</p>
+    <h2>Location Information</h2>
+    <p>Vextria does not generally require precise GPS or device-location information in order for users to access the core Vextria service.</p>
+    <p>Vextria may, however, receive general geographic information that can be inferred from an IP address. This information may be used for security, technical, legal, or service-related purposes.</p>
+    <p>Unless a particular Vextria feature specifically requires location information, we do not intend for precise device-location information to be necessary to use the platform.</p>
 
-    <h2>9. Public Information</h2>
-    <p>Some information may be publicly visible when you choose to publish it. For example, depending on the features available, other users may be able to see:</p>
-    <ul>
-      <li>Your username</li>
-      <li>Your avatar</li>
-      <li>Your public profile</li>
-      <li>Games you publish</li>
-      <li>Public creations</li>
-      <li>Public statistics</li>
-      <li>Public comments</li>
-    </ul>
-    <p>Public information should not be considered private personal information.</p>
+    <h2>Children's Privacy</h2>
+    <p>Vextria may be used by children and young people, and we recognise that children's personal information requires additional protection.</p>
+    <p>Vextria aims to minimise the collection of personal information from children and will not knowingly request personal information that is unnecessary for the operation of a particular feature or service.</p>
+    <p>Where applicable, Vextria takes into account the requirements of UK data-protection law, including the principles of the UK's Age Appropriate Design Code.</p>
+    <p>Depending on a user's age and the features available on Vextria, additional privacy, communication, moderation, or safety measures may apply. Certain features may also be restricted or unavailable to younger users.</p>
+    <p>Children should not provide unnecessary personal information through their usernames, profiles, games, comments, messages, forums, uploaded content, or other areas of Vextria.</p>
+    <p>Parents or guardians who have concerns about information relating to a child using Vextria may contact us through our contact page.</p>
 
-    <h2>10. Private Account Information</h2>
-    <p>Certain information is intended to remain associated with your account rather than being publicly displayed. This may include:</p>
-    <ul>
-      <li>Email address</li>
-      <li>Password information</li>
-      <li>Date of birth</li>
-      <li>IP addresses</li>
-      <li>Login information</li>
-      <li>Account-security information</li>
-    </ul>
-    <p>We take reasonable measures to prevent unauthorised access to this information.</p>
+    <h2>Public Information</h2>
+    <p>Certain information on Vextria is intended to be publicly visible. Depending on the features being used, this may include a user's username, avatar, public profile, published games, public creations, public statistics, comments, game descriptions, or other content that the user has intentionally published.</p>
+    <p>When you publish information publicly, other users may be able to view or interact with that information. Public information should not be considered private.</p>
+    <p>Vextria encourages users to avoid including their real name, address, telephone number, email address, passwords, or other sensitive information in publicly visible areas.</p>
 
-    <h2>11. Passwords</h2>
-    <p>Vextria should not store account passwords in readable plain text. Passwords should be protected using appropriate cryptographic hashing and security practices. Your password should remain confidential. Vextria staff should not need to ask you for your password.</p>
+    <h2>Private Account Information</h2>
+    <p>Certain information is maintained as account information and is not ordinarily displayed to other users. This may include your email address, date of birth, password information, IP addresses, login information, account-security information, internal account identifiers, and information provided when contacting customer support.</p>
+    <p>We take reasonable technical and organisational measures to protect this information from unauthorised access.</p>
 
-    <h2>12. How We Protect Personal Data</h2>
-    <p>We use reasonable technical and organisational measures to protect personal data. These may include:</p>
-    <ul>
-      <li>Access controls</li>
-      <li>Password hashing</li>
-      <li>Secure authentication</li>
-      <li>Server security</li>
-      <li>Encryption where appropriate</li>
-      <li>Monitoring for security incidents</li>
-      <li>Limiting access to personal data</li>
-    </ul>
-    <p>No internet-based system can be guaranteed to be completely secure.</p>
+    <h2>Payment Information</h2>
+    <p>Where Vextria offers purchases, subscriptions, virtual currency, digital goods, or other paid services, payment transactions may be processed by Vextria or by third-party payment and transaction-processing providers.</p>
+    <p>Depending on the payment method used, information necessary to complete a transaction may be provided to the relevant payment provider. This information may include billing information and information necessary to verify and complete the transaction.</p>
+    <p>Vextria does not sell payment information. Where possible, sensitive payment credentials, such as full payment-card numbers, should be handled directly by the payment processor rather than stored by Vextria.</p>
+    <p>Transaction information may be retained where reasonably necessary to provide customer support, prevent fraud, resolve payment disputes, maintain financial records, or comply with legal requirements.</p>
 
-    <h2>13. Who May Receive Personal Data</h2>
-    <p>Vextria may use third-party service providers to operate its infrastructure. These providers may include services responsible for hosting, databases, server infrastructure, email delivery, security, error reporting, payment processing, and customer support.</p>
-    <p>Third parties should only receive information reasonably necessary for the service they provide. Vextria does not sell personal data.</p>
+    <h2>How Vextria Uses Information</h2>
+    <p>Vextria uses information collected through the platform to provide and maintain its services. This includes creating and maintaining accounts, authenticating users, maintaining account sessions, providing games and other features, storing user-created content, providing customer support, maintaining servers, diagnosing technical problems, improving reliability, protecting accounts, preventing abuse and fraud, moderating the platform, and complying with applicable laws.</p>
+    <p>We may also use information where necessary to enforce Vextria's Terms of Service, Community Guidelines, and other applicable policies.</p>
+    <p>Vextria does not sell personal data to third parties.</p>
 
-    <h2>14. Legal Disclosure</h2>
-    <p>Vextria may disclose personal data where required by applicable law. This may include responding to valid legal requests, court orders, law-enforcement requests, or regulatory requirements.</p>
+    <h2>Information Sharing</h2>
+    <p>Vextria may share personal information with companies that provide services necessary to operate the platform. These companies may provide hosting, database services, server infrastructure, email delivery, security services, error reporting, payment processing, customer support, content delivery, or other technical services.</p>
+    <p>When a third party processes information on behalf of Vextria, we seek to ensure that it receives only information reasonably necessary for the service it provides and that appropriate legal and security requirements apply.</p>
+    <p>Vextria does not sell personal data to third parties.</p>
+    <p>We may also disclose information where required or permitted by applicable law, including when responding to valid court orders, legal proceedings, law-enforcement requests, regulatory requirements, or other legally valid requests.</p>
+    <p>We may also disclose information where reasonably necessary to protect the rights, safety, or property of Vextria, our users, or other persons, to investigate fraud or abuse, to protect the security of our systems, or to enforce our agreements and policies.</p>
 
-    <h2>15. International Data Transfers</h2>
-    <p>Vextria is operated from the United Kingdom. Some companies providing services to Vextria may process information outside the UK. Where personal data is transferred internationally, Vextria will use appropriate safeguards where required by UK data-protection law.</p>
+    <h2>International Processing</h2>
+    <p>Vextria operates from the United Kingdom. Some companies that provide services to Vextria may process information in countries outside the United Kingdom.</p>
+    <p>Where personal data is transferred outside the UK, Vextria will use appropriate safeguards where required by UK data-protection law. These safeguards may include an adequacy decision, appropriate contractual protections, or another legally recognised transfer mechanism.</p>
 
-    <h2>16. Data Retention</h2>
-    <p>Vextria does not keep personal information indefinitely without a reason. When information is no longer required, it may be deleted, anonymised, or securely disposed of. Backup copies may remain for a limited period.</p>
+    <h2>Security</h2>
+    <p>The security of personal information is important to Vextria. We use reasonable technical and organisational measures intended to protect information against unauthorised access, alteration, disclosure, loss, or destruction.</p>
+    <p>These measures may include access controls, password hashing, secure authentication, encryption where appropriate, server security, security monitoring, restricted access to personal information, and procedures designed to respond to security incidents.</p>
+    <p>No method of transmitting information over the Internet or storing information electronically can be guaranteed to be completely secure. While Vextria takes reasonable steps to protect information, we cannot guarantee that information will always remain completely secure.</p>
 
-    <h2>17. Deleting Your Personal Information</h2>
-    <p>You may request deletion of personal information associated with your Vextria account where applicable. Some information may need to be retained where required by law.</p>
+    <h2>Account Security</h2>
+    <p>You are responsible for keeping your Vextria account secure.</p>
+    <p>You should choose a password that is difficult for others to guess, avoid using the same password on multiple services, never share your password with another person, and use any additional account-security features made available by Vextria.</p>
+    <p>If you believe that someone has accessed your account without permission, you should contact Vextria as soon as possible.</p>
+    <p>Vextria staff should not need to ask you for your account password.</p>
 
-    <h2>18. Your Privacy Rights</h2>
-    <p>Depending on your circumstances and where UK GDPR applies, you may have rights including access, correction, deletion, restriction, objection, and data portability.</p>
+    <h2>Data Retention</h2>
+    <p>Vextria retains information for as long as reasonably necessary for the purposes for which it was collected.</p>
+    <p>Information may be retained while your account is active or for as long as necessary to provide services, maintain security, prevent fraud and abuse, resolve disputes, enforce agreements, maintain transaction records, or comply with legal obligations.</p>
+    <p>When personal information is no longer required, it may be deleted, anonymised, or securely disposed of.</p>
+    <p>Information may continue to exist for a limited period in backup systems after it has been removed from active systems.</p>
 
-    <h2>19. Making a Privacy Request</h2>
-    <p>To request access, correction, deletion, or other action concerning your personal information, please <a href="/contact-us">contact us</a> with enough information for us to process your request.</p>
+    <h2>Closing or Deleting an Account</h2>
+    <p>You may request the deletion of your Vextria account and personal information where applicable.</p>
+    <p>Deleting an account does not necessarily mean that every piece of information associated with that account will immediately disappear from every Vextria system. Certain information may need to be retained for legal, security, fraud-prevention, dispute-resolution, financial, or other legitimate purposes.</p>
+    <p>Content that you have published may also continue to exist where necessary for the operation of Vextria, where other users have interacted with or obtained copies of that content, or where retention is otherwise permitted by applicable law.</p>
+    <p>Where information can no longer reasonably be associated with an identifiable individual, Vextria may retain it in anonymised form.</p>
 
-    <h2>20. Complaints</h2>
-    <p>If you have concerns about the way Vextria handles your personal information, please contact the Vextria Privacy Team first.</p>
-    <p>You may also have the right to complain to the UK's data-protection regulator:</p>
+    <h2>Your Privacy Rights</h2>
+    <p>Depending on your circumstances and where UK GDPR applies, you may have rights concerning your personal data.</p>
+    <p>These rights may include requesting access to personal information held about you, asking for inaccurate information to be corrected, requesting deletion of information, requesting restriction of processing, objecting to certain processing, requesting data portability, and withdrawing consent where processing is based on consent.</p>
+    <p>These rights are not absolute and may be subject to exceptions or limitations under applicable law.</p>
+
+    <h2>Accessing or Correcting Your Information</h2>
+    <p>If your personal information changes or you believe information held by Vextria is inaccurate, you may be able to update certain information through your account settings.</p>
+    <p>Where information cannot be changed through the platform, or where you wish to exercise another privacy right, you may contact Vextria through our contact page.</p>
+    <p>We may request information reasonably necessary to verify your request and protect accounts from unauthorised requests.</p>
+
+    <h2>Requests Concerning Children</h2>
+    <p>Parents or guardians who have questions or concerns regarding personal information associated with a child using Vextria may contact us.</p>
+    <p>Where required by law, Vextria may take reasonable steps to verify the identity of a parent, guardian, or other person making a request concerning a child's information.</p>
+
+    <h2>Complaints</h2>
+    <p>If you have concerns about the way Vextria handles personal information, we encourage you to contact Vextria first so that we can investigate your concern and attempt to resolve it.</p>
+    <p>You may also have the right to make a complaint to the Information Commissioner's Office, the UK's independent data-protection regulator.</p>
     <p><strong>Information Commissioner's Office (ICO)</strong><br>United Kingdom</p>
 
-    <h2>21. Changes to This Privacy Policy</h2>
-    <p>We may update this Privacy Policy when our services, technology, or legal obligations change. The "Last Updated" date at the top of this policy shows when it was most recently changed.</p>
+    <h2>Changes to This Privacy Policy</h2>
+    <p>Vextria may change this Privacy Policy from time to time as our services, technology, business practices, or legal obligations change.</p>
+    <p>When changes are made, the "Last Updated" date at the beginning of this Privacy Policy will be changed to reflect the date of the latest revision.</p>
+    <p>Where required by applicable law, Vextria will provide additional notice of material changes before they take effect.</p>
+    <p>We encourage users to periodically review this Privacy Policy so that they remain aware of how Vextria handles personal information.</p>
+
+    <h2>Contact Information</h2>
+    <p>If you have questions, comments, concerns, or requests regarding this Privacy Policy or Vextria's privacy practices, please contact Vextria through our <a href="/contact-us">Contact Us</a> page.</p>
+    <p>Vextria will make reasonable efforts to review and respond to privacy-related requests in accordance with applicable law.</p>
+
+    <h2>Effective Date</h2>
+    <p>Effective Date: September 1, 2026</p>
+    <p>Last Updated: September 1, 2026</p>
 </main>
 </div>
 
@@ -374,8 +271,8 @@ body{
     <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
     <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
     <a href="/Vextria/info/about-us">About Us</a><span>|</span>
-    <a href="/Vextria/info/careers">Careers</a><span>|</span>
     <a href="/Vextria/blog/home">Blog</a><span>|</span>
+    <a href="/Vextria/info/careers">Careers</a><span>|</span>
     <a href="/Vextria/info/parents">Parents</a><span>|</span>
     <a href="/Vextria/wiki/home">Help</a><span>|</span>
     <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
