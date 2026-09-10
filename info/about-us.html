@@ -6,46 +6,42 @@
 <title>Vextria - About Us</title>
   <link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
 <link rel="icon" type="image/png" href="/Vextria/favicon.png">
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/asdo.png?raw=true">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
 body{
-  background-color:#000443;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
-  background-repeat:repeat-x;
-  background-position:0 0;
-  animation:bodyBkgScroll 40s linear infinite;
+  background-color:#fff;
   color:#fff;
   overflow-x:hidden;
 }
-@keyframes bodyBkgScroll{
-  from{background-position:0 0;}
-  to{background-position:-1000px 0;}
-}
 
-/* Top banner - 3rd Standard signed-in banner (from admin/templates/banners), stripped of currency/settings/logout */
+/* Top banner - full width, classic dark gray Roblox-style bar */
 .topbar{
   position:relative;
   margin-bottom:0;
   z-index:100;
   width:100%;
+  background:#363636;
 }
 .classic-roblox-header{
-  width:100%;
-  height:40px;
-  background:#2d528f;
+  width:1000px;
+  max-width:100%;
+  height:76px;
+  background:#363636;
   position:relative;
   z-index:100;
+  margin:0 auto;
 }
 .classic-roblox-header-inner{
   max-width:none;
   width:100%;
-  height:40px;
-  margin:auto;
+  height:76px;
+  margin:0 auto;
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   justify-content:space-between;
-  padding:0 15px;
+  padding:0 20px 0;
   position:relative;
   overflow:visible;
 }
@@ -62,66 +58,67 @@ body{
   list-style:none;
   margin:0;
   padding:0;
-  height:100%;
-  gap:13px;
-  align-items:center;
+  gap:0;
+  align-items:flex-end;
   position:relative;
   overflow:visible;
 }
 .classic-nav-links > li{
   position:relative;
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   overflow:visible;
 }
 .classic-nav-links a{
   color:#fff;
   text-decoration:none;
-  font-size:13px;
+  font-size:15px;
   font-weight:700;
+  letter-spacing:0.3px;
   display:flex;
   align-items:center;
   justify-content:center;
+  width:auto;
   height:30px;
   padding:0 8px;
   margin:0;
-  border-radius:4px;
   transition:background-color 0.1s ease;
+  white-space:nowrap;
 }
-.classic-nav-links > li > a:hover{
-  background:#27487e;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,0.15);
+.classic-nav-links > li > a:hover,
+.classic-nav-links > li.active > a{
+  background:#000;
   color:#fff;
-  text-shadow:0 -1px rgba(0,0,0,0.45);
 }
 .brand{
-  display:block;width:120px;height:34px;
-  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat
+  display:flex;
+  align-items:center;
+  gap:12px;
+  align-self:center;
+  text-decoration:none;
+}
+.brand-logo{
+  display:block;width:188px;height:72px;
+  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/Your%20paragraph%20text.png?raw=true") center/contain no-repeat
 }
 
 /* Page Layout Container */
 .page-container{
-  max-width:1100px;margin:0 auto;min-height:calc(100vh - 152px);
-  display:flex;background:rgb(220, 220, 220);color:#333;
-  border-left:1px solid rgba(0,0,0,.2);border-right:1px solid rgba(0,0,0,.2);
+  max-width:1000px;margin:0 auto;min-height:calc(100vh - 114px);
+  display:flex;color:#333;
 }
 
 /* Content Area */
 .legal-content{
   flex-grow:1;padding:25px 30px;color:#222;
   font-size:14px;line-height:1.6;
-  background-color:#fff;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/containerBkg_01.png");
-  background-repeat:repeat;
 }
 .legal-content h1{
-  font-size:22px;
+  font-size:40px;
   margin-top:0;
-  margin-bottom:16px;
-  color:#000;
+  margin-bottom:20px;
+  color:#363636;
   font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.3px;
 }
 .legal-content h2{font-size:18px;margin-top:25px;margin-bottom:10px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
 .legal-content h3{font-size:14px;margin-top:18px;margin-bottom:4px;color:#000;font-weight:700}
@@ -132,43 +129,95 @@ body{
 .legal-content a{color:#0000cc;text-decoration:none}
 .legal-content a:hover{text-decoration:none}
 
-/* Red Error/Warning Message Span */
-.message-span-error{
-  display:block;
-  background:#fdeded;
-  border:1px solid #d32f2f;
+/* Red warning text (plain, no box) */
+.warning-text{
   color:#d32f2f;
-  padding:8px 12px;
-  font-size:13px;
+  font-weight:700;
   margin:20px 0 10px 0;
-  width:100%;
 }
-.meta-date{font-style:italic;color:#666;font-size:12px;margin-bottom:20px}
+
+/* Image Slideshow - 684x300 */
+.slideshow{
+  width:684px;
+  max-width:100%;
+  height:300px;
+  position:relative;
+  margin:10px auto 25px auto;
+  overflow:hidden;
+  background:#e6e6e6;
+  border:2px solid #fff;
+  box-shadow:0 0 0 1px #ccc;
+}
+.slideshow-track{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+.slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  opacity:0;
+  animation:fadeSlide 88s linear infinite;
+}
+.slide:nth-child(1){animation-delay:0s}
+.slide:nth-child(2){animation-delay:8s}
+.slide:nth-child(3){animation-delay:16s}
+.slide:nth-child(4){animation-delay:24s}
+.slide:nth-child(5){animation-delay:32s}
+.slide:nth-child(6){animation-delay:40s}
+.slide:nth-child(7){animation-delay:48s}
+.slide:nth-child(8){animation-delay:56s}
+.slide:nth-child(9){animation-delay:64s}
+.slide:nth-child(10){animation-delay:72s}
+.slide:nth-child(11){animation-delay:80s}
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.slide:nth-child(1) img,
+.slide:nth-child(2) img{
+  height:calc(100% + 20px);
+  margin-top:-10px;
+}
+@keyframes fadeSlide{
+  0%{opacity:0}
+  0.909%{opacity:1}
+  9.091%{opacity:1}
+  10%{opacity:0}
+  100%{opacity:0}
+}
 
 /* Footer */
 .lower{
   width:100%;
-  height:98px;
-  min-height:98px;
-  background:#174d88;
-  border-top:1px solid rgba(255,255,255,.55);
+  height:37px;
+  min-height:37px;
+  background:#363636;
   position:relative;
   z-index:10;
-  text-align:center;
-  padding:16px 20px 0;
+  padding:0 20px;
 }
-.footer-links{
+.footer-inner{
+  max-width:1000px;
+  height:37px;
+  margin:0 auto;
   display:flex;
-  justify-content:center;
   align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  font-size:14px;
-  font-weight:700;
+  justify-content:space-between;
+  font-size:13px;
+  color:#fff;
 }
-.footer-links a{color:#fff;text-decoration:none}
-.footer-links a:hover{text-decoration:underline}
-.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+.footer-inner .footer-brand{font-weight:400;color:#fff;text-decoration:none}
+.footer-inner .footer-brand:hover{text-decoration:underline}
+.footer-inner .footer-copyright{color:#cfe0f2}
 
 @media(max-width:768px){
   .page-container{flex-direction:column}
@@ -180,58 +229,60 @@ body{
 <header class="topbar">
   <div class="classic-roblox-header">
     <div class="classic-roblox-header-inner">
-      <div class="classic-left-group">
-        <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
-        <ul class="classic-nav-links">
-          <li><a href="/Vextria/info/terms-of-Service">Terms of Service</a></li>
-          <li><a href="/Vextria/info/privacy-policy">Privacy policy</a></li>
-          <li><a href="/Vextria/info/about-us">About Us</a></li>
-          <li><a href="/Vextria/info/guidelines">Guidelines</a></li>
-        </ul>
-      </div>
+      <span class="brand" aria-label="Vextria">
+        <span class="brand-logo"></span>
+      </span>
+      <ul class="classic-nav-links">
+        <li class="active"><a href="/Vextria/info/about-us">ABOUT US</a></li>
+        <li><a href="/Vextria/info/careers">CAREERS</a></li>
+        <li><a href="/Vextria/blog/home">BLOG</a></li>
+        <li><a href="/Vextria/info/press">PRESS</a></li>
+        <li><a href="/Vextria/info/parents">PARENTS</a></li>
+        <li><a href="/Vextria/contact-us">CONTACT US</a></li>
+      </ul>
     </div>
   </div>
 </header>
 
 <div class="page-container">
   <main class="legal-content">
-    <h1>About Vextria</h1>
+    <h1>About Us</h1>
 
-    <p>Vextria is a online gaming platformbuilt around the classic style of early 2010s multiplayer games. Vextria takes inspiration from the look and feel of the 2012-2014 era of roblox with simple interfaces, block-based worlds, classic-style avatars, user-created games, and a community-focused experience.</p>
+    <div class="slideshow" aria-label="Vextria image slideshow">
+      <div class="slideshow-track">
+        <div class="slide"><img src="https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/timthumb.jfif" alt="Vextria screenshot 1"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/timthumb%20(1).jfif" alt="Vextria screenshot 2"></div>
+        <div class="slide"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/screenshot-from-2013-what-memories-do-you-have-from-this-v0-nut04b6cb1fd1.webp?raw=true" alt="Vextria screenshot 3"></div>
+        <div class="slide"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/-edance2013.webp?raw=true" alt="Vextria screenshot 4"></div>
+        <div class="slide"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Sword-Fighting-Tournament.webp?raw=true" alt="Vextria screenshot 5"></div>
+        <div class="slide"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/RobloxScreenShot10112012_170759166.webp?raw=true" alt="Vextria screenshot 6"></div>
+        <div class="slide"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/low-quality-screenshots-from-throughout-2013-v0-onroelpie00f1.webp?raw=true" alt="Vextria screenshot 7"></div>
+        <div class="slide"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/low-quality-screenshots-from-throughout-2013-v0-scmbpcd6e00f1.webp?raw=true" alt="Vextria screenshot 8"></div>
+        <div class="slide"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/found-some-old-2014-roblox-screenshots-on-my-old-ipad-mini-v0-qiffu1wyitmd1.webp?raw=true" alt="Vextria screenshot 9"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/images%20(1).jfif" alt="Vextria screenshot 10"></div>
+        <div class="slide"><img src="https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/refs/heads/main/logos/images.jfif" alt="Vextria screenshot 11"></div>
+      </div>
+    </div>
 
-    <p>Our goal is to create a free place where players all of kids aged (4 - 150) can build, explore, play games, customise their charactersw, and meet oither players without losing the charm of older online gaming.</p>
+    <h2>What is Vextria</h2>
 
-    <p>Our product remains under heavy development and is currently in public alhpa testing. We deeply value community feedback as we continue to make Vextira into a game to excite the imagination of the young and the young at heart.</p>
+    <p>Vextria is a Free, Kid-friendly platform, online gaming platform built around the classic style of 2013s multiplayer games. Vextria takes inspiration from the look and feel of the 2013 era of loneline gaming, featuring simple interface, user-gernerated worlds, classic-style avatars and a community-focused experience. Players can build and play their own or other games, customise their characters, and meet new people within the community.</p>
+
+    <p>Our goal is to create a free place where players of all ages can imagine, build, explore and play together without losing the charm and simplicity of older online games.</p>
+
+    <p>Vextria is currently under heavy development and is in public alpha testing. We deeply value community feedback as we contiune developing Vextria into a platform that can excite the imagination of both the young and the young at the heart</p>
+
+    <p>Vextria is currently a Windows-only product. Other verisons on Iphones, Androids, Macs or any other downloading of the Vextria application outside of Relatable sources such as Vextria.co.uk is malicious software.</p>
 
     <p>For more information about Vextria, visit the News and Help sections.</p>
-
-    <h2>A Classic-Inspired Experience</h2>
-
-    <p>We believe Modern games have changed a lot.</p>
-
-    <p>Userfaces have become larger, systems have become more complicated, and sometimes the simple fun of opening a game and just playing gets lost somewhere along the way.</p>
-
-    <p>Our attempt is to capture some of that older feeling and what created that era memorable</p>
-
-    <div class="message-span-error">
-      Please remember this is a Windows Product Only.
-    </div>
 </main>
 </div>
 
 <footer class="lower">
-  <nav class="footer-links" aria-label="Footer">
-    <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
-    <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
-    <a href="/Vextria/info/about-us">About Us</a><span>|</span>
-    <a href="/Vextria/info/careers">Careers</a><span>|</span>
-    <a href="/Vextria/blog/home">Blog</a><span>|</span>
-    <a href="/Vextria/info/parents">Parents</a><span>|</span>
-    <a href="/Vextria/wiki/home">Help</a><span>|</span>
-    <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
-    <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
-  </nav>
-  <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
+  <div class="footer-inner">
+    <a class="footer-brand" href="/Vextria/"><strong style="font-weight:900">VEXTRIA</strong>.com</a>
+    <span class="footer-copyright">©2026 Vextria Group</span>
+  </div>
 </footer>
 
 </body>
