@@ -3,384 +3,280 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vextria - Contact Support</title>
-<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
+<title>Vextria - Contact Us</title>
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/asdo.png?raw=true">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height:100%;font-family:"Source Sans Pro",Arial,Helvetica,sans-serif}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
 body{
-  background-color:#000443;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
-  background-repeat:repeat-x;
-  background-position:0 0;
-  animation:bodyBkgScroll 40s linear infinite;
-  color:#333;
+  background-color:#fff;
+  color:#fff;
   overflow-x:hidden;
-}
-@keyframes bodyBkgScroll{
-  from{background-position:0 0;}
-  to{background-position:-1000px 0;}
+  font-size:95%;
 }
 
-/* Top banner - Signed-out banner (from admin/templates/banners) */
+/* Top banner */
 .topbar{
   position:relative;
-  z-index:20;
+  margin-bottom:0;
+  z-index:100;
   width:100%;
+  background:#363636;
 }
-.first-header-minimal{
-  width:100%;
-  background:#114081;
-}
-.first-header-minimal-inner{
-  max-width:900px;
-  height:40px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 15px;
+.classic-roblox-header{
+  width:1000px;
+  max-width:100%;
+  height:76px;
+  background:#363636;
   position:relative;
+  z-index:100;
+  margin:0 auto;
 }
-.brand{
-  display:block;
-  width:120px;
-  height:34px;
-  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat;
-}
-.auth-buttons{
+.classic-roblox-header-inner{
+  max-width:none;
+  width:100%;
+  height:76px;
+  margin:0 auto;
   display:flex;
-  align-items:center;
-  gap:8px;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:0 20px 0;
+  position:relative;
+  overflow:visible;
 }
-.sprite-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  text-decoration:none;
-  font-weight:700;
-  font-size:16px;
-  text-shadow:0 -1px rgba(0,0,0,.45);
-  background-repeat:no-repeat;
-}
-.signup,.login{
-  width:80px;
-  height:28px;
-  background-size:80px 154px;
-  background-position:0 0;
-}
-.signup{
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-green.png");
-}
-.login{
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-blue.png");
-}
-.signup:hover,.login:hover{
-  background-position:0 -30px;
-}
-.second-header{
-  height:31px;
-  background:#6e99c9 url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
-  background-size:auto auto;
-  border-top:1px solid rgba(255,255,255,0.15);
-  border-bottom:1px solid rgba(0,0,0,0.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.navbar-links{
+.classic-nav-links{
   display:flex;
   list-style:none;
   margin:0;
   padding:0;
-  height:100%;
-  gap:9px;
+  gap:0;
+  align-items:flex-end;
+  position:relative;
+  overflow:visible;
 }
-.navbar-links li{
-  height:100%;
+.classic-nav-links > li{
+  position:relative;
   display:flex;
-  align-items:center;
+  align-items:flex-end;
+  overflow:visible;
 }
-.navbar-links a{
-  display:flex;
-  align-items:center;
-  height:100%;
-  padding:0 8px;
+.classic-nav-links a{
   color:#fff;
-  font-size:16px;
+  text-decoration:none;
+  font-size:14px;
   font-weight:700;
+  letter-spacing:0.3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;
+  height:30px;
+  padding:0 8px;
+  margin:0;
+  transition:background-color 0.1s ease;
+  white-space:nowrap;
+}
+.classic-nav-links > li > a:hover,
+.classic-nav-links > li.active > a{
+  background:#000;
+  color:#fff;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  align-self:center;
   text-decoration:none;
 }
-.navbar-links a:hover{
-  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
-  background-size:auto auto;
-  filter:brightness(1.3);
+.brand-logo{
+  display:block;width:188px;height:72px;
+  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/Your%20paragraph%20text.png?raw=true") center/contain no-repeat
 }
 
-/* Page Layout Container */
+/* Page Layout */
 .page-container{
-  max-width:800px;
-  margin:0 auto;
-  min-height:calc(100vh - 152px);
-  display:flex;
-  background:#fff;
-  border-left:1px solid rgba(0,0,0,.15);
-  border-right:1px solid rgba(0,0,0,.15);
+  max-width:1000px;margin:0 auto;min-height:calc(100vh - 114px);
+  display:flex;color:#333;
 }
-
-/* Main Content Area */
-.main-content{
-  flex-grow:1;
-  padding:25px 35px;
-  color:#222;
-  background-color:#fff;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/containerBkg_01.png");
-  background-repeat:repeat;
+.legal-content{
+  flex-grow:1;padding:25px 30px;color:#222;
+  font-size:14px;line-height:1.6;
 }
-
-h1.page-title{
-  font-size:22px;
-  margin:0 0 16px 0;
+.legal-content h1{
+  font-size:40px;
+  margin-top:0;
+  margin-bottom:4px;
+  color:#363636;
+  font-weight:700;
+}
+.legal-content h2{
+  font-size:16px;
+  margin-top:24px;
+  margin-bottom:8px;
   color:#000;
   font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.3px;
 }
+.faq-main h2:first-child{
+  margin-top:6px;
+}
+.legal-content p{margin:8px 0 15px 0;color:#000}
 
-.section-title{
-  font-size:15px;
-  font-weight:700;
-  color:#000;
-  margin:20px 0 12px 0;
-  text-transform:uppercase;
-  letter-spacing:0.3px;
-}
-
-/* Form Controls */
-.form-group{
-  margin-bottom:16px;
-  position:relative;
-}
-.form-group label{
-  display:block;
-  font-weight:400;
-  font-size:14px;
-  margin-bottom:5px;
-  color:#000;
-}
-.label-desc{
-  font-weight:normal;
-  color:#757575;
-  font-size:12px;
-}
-.info-icon{
+.back-link{
   display:inline-block;
-  width:14px;
-  height:14px;
-  background:#666;
-  color:#fff;
-  border-radius:50%;
+  margin-bottom:18px;
+  padding:0;
+  border:none;
+  color:#095FB4;
+  font-weight:700;
+  text-decoration:none;
+  font-size:13px;
+}
+.back-link:hover{
+  text-decoration:underline;
+}
+
+.faq-layout{
+  display:flex;
+  gap:25px;
+  align-items:flex-start;
+}
+.faq-main{
+  flex:1;
+  min-width:0;
+}
+.faq-sidebar{
+  flex:0 0 260px;
+  background:#f2f2f2;
+  border:1px solid #ccc;
+  padding:15px;
+  margin-top:-34px;
+}
+.faq-sidebar h2{
+  margin-top:0;
   text-align:center;
-  font-size:10px;
-  line-height:14px;
-  font-weight:bold;
-  cursor:pointer;
-  margin-left:4px;
-  vertical-align:middle;
-}
-
-.tooltip-box{
-  display:none;
-  position:absolute;
-  left:0;
-  top:-48px;
-  background:#fff;
-  border:1px solid #c3c3c3;
-  padding:6px 10px;
-  font-size:12px;
-  color:#333;
-  box-shadow:0 2px 5px rgba(0,0,0,0.15);
-  z-index:100;
-}
-.tooltip-box::after{
-  content:"";
-  position:absolute;
-  bottom:-6px;
-  left:15px;
-  border-width:6px 6px 0;
-  border-style:solid;
-  border-color:#fff transparent;
-  display:block;
-  width:0;
-}
-.info-icon:hover + .tooltip-box{
-  display:block;
-}
-
-.form-control{
-  width:100%;
-  padding:8px 12px;
   font-size:14px;
-  border:1px solid #a6a6a6;
-  border-radius:3px;
-  background:#fff;
-  color:#333;
-  transition:border-color 0.2s ease, box-shadow 0.2s ease;
+  font-weight:700;
 }
-.form-control::placeholder{
-  color:#b8b8b8;
+.faq-sidebar ul{
+  list-style:none;
+  margin:0;
+  padding:0;
 }
-
-.form-control:focus{
-  outline:none;
-  border-color:#174d88;
-  box-shadow:0 0 5px rgba(23, 77, 136, 0.4);
+.faq-sidebar li{
+  margin-bottom:5px;
 }
-
-.form-control.valid{
-  border-color:#2e7d32;
-}
-.form-control.invalid{
-  border-color:#d32f2f;
-}
-.error-msg{
-  display:none;
-  color:#d32f2f;
-  font-size:12px;
-  margin-top:4px;
-}
-.form-control.invalid + .error-msg{
-  display:block;
-}
-
-/* Warning Banner (Static Warning) */
-.message-span-warning{
-  display:block;
-  background:#fdeded;
-  border:1px solid #d32f2f;
-  color:#d32f2f;
-  padding:8px 12px;
-  font-size:13px;
-  border-radius:0;
-  margin:18px 0;
-  width:100%;
-}
-
-/* Blue Confirmation Message Span (Sent) */
-.message-span-success{
-  display:none;
-  background:#e8f4fd;
-  border:1px solid #174d88;
-  color:#174d88;
-  padding:8px 12px;
-  font-size:13px;
-  border-radius:0;
-  margin:18px 0;
-  width:100%;
-}
-
-/* Red Error Message Span (Form Errors) */
-.message-span-error{
-  display:none;
-  background:#fdeded;
-  border:1px solid #d32f2f;
-  color:#d32f2f;
-  padding:8px 12px;
-  font-size:13px;
-  border-radius:0;
-  margin:18px 0;
-  width:100%;
-}
-
-textarea.form-control{
-  resize:vertical;
-  min-height:110px;
-}
-
-/* Custom Styled Dropdown Component */
-.custom-select-wrapper{
-  position:relative;
-  width:100%;
-  user-select:none;
-}
-
-.custom-select-trigger{
-  width:100%;
-  height:38px;
-  padding:8px 12px;
+.faq-sidebar a{
+  color:#095FB4;
+  text-decoration:none;
   font-size:14px;
-  border:1px solid #a6a6a6;
-  border-radius:3px;
-  background:#fff;
-  color:#333;
+}
+.faq-sidebar a:hover{text-decoration:underline}
+
+.legal-content h3{
+  font-size:14px;
+  margin-top:20px;
+  margin-bottom:6px;
+  color:#000;
+  font-weight:700;
+}
+
+.contact-columns{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  flex-wrap:nowrap;
+}
+.contact-col{
+  max-width:100%;
+  height:auto;
+}
+.contact-col-wide{
+  width:600px;
+}
+.contact-col-narrow{
+  width:300px;
+}
+.contact-col a{
+  color:#095FB4;
+  text-decoration:none;
+}
+.contact-col a:hover{
+  text-decoration:underline;
+}
+.social-links{
+  list-style:none;
+  margin:12px 0 0 0;
+  padding:0;
+}
+.social-links li{
+  margin-bottom:10px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  cursor:pointer;
-  transition:border-color 0.2s ease, box-shadow 0.2s ease;
+  gap:6px;
 }
-.custom-select-wrapper.open .custom-select-trigger{
-  border-color:#174d88;
-  box-shadow:0 0 5px rgba(23, 77, 136, 0.4);
+.social-icon{
+  display:inline-flex;
+  align-items:center;
+  flex-shrink:0;
 }
-.custom-select-wrapper.disabled .custom-select-trigger{
-  background:#f4f4f4;
-  color:#888;
-  cursor:not-allowed;
-  border-color:#ccc;
-}
-.custom-select-trigger::after{
-  content:"";
-  width:0;
-  height:0;
-  border-left:5px solid transparent;
-  border-right:5px solid transparent;
-  border-top:5px solid #333;
+.contact-divider{
+  width:1px;
+  align-self:stretch;
+  background:#ccc;
+  flex-shrink:0;
 }
 
-.custom-options{
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-  right:0;
-  background:#fff;
-  border:1px solid #a6a6a6;
-  border-top:none;
-  border-radius:0 0 3px 3px;
-  box-shadow:0 4px 8px rgba(0,0,0,0.15);
-  z-index:200;
-  max-height:220px;
-  overflow-y:auto;
-  margin-top:-1px;
+/* Mini contact-support form (condensed version of the full support page) */
+.mini-support-form{
+  margin-top:10px;
 }
-.custom-select-wrapper.open .custom-options{
+.mini-support-form .form-group{
+  margin-bottom:14px;
+}
+.mini-support-form label{
   display:block;
-}
-
-/* Custom Dropdown Option Styles */
-.custom-option{
-  padding:8px 15px;
-  font-size:14px;
-  color:#333;
-  cursor:pointer;
-  background:#fff;
-  border-left:3px solid transparent; /* 1st State: Default */
-  transition:background-color 0.1s ease, border-left-color 0.1s ease;
-}
-.custom-option:hover{
-  background:#f0f0f0; 
-  border-left:3px solid #174d88; /* 3rd State: Hover (Left Blue Bar) */
-}
-.custom-option.selected{
-  border-left:3px solid #174d88; /* 2nd State: Picked */
-  font-weight:600;
+  font-size:13px;
+  font-weight:400;
+  margin-bottom:4px;
   color:#000;
 }
-
-/* Classic Green Button */
-.btn-submit{
+.mini-support-form .input-with-check{
+  position:relative;
+  width:587px;
+  max-width:100%;
+}
+.mini-support-form .input-with-check .form-control{
+  padding-right:34px;
+}
+.mini-support-form .valid-check{
+  display:none;
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  width:16px;
+  height:16px;
+}
+.mini-support-form .form-control{
+  width:587px;
+  max-width:100%;
+  height:26px;
+  padding:2px 10px;
+  font-size:12px;
+  border:1px solid #a6a6a6;
+  border-radius:0;
+  background:#fff;
+  color:#333;
+  font-family:inherit;
+}
+.mini-support-form textarea.form-control{
+  width:587px;
+  max-width:100%;
+  height:80px;
+  resize:vertical;
+  padding:7px 10px;
+}
+.mini-support-form .btn-submit{
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -388,7 +284,7 @@ textarea.form-control{
   height:34px;
   color:#fff;
   font-weight:700;
-  font-size:13px;
+  font-size:15px;
   border:none;
   cursor:pointer;
   text-shadow:0 -1px rgba(0,0,0,.45);
@@ -397,183 +293,220 @@ textarea.form-control{
   background-size:150px 178px;
   background-position:0 0;
 }
-.btn-submit:hover{
+.mini-support-form .btn-submit:hover{
   background-position:0 -34px;
 }
-.btn-submit:active{
-  background-image:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-btn-blue.png?raw=true");
-  background-position:0 -145px;
+.mini-support-form .section-title{
+  font-size:13px;
+  font-weight:700;
+  color:#000;
+  margin:16px 0 8px 0;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+}
+.mini-support-form .section-title:first-child{
+  margin-top:0;
+}
+.mini-support-form .label-desc{
+  font-weight:normal;
+  color:#757575;
+  font-size:11px;
+}
+.mini-support-form .error-msg{
+  display:none;
+  color:#d32f2f;
+  font-size:12px;
+  margin-top:4px;
+}
+.mini-support-form .form-control.valid{
+  border-color:#2e7d32;
+}
+.mini-support-form .form-control.invalid{
+  border-color:#d32f2f;
+}
+.mini-support-form .form-control.invalid + .error-msg{
+  display:block;
+}
+.mini-support-note{
+  background:#fdeded;
+  border:1px solid #d32f2f;
+  color:#000;
+  padding:6px 10px;
+  font-size:12px;
+  margin:12px 0;
 }
 
 /* Footer */
 .lower{
   width:100%;
-  height:98px;
-  min-height:98px;
-  background:#174d88;
-  border-top:1px solid rgba(255,255,255,.55);
+  height:37px;
+  min-height:37px;
+  background:#363636;
   position:relative;
   z-index:10;
-  text-align:center;
-  padding:16px 20px 0;
+  padding:0 20px;
 }
-.footer-links{
+.footer-inner{
+  max-width:1000px;
+  height:37px;
+  margin:0 auto;
   display:flex;
-  justify-content:center;
   align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  font-size:14px;
-  font-weight:700;
+  justify-content:space-between;
+  font-size:13px;
+  color:#fff;
 }
-.footer-links a{color:#fff;text-decoration:none}
-.footer-links a:hover{text-decoration:underline}
-.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+.footer-inner .footer-brand{font-weight:400;color:#fff;text-decoration:none}
+.footer-inner .footer-brand:hover{text-decoration:underline}
+.footer-inner .footer-copyright{color:#cfe0f2}
 
 @media(max-width:768px){
-  .main-content{padding:20px}
+  .page-container{flex-direction:column}
+  .faq-layout{flex-direction:column}
 }
 </style>
 </head>
 <body>
 
 <header class="topbar">
-  <div class="first-header-minimal">
-    <div class="first-header-minimal-inner">
-      <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
-      <div class="auth-buttons">
-        <a href="/Vextria/signup" class="sprite-btn signup">Sign Up</a>
-        <a href="/Vextria/login" class="sprite-btn login">Log In</a>
-      </div>
+  <div class="classic-roblox-header">
+    <div class="classic-roblox-header-inner">
+      <span class="brand" aria-label="Vextria">
+        <span class="brand-logo"></span>
+      </span>
+      <ul class="classic-nav-links">
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/about-us">ABOUT US</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/careers">CAREERS</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/blog/home">BLOG</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/parents">PARENTS</a></li>
+        <li class="active"><a href="https://cleetus-roschool.github.io/Vextria/contact-us">CONTACT US</a></li>
+      </ul>
     </div>
-  </div>
-
-  <div class="second-header">
-    <ul class="navbar-links">
-      <li><a href="/Vextria/my/account">My Account</a></li>
-      <li><a href="/Vextria/games">Games</a></li>
-      <li><a href="/Vextria/catalog">Catalog</a></li>
-      <li><a href="/Vextria/browse/people">People</a></li>
-      <li><a href="/Vextria/my/account/upgrade">Upgrade</a></li>
-      <li><a href="/Vextria/contests">Contests</a></li>
-      <li><a href="/Vextria/fourms">Fourms</a></li>
-      <li><a href="/Vextria/info/parents">Parents</a></li>
-      <li><a href="/Vextria/blog/home">Blog</a></li>
-      <li><a href="/Vextria/wiki/home">Help</a></li>
-    </ul>
   </div>
 </header>
 
 <div class="page-container">
-  <main class="main-content">
-    <h1 class="page-title">Contact Support</h1>
+  <main class="legal-content">
+    <h1>Contact Us</h1>
 
-    <div class="message-span-success" id="successSpan">
-      Your request has been sent! Our support team will get back to you shortly.
-    </div>
+    <div class="contact-columns">
+      <div class="contact-col contact-col-wide">
+        <h2>CONTACT SUPPORT</h2>
+        <form class="mini-support-form" action="#" method="post" id="miniSupportForm" onsubmit="return validateMiniForm(event)">
 
-    <div class="message-span-error" id="errorSpan">
-      Please fill in all required fields correctly before submitting.
-    </div>
+          <div class="section-title">Your Information</div>
 
-    <form action="#" method="post" id="supportForm" onsubmit="return validateForm(event)">
-      
-      <div class="section-title">Your Information</div>
-
-      <div class="form-group">
-        <label for="firstName">First Name <span class="label-desc">(Optional)</span></label>
-        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name">
-      </div>
-
-      <div class="form-group">
-        <label for="email">
-          Account Email Address 
-          <span class="info-icon">?</span>
-          <span class="tooltip-box">The email address linked to your account.</span>
-        </label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required onblur="checkEmail(this)">
-        <span class="error-msg">Please check email format</span>
-      </div>
-
-      <div class="form-group">
-        <label for="confirmEmail">Confirm Account Email Address</label>
-        <input type="email" id="confirmEmail" name="confirmEmail" class="form-control" placeholder="Confirm Email Address" required onblur="checkConfirmEmail()">
-        <span class="error-msg">Emails do not match</span>
-      </div>
-
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="Username: 3-20 characters, no spaces" required>
-      </div>
-
-      <div class="section-title">What Do You Need Help With?</div>
-
-      <div class="form-group">
-        <label>Category</label>
-        <div class="custom-select-wrapper" id="categoryWrapper">
-          <div class="custom-select-trigger" id="categoryTrigger">-- Select a Category --</div>
-          <div class="custom-options" id="categoryOptions">
-            <div class="custom-option" data-value="account">Account Access</div>
-            <div class="custom-option" data-value="billing">Billing &amp; Payments</div>
-            <div class="custom-option" data-value="moderation">Moderation</div>
-            <div class="custom-option" data-value="copyright">Copyright</div>
-            <div class="custom-option" data-value="bug">Bug &amp; Exploit Report</div>
-            <div class="custom-option" data-value="delete">I want to delete my account</div>
-            <div class="custom-option" data-value="privacy">Privacy Request</div>
-            <div class="custom-option" data-value="advertisements">Advertisements</div>
+          <div class="form-group">
+            <label for="mini-firstName">First Name <span class="label-desc">(Optional)</span></label>
+            <input type="text" id="mini-firstName" name="firstName" class="form-control" placeholder="First Name">
           </div>
-        </div>
-        <input type="hidden" name="category" id="categoryInput" required>
+
+          <div class="form-group">
+            <label for="mini-email">Account Email Address</label>
+            <div class="input-with-check">
+              <input type="email" id="mini-email" name="email" class="form-control" placeholder="Email Address" required onblur="checkMiniEmail(this)">
+              <img id="mini-email-check" class="valid-check" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/img-check.png?raw=true" alt="Valid">
+            </div>
+            <span class="error-msg">Please check email format</span>
+          </div>
+
+          <div class="form-group">
+            <label for="mini-confirmEmail">Confirm Account Email Address</label>
+            <div class="input-with-check">
+              <input type="email" id="mini-confirmEmail" name="confirmEmail" class="form-control" placeholder="Confirm Email Address" required onblur="checkMiniConfirmEmail()">
+              <img id="mini-confirmEmail-check" class="valid-check" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/img-check.png?raw=true" alt="Valid">
+            </div>
+            <span class="error-msg">Emails do not match</span>
+          </div>
+
+          <div class="form-group">
+            <label for="mini-username">Username</label>
+            <div class="input-with-check">
+              <input type="text" id="mini-username" name="username" class="form-control" placeholder="Username: 3-20 characters, no spaces" required onblur="checkMiniUsername(this)">
+              <img id="mini-username-check" class="valid-check" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/img-check.png?raw=true" alt="Valid">
+            </div>
+            <span class="error-msg">Username must be 3-20 characters, no spaces</span>
+          </div>
+
+          <div class="section-title">What Do You Need Help With?</div>
+
+          <div class="form-group">
+            <label for="mini-category">Category</label>
+            <select id="mini-category" name="category" class="form-control" required onchange="populateMiniSubcategories(this.value)">
+              <option value="" disabled selected>-- Select a Category --</option>
+              <option value="account">Account Access</option>
+              <option value="billing">Billing &amp; Payments</option>
+              <option value="moderation">Moderation</option>
+              <option value="copyright">Copyright</option>
+              <option value="bug">Bug &amp; Exploit Report</option>
+              <option value="delete">I want to delete my account</option>
+              <option value="privacy">Privacy Request</option>
+              <option value="advertisements">Advertisements</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mini-subcategory">Subcategory</label>
+            <select id="mini-subcategory" name="subcategory" class="form-control" required disabled>
+              <option value="" disabled selected>-- Please select a category first --</option>
+            </select>
+          </div>
+
+          <div class="section-title">Tell Us What Happened</div>
+
+          <div class="form-group">
+            <label for="mini-subject">Subject</label>
+            <input type="text" id="mini-subject" name="subject" class="form-control" placeholder="Give your request a title" required>
+          </div>
+
+          <div class="form-group">
+            <label for="mini-message">Description</label>
+            <textarea id="mini-message" name="message" class="form-control" rows="4" placeholder="Explain the problem as clearly as possible" required></textarea>
+          </div>
+
+          <div class="mini-support-note">Do not send your password or other login details.</div>
+
+          <button type="submit" class="btn-submit">Submit Request</button>
+        </form>
       </div>
 
-      <div class="form-group">
-        <label>Subcategory</label>
-        <div class="custom-select-wrapper disabled" id="subcategoryWrapper">
-          <div class="custom-select-trigger" id="subcategoryTrigger">-- Please select a category first --</div>
-          <div class="custom-options" id="subcategoryOptions"></div>
-        </div>
-        <input type="hidden" name="subcategory" id="subcategoryInput" required>
+      <div class="contact-divider"></div>
+
+      <div class="contact-col contact-col-narrow">
+        <h2>CONNECT WITH VEXTRIA</h2>
+        <p>You can connect with Vextria through various online channels:</p>
+
+        <h3>Get the latest news</h3>
+        <p><a href="/Vextria/blog/home">Vextria blog</a></p>
+
+        <h3>Email Us</h3>
+        <p><a href="mailto:info@vextria.co.uk">info@vextria.co.uk</a></p>
+
+        <h3>Interested in a career at Vextria</h3>
+        <p><a href="mailto:jobs@vextria.co.uk">jobs@vextria.co.uk</a></p>
+
+        <h3>Follow us on Twitter</h3>
+        <p><span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="#1DA1F2" d="M23 4.9c-.8.4-1.7.6-2.6.8.9-.6 1.6-1.5 2-2.5-.9.5-1.8.9-2.9 1.1C18.7 3.5 17.5 3 16.2 3c-2.5 0-4.5 2.1-4.5 4.6 0 .4 0 .7.1 1C8 8.4 4.7 6.6 2.5 3.9c-.4.7-.6 1.5-.6 2.3 0 1.6.8 3 2 3.8-.7 0-1.4-.2-2-.6v.1c0 2.2 1.5 4 3.6 4.4-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1.6 1.8 2.2 3.1 4.2 3.1-1.5 1.2-3.5 2-5.6 2-.4 0-.7 0-1.1-.1 2 1.3 4.3 2 6.9 2 8.3 0 12.8-7 12.8-13v-.6c.9-.6 1.6-1.4 2.2-2.3z"/></svg></span> <a href="https://twitter.com/@VextriaGroup">@VextriaGroup</a></p>
+
+        <h3>Subscribe on YouTube</h3>
+        <p><span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="#FF0000" d="M22.5 6.2c-.3-1.1-1.1-1.9-2.1-2.2C18.5 3.5 12 3.5 12 3.5s-6.5 0-8.4.5c-1 .3-1.8 1.1-2.1 2.2C1 8.1 1 12 1 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.1 2.2 1.9.5 8.4.5 8.4.5s6.5 0 8.4-.5c1-.3 1.8-1.1 2.1-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.8 15.5v-7l6.2 3.5-6.2 3.5z"/></svg></span> <a href="https://youtube.com/@VextriaGroup">@VextriaGroup</a></p>
+
+        <h3>Follow us on TikTok</h3>
+        <p><span class="social-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="#000000" d="M16.6 3h-3.2v13.1c0 1.5-1.2 2.7-2.7 2.7-1.5 0-2.7-1.2-2.7-2.7 0-1.5 1.2-2.7 2.7-2.7.3 0 .5 0 .8.1v-3.3c-.3 0-.5-.1-.8-.1-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V9c1.2.9 2.6 1.4 4.2 1.4V7.2c-2.2 0-4-1.8-4.3-4.2z"/></svg></span> <a href="https://tiktok.com/@VextriaGroup">@VextriaGroup</a>.</p>
       </div>
-
-      <div class="section-title">Tell Us What Happened</div>
-
-      <div class="form-group">
-        <label for="subject">Subject <span class="label-desc">&mdash; Give your request a title</span></label>
-        <input type="text" id="subject" name="subject" class="form-control" placeholder="Give your request a title" required>
-      </div>
-
-      <div class="form-group">
-        <label for="description">Description <span class="label-desc">&mdash; Explain the problem as clearly as possible</span></label>
-        <textarea id="description" name="description" class="form-control" rows="5" placeholder="Explain the problem as clearly as possible" required></textarea>
-      </div>
-
-      <div class="message-span-warning">
-        Do not send your password or other login details.
-      </div>
-
-      <button type="submit" class="btn-submit">Submit Request</button>
-
-    </form>
+    </div>
   </main>
 </div>
 
 <footer class="lower">
-  <nav class="footer-links" aria-label="Footer">
-    <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
-    <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
-    <a href="/Vextria/info/about-us">About Us</a><span>|</span>
-    <a href="/Vextria/info/careers">Careers</a><span>|</span>
-    <a href="/Vextria/blog/home">Blog</a><span>|</span>
-    <a href="/Vextria/info/parents">Parents</a><span>|</span>
-    <a href="/Vextria/wiki/home">Help</a><span>|</span>
-    <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
-    <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
-  </nav>
-  <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
+  <div class="footer-inner">
+    <a class="footer-brand" href="/Vextria/"><strong style="font-weight:900">VEXTRIA</strong>.com</a>
+    <span class="footer-copyright">©2026 Vextria Group</span>
+  </div>
 </footer>
 
 <script>
-const subcategories = {
+const miniSubcategories = {
   account: [
     "Can't sign in",
     "Forgot my password/Username",
@@ -616,114 +549,106 @@ const subcategories = {
   ]
 };
 
-// Dropdown Logic
-const catWrapper = document.getElementById('categoryWrapper');
-const catTrigger = document.getElementById('categoryTrigger');
-const catOptions = document.getElementById('categoryOptions');
-const catInput = document.getElementById('categoryInput');
+const miniSubcategoryEl = document.getElementById('mini-subcategory');
 
-const subWrapper = document.getElementById('subcategoryWrapper');
-const subTrigger = document.getElementById('subcategoryTrigger');
-const subOptions = document.getElementById('subcategoryOptions');
-const subInput = document.getElementById('subcategoryInput');
-
-catTrigger.addEventListener('click', () => {
-  catWrapper.classList.toggle('open');
-  subWrapper.classList.remove('open');
+miniSubcategoryEl.addEventListener('change', () => {
+  miniSubcategoryEl.classList.remove('invalid');
 });
 
-catOptions.querySelectorAll('.custom-option').forEach(opt => {
-  opt.addEventListener('click', function() {
-    catOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
-    this.classList.add('selected');
-    catTrigger.textContent = this.textContent;
-    catInput.value = this.dataset.value;
-    catWrapper.classList.remove('open');
-    populateSubcategories(this.dataset.value);
-  });
-});
+function populateMiniSubcategories(catKey) {
+  miniSubcategoryEl.innerHTML = '';
 
-function populateSubcategories(catKey) {
-  subOptions.innerHTML = '';
-  subInput.value = '';
-  subTrigger.textContent = '-- Select a Subcategory --';
-  
-  if (subcategories[catKey]) {
-    subWrapper.classList.remove('disabled');
-    subcategories[catKey].forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'custom-option';
-      div.textContent = item;
-      div.dataset.value = item;
-      div.addEventListener('click', function() {
-        subOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
-        this.classList.add('selected');
-        subTrigger.textContent = this.textContent;
-        subInput.value = this.dataset.value;
-        subWrapper.classList.remove('open');
-      });
-      subOptions.appendChild(div);
+  if (miniSubcategories[catKey]) {
+    miniSubcategoryEl.disabled = false;
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = '-- Select a Subcategory --';
+    miniSubcategoryEl.appendChild(placeholder);
+
+    miniSubcategories[catKey].forEach(item => {
+      const opt = document.createElement('option');
+      opt.value = item;
+      opt.textContent = item;
+      miniSubcategoryEl.appendChild(opt);
     });
+  } else {
+    miniSubcategoryEl.disabled = true;
   }
 }
 
-subTrigger.addEventListener('click', () => {
-  if (!subWrapper.classList.contains('disabled')) {
-    subWrapper.classList.toggle('open');
-    catWrapper.classList.remove('open');
-  }
-});
+function toggleMiniCheck(inputId, isValid) {
+  const check = document.getElementById(inputId + "-check");
+  if (check) check.style.display = isValid ? "block" : "none";
+}
 
-window.addEventListener('click', (e) => {
-  if (!catWrapper.contains(e.target)) catWrapper.classList.remove('open');
-  if (!subWrapper.contains(e.target)) subWrapper.classList.remove('open');
-});
-
-function checkEmail(input) {
+function checkMiniEmail(input) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (input.value && !emailRegex.test(input.value)) {
     input.classList.remove("valid");
     input.classList.add("invalid");
+    toggleMiniCheck(input.id, false);
   } else if (input.value) {
     input.classList.remove("invalid");
     input.classList.add("valid");
+    toggleMiniCheck(input.id, true);
   } else {
     input.classList.remove("invalid", "valid");
+    toggleMiniCheck(input.id, false);
   }
 }
 
-function checkConfirmEmail() {
-  const email = document.getElementById("email");
-  const confirm = document.getElementById("confirmEmail");
+function checkMiniConfirmEmail() {
+  const email = document.getElementById("mini-email");
+  const confirm = document.getElementById("mini-confirmEmail");
   if (confirm.value && confirm.value !== email.value) {
     confirm.classList.remove("valid");
     confirm.classList.add("invalid");
+    toggleMiniCheck(confirm.id, false);
   } else if (confirm.value) {
     confirm.classList.remove("invalid");
     confirm.classList.add("valid");
+    toggleMiniCheck(confirm.id, true);
   } else {
     confirm.classList.remove("invalid", "valid");
+    toggleMiniCheck(confirm.id, false);
   }
 }
 
-function validateForm(e) {
+function checkMiniUsername(input) {
+  const usernameRegex = /^\S{3,20}$/;
+  if (input.value && !usernameRegex.test(input.value)) {
+    input.classList.remove("valid");
+    input.classList.add("invalid");
+    toggleMiniCheck(input.id, false);
+  } else if (input.value) {
+    input.classList.remove("invalid");
+    input.classList.add("valid");
+    toggleMiniCheck(input.id, true);
+  } else {
+    input.classList.remove("invalid", "valid");
+    toggleMiniCheck(input.id, false);
+  }
+}
+
+function validateMiniForm(e) {
   e.preventDefault();
-  const email = document.getElementById("email");
-  const confirm = document.getElementById("confirmEmail");
-  const successSpan = document.getElementById("successSpan");
-  const errorSpan = document.getElementById("errorSpan");
+  const email = document.getElementById("mini-email");
+  const confirm = document.getElementById("mini-confirmEmail");
+  const username = document.getElementById("mini-username");
+  const category = document.getElementById("mini-category");
+  const subcategory = document.getElementById("mini-subcategory");
 
-  checkEmail(email);
-  checkConfirmEmail();
+  checkMiniEmail(email);
+  checkMiniConfirmEmail();
+  checkMiniUsername(username);
 
-  if (email.classList.contains("invalid") || confirm.classList.contains("invalid") || !catInput.value || !subInput.value) {
-    errorSpan.style.display = 'block';
-    successSpan.style.display = 'none';
+  if (email.classList.contains("invalid") || confirm.classList.contains("invalid") || username.classList.contains("invalid") || !category.value || !subcategory.value) {
     return false;
   }
 
-  errorSpan.style.display = 'none';
-  successSpan.style.display = 'block';
   return true;
 }
 </script>
