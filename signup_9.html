@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria - Sign Up</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/favicon.png">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%;font-family:"Source Sans Pro",Arial,Helvetica,sans-serif}
+body{
+  background-color:#000443;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
+  background-repeat:repeat-x;
+  background-position:0 0;
+  animation:bodyBkgScroll 40s linear infinite;
+  color:#333;
+  overflow-x:hidden;
+}
+@keyframes bodyBkgScroll{
+  from{background-position:0 0;}
+  to{background-position:-1000px 0;}
+}
+
+/* Top banner - Signed-out banner (from admin/templates/banners) */
+.topbar{
+  position:relative;
+  z-index:20;
+  width:100%;
+}
+.first-header-minimal{
+  width:100%;
+  background:#114081;
+}
+.first-header-minimal-inner{
+  max-width:900px;
+  height:40px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+  position:relative;
+}
+.brand{
+  display:block;
+  width:120px;
+  height:34px;
+  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat;
+}
+.auth-buttons{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sprite-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:16px;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-repeat:no-repeat;
+}
+.signup-topbtn,.login{
+  width:80px;
+  height:28px;
+  background-size:80px 154px;
+  background-position:0 0;
+}
+.signup-topbtn{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-green.png");
+}
+.login{
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-blue.png");
+}
+.signup-topbtn:hover,.login:hover{
+  background-position:0 -30px;
+}
+.second-header{
+  height:31px;
+  background:#6e99c9 url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
+  background-size:auto auto;
+  border-top:1px solid rgba(255,255,255,0.15);
+  border-bottom:1px solid rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.navbar-links{
+  display:flex;
+  list-style:none;
+  margin:0;
+  padding:0;
+  height:100%;
+  gap:9px;
+}
+.navbar-links li{
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+.navbar-links a{
+  display:flex;
+  align-items:center;
+  height:100%;
+  padding:0 8px;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  text-decoration:none;
+}
+.navbar-links a:hover{
+  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
+  background-size:auto auto;
+  filter:brightness(1.3);
+}
+
+/* Page Layout */
+.page-container{
+  max-width:900px;
+  margin:0 auto;
+  min-height:calc(100vh - 152px);
+  padding:0 20px;
+}
+
+/* Outer frame wrapping the whole signup experience: title + form + sidebar */
+.signup-frame{
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/containerBkg_01.png");
+  background-repeat:repeat;
+  border:1px solid #707070;
+  padding:25px 30px;
+}
+
+.signup-title{
+  font-size:48px;
+  font-weight:700;
+  color:#000;
+  text-align:center;
+  margin:0 0 4px 0;
+}
+
+.signup-subtitle{
+  font-size:20px;
+  color:#000;
+  text-align:center;
+  margin:0 0 25px 0;
+}
+
+.signup-columns{
+  display:flex;
+  gap:20px;
+}
+
+.signup-main{
+  flex:1;
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/standardBox_01_bkg.png");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border:1px solid #b3b3b3;
+  padding:20px 25px;
+}
+
+.form-group{
+  margin-bottom:18px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  color:#000;
+  margin-bottom:5px;
+}
+
+.field-desc{
+  display:block;
+  font-weight:400;
+  font-size:12px;
+  color:#555;
+  margin-top:4px;
+}
+
+.form-control{
+  width:100%;
+  padding:8px 12px;
+  font-size:14px;
+  border:1px solid #a6a6a6;
+  border-radius:3px;
+  background:#fff;
+  color:#333;
+}
+.form-control:focus{
+  outline:none;
+  border-color:#174d88;
+  box-shadow:0 0 5px rgba(23,77,136,0.4);
+}
+
+.date-select-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.date-select-row select{
+  padding:8px 6px;
+  font-size:14px;
+  border:1px solid #a6a6a6;
+  border-radius:3px;
+  background:#fff;
+  color:#333;
+}
+.date-select-row select.day-select{width:70px;}
+.date-select-row select.month-select{width:110px;}
+.date-select-row select.year-select{width:90px;}
+
+.radio-group{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  padding:6px 0;
+}
+.radio-group label{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:14px;
+  font-weight:400;
+  color:#333;
+  cursor:pointer;
+}
+.radio-group input[type="radio"]{
+  width:16px;
+  height:16px;
+  cursor:pointer;
+}
+
+.btn-signup{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:42px;
+  color:#fff;
+  font-weight:700;
+  font-size:17px;
+  border:none;
+  cursor:pointer;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-green.png");
+  background-repeat:no-repeat;
+  background-size:100% 220%;
+  background-position:0 0;
+  margin-top:8px;
+}
+.btn-signup:hover{
+  background-position:0 -42px;
+}
+.btn-signup:disabled{
+  opacity:0.6;
+  cursor:default;
+}
+
+.form-error{
+  display:none;
+  background:#fdeded;
+  border:1px solid #d32f2f;
+  color:#d32f2f;
+  padding:8px 12px;
+  font-size:13px;
+  margin:0 0 16px 0;
+}
+
+.legal-note{
+  font-size:12px;
+  color:#000;
+  text-align:center;
+  margin-top:18px;
+  line-height:1.5;
+}
+.legal-note a{
+  color:#0000cc;
+  text-decoration:none;
+}
+.legal-note a:hover{
+  text-decoration:underline;
+}
+
+/* Sidebar */
+.signup-sidebar{
+  width:260px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.sidebar-box{
+  background-color:#fff;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/standardBox_01_bkg.png");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border:1px solid #707070;
+  padding:16px;
+}
+
+.sidebar-title{
+  font-size:16px;
+  font-weight:700;
+  color:#000;
+  margin:0 0 10px 0;
+}
+
+.roblox-btn-blue,.roblox-btn-green,.roblox-btn-gray{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:34px;
+  color:#fff;
+  font-weight:700;
+  font-size:16px;
+  text-decoration:none;
+  cursor:pointer;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  background-repeat:no-repeat;
+  background-position:0 0;
+}
+.roblox-btn-blue{
+  border:1px solid #0055b3;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-blue.png");
+  background-size:100% 520%;
+}
+.roblox-btn-blue:hover{
+  background-position:0 -33px;
+}
+.roblox-btn-green{
+  border:1px solid #008000;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-green.png");
+  background-size:100% 520%;
+}
+.roblox-btn-green:hover{
+  background-position:0 -33px;
+}
+.roblox-btn-gray{
+  color:#fff;
+  text-shadow:0 -1px rgba(0,0,0,.45);
+  border:1px solid #707070;
+  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-gray.png");
+  background-size:100% 520%;
+}
+.roblox-btn-gray:hover{
+  background-position:0 -33px;
+}
+
+.sidebar-text{
+  font-size:14px;
+  color:#000;
+  line-height:1.5;
+  margin:10px 0 0 0;
+}
+.sidebar-text a{
+  color:#0000cc;
+  text-decoration:none;
+}
+.sidebar-text a:hover{
+  text-decoration:underline;
+}
+
+.parent-callout-title{
+  font-size:16px;
+  font-weight:700;
+  color:#000;
+  margin:0 0 8px 0;
+}
+
+.parent-callout-text{
+  font-size:14px;
+  color:#000;
+  line-height:1.5;
+  margin:0 0 12px 0;
+}
+.parent-callout-text a{
+  color:#0000cc;
+  text-decoration:none;
+}
+.parent-callout-text a:hover{
+  text-decoration:underline;
+}
+
+.parent-btn-stack{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+/* Footer */
+.lower{
+  width:100%;
+  height:98px;
+  min-height:98px;
+  background:#174d88;
+  position:relative;
+  z-index:10;
+  text-align:center;
+  padding:16px 20px 0;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:14px;
+  font-weight:700;
+}
+.footer-links a{color:#fff;text-decoration:none}
+.footer-links a:hover{text-decoration:underline}
+.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+
+@media(max-width:768px){
+  .signup-columns{flex-direction:column}
+  .signup-sidebar{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="first-header-minimal">
+    <div class="first-header-minimal-inner">
+      <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
+      <div class="auth-buttons">
+        <a href="/Vextria/signup" class="sprite-btn signup-topbtn">Sign Up</a>
+        <a href="/Vextria/login" class="sprite-btn login">Log In</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-header">
+    <ul class="navbar-links">
+      <li><a href="/Vextria/my/account">My Account</a></li>
+      <li><a href="/Vextria/games">Games</a></li>
+      <li><a href="/Vextria/catalog">Catalog</a></li>
+      <li><a href="/Vextria/browse/people">People</a></li>
+      <li><a href="/Vextria/my/account/upgrade">Upgrade</a></li>
+      <li><a href="/Vextria/contests">Contests</a></li>
+      <li><a href="/Vextria/fourms">Fourms</a></li>
+      <li><a href="/Vextria/info/parents">Parents</a></li>
+      <li><a href="/Vextria/blog/home">Blog</a></li>
+      <li><a href="/Vextria/wiki/home">Help</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="page-container">
+  <div class="signup-frame">
+
+    <h1 class="signup-title">Sign Up and Play</h1>
+    <p class="signup-subtitle">Join Hundreds of Players For Free.</p>
+
+    <div class="signup-columns">
+
+      <main class="signup-main">
+
+        <div class="form-error" id="signupError"></div>
+
+        <form id="signupForm">
+
+          <div class="form-group">
+            <label>Birthday</label>
+            <div class="date-select-row">
+              <select class="day-select" id="dobDay" aria-label="Day" required>
+                <option value="">Day</option>
+              </select>
+              <select class="month-select" id="dobMonth" aria-label="Month" required>
+                <option value="">Month</option>
+                <option value="01">January</option><option value="02">February</option><option value="03">March</option>
+                <option value="04">April</option><option value="05">May</option><option value="06">June</option>
+                <option value="07">July</option><option value="08">August</option><option value="09">September</option>
+                <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+              </select>
+              <select class="year-select" id="dobYear" aria-label="Year" required>
+                <option value="">Year</option>
+              </select>
+            </div>
+            <span class="field-desc">Enter your birthday for a personalized experience and automatic age group of Under 13 or 13 and older. We will not share your birthday to any third party</span>
+          </div>
+
+          <div class="form-group">
+            <label>Gender:</label>
+            <div class="radio-group">
+              <label><input type="radio" name="gender" id="genderMale" value="Male"> Male</label>
+              <label><input type="radio" name="gender" id="genderFemale" value="Female"> Female</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="desiredUsername">Desired Username:</label>
+            <input type="text" id="desiredUsername" class="form-control" placeholder="Desired Username" required>
+            <span class="field-desc">3-25 alphanumeric characters, no spaces, Do not use your real name.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" class="form-control" placeholder="Password" required>
+            <span class="field-desc">10-200 Characters, minimum of 8 letters &amp; 2 numbers</span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+          </div>
+
+          <div class="form-group">
+            <label for="signupEmail">Email Address:</label>
+            <input type="email" id="signupEmail" class="form-control" placeholder="Email Address" required>
+            <span class="field-desc">Provide a Personal or Parent's email address for this account for password resets or support</span>
+          </div>
+
+          <button type="submit" class="btn-signup" id="signupSubmitBtn">Sign Up</button>
+
+          <p class="legal-note">
+            By pressing "Sign up", You agree to our <a href="/Vextria/info/terms-of-Service">Terms &amp; Conditions</a>, <a href="/Vextria/info/privacy-policy">Privacy Policy</a> and <a href="/Vextria/info/guidelines">Guidelines</a>
+          </p>
+        </form>
+      </main>
+
+      <aside class="signup-sidebar">
+
+        <div class="sidebar-box">
+          <h3 class="sidebar-title">Already registered?</h3>
+          <a href="/Vextria/login" class="roblox-btn-blue">Login</a>
+        </div>
+
+        <div class="sidebar-box">
+          <h3 class="sidebar-title">Sign in as Guest</h3>
+          <p class="sidebar-text" style="margin-top:0;">Start playing Vextira now without making an account</p>
+          <a href="/Vextria/guest" class="roblox-btn-gray" style="margin-top:10px;">Play as Guest</a>
+        </div>
+
+        <div class="sidebar-box">
+          <h3 class="parent-callout-title">Hey Parents!</h3>
+          <p class="parent-callout-text">
+            You might be wondering... Who are theses Vextria folks? What are they up to here? Should I even let my kids on this site?! Most builders parents have the same concerns. Please check our <a href="/Vextria/info/parents">"Parents Section"</a> to find the answers to all your questions..
+          </p>
+          <p class="parent-callout-text">
+            Are you creating an account for your young child? Our recommendations is to create an parent account aswell, Vextira has a variety of online features that helps your child become safe.
+          </p>
+          <div class="parent-btn-stack">
+            <a href="/Vextria/parents/signup" class="roblox-btn-green">Create Parent Account</a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</div>
+
+<footer class="lower">
+  <nav class="footer-links" aria-label="Footer">
+    <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
+    <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
+    <a href="/Vextria/info/about-us">About Us</a><span>|</span>
+    <a href="/Vextria/info/careers">Careers</a><span>|</span>
+    <a href="/Vextria/blog/home">Blog</a><span>|</span>
+    <a href="/Vextria/info/parents">Parents</a><span>|</span>
+    <a href="/Vextria/wiki/home">Help</a><span>|</span>
+    <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
+    <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
+  </nav>
+  <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
+</footer>
+
+<script>
+  // Populate Day and Year selects
+  const daySelect = document.getElementById('dobDay');
+  for (let d = 1; d <= 31; d++) {
+    const opt = document.createElement('option');
+    opt.value = String(d).padStart(2, '0');
+    opt.textContent = d;
+    daySelect.appendChild(opt);
+  }
+  const yearSelect = document.getElementById('dobYear');
+  const currentYear = new Date().getFullYear();
+  for (let y = currentYear; y >= currentYear - 100; y--) {
+    const opt = document.createElement('option');
+    opt.value = String(y);
+    opt.textContent = y;
+    yearSelect.appendChild(opt);
+  }
+
+  // Supabase connection (WaybackToRoblox project)
+  const SUPABASE_URL = "https://fwycckupugejwikeyenn.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_xCoJmuFzjaehT_Q46GXpoQ_KrrkCGPC";
+
+  const form = document.getElementById('signupForm');
+  const errorBox = document.getElementById('signupError');
+  const submitBtn = document.getElementById('signupSubmitBtn');
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.style.display = 'block';
+  }
+  function hideError() {
+    errorBox.style.display = 'none';
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    hideError();
+
+    const day = document.getElementById('dobDay').value;
+    const month = document.getElementById('dobMonth').value;
+    const year = document.getElementById('dobYear').value;
+    const gender = document.querySelector('input[name="gender"]:checked');
+    const username = document.getElementById('desiredUsername').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const email = document.getElementById('signupEmail').value.trim();
+
+    if (!day || !month || !year) {
+      showError('Please enter your full birthday.');
+      return;
+    }
+    if (!/^[a-zA-Z0-9]{3,25}$/.test(username)) {
+      showError('Username must be 3-25 alphanumeric characters, no spaces.');
+      return;
+    }
+    if (password.length < 10 || (password.match(/[a-zA-Z]/g) || []).length < 8 || (password.match(/[0-9]/g) || []).length < 2) {
+      showError('Password must be 10-200 characters, with a minimum of 8 letters and 2 numbers.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      showError('Passwords do not match.');
+      return;
+    }
+    if (!email) {
+      showError('Please provide an email address.');
+      return;
+    }
+
+    const dateOfBirth = `${year}-${month}-${day}`;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Signing Up...';
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/account_details`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Content-Profile': 'vextira',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          username: username,
+          birthday: dateOfBirth,
+          password: password,
+          email_address: email,
+          logged_in: true
+        })
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        if (errText.includes('duplicate') || errText.includes('unique')) {
+          showError('That username is already taken. Please choose another.');
+        } else {
+          showError('Something went wrong creating your account. Please try again.');
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Sign Up';
+        return;
+      }
+
+      sessionStorage.setItem('vextria_username', username);
+      window.location.href = '/Vextria/home';
+
+    } catch (err) {
+      showError('Could not reach the server. Please check your connection and try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sign Up';
+    }
+  });
+</script>
+
+</body>
+</html>
