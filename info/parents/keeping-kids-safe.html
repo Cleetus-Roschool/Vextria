@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria - Keeping Kids Safe</title>
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/asdo.png?raw=true">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{
+  background-color:#fff;
+  color:#fff;
+  overflow-x:hidden;
+  font-size:95%;
+}
+
+/* Top banner */
+.topbar{
+  position:relative;
+  margin-bottom:0;
+  z-index:100;
+  width:100%;
+  background:#363636;
+}
+.classic-roblox-header{
+  width:1000px;
+  max-width:100%;
+  height:76px;
+  background:#363636;
+  position:relative;
+  z-index:100;
+  margin:0 auto;
+}
+.classic-roblox-header-inner{
+  max-width:none;
+  width:100%;
+  height:76px;
+  margin:0 auto;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:0 20px 0;
+  position:relative;
+  overflow:visible;
+}
+.classic-nav-links{
+  display:flex;
+  list-style:none;
+  margin:0;
+  padding:0;
+  gap:0;
+  align-items:flex-end;
+  position:relative;
+  overflow:visible;
+}
+.classic-nav-links > li{
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  overflow:visible;
+}
+.classic-nav-links a{
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:0.3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;
+  height:30px;
+  padding:0 8px;
+  margin:0;
+  transition:background-color 0.1s ease;
+  white-space:nowrap;
+}
+.classic-nav-links > li > a:hover,
+.classic-nav-links > li.active > a{
+  background:#000;
+  color:#fff;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  align-self:center;
+  text-decoration:none;
+}
+.brand-logo{
+  display:block;width:188px;height:72px;
+  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/Your%20paragraph%20text.png?raw=true") center/contain no-repeat
+}
+
+/* Page Layout */
+.page-container{
+  max-width:1000px;margin:0 auto;min-height:calc(100vh - 114px);
+  display:flex;color:#333;
+}
+.legal-content{
+  flex-grow:1;padding:25px 30px;color:#222;
+  font-size:14px;line-height:1.6;
+}
+.legal-content h1{
+  font-size:40px;
+  margin-top:0;
+  margin-bottom:4px;
+  color:#363636;
+  font-weight:700;
+}
+.legal-content h2{
+  font-size:16px;
+  margin-top:24px;
+  margin-bottom:8px;
+  color:#000;
+  font-weight:700;
+}
+.faq-main h2:first-child{
+  margin-top:6px;
+}
+.legal-content p{margin:8px 0 15px 0;color:#000}
+
+.back-link{
+  display:inline-block;
+  margin-bottom:18px;
+  padding:0;
+  border:none;
+  color:#095FB4;
+  font-weight:700;
+  text-decoration:none;
+  font-size:13px;
+}
+.back-link:hover{
+  text-decoration:underline;
+}
+
+.faq-layout{
+  display:flex;
+  gap:25px;
+  align-items:flex-start;
+}
+.faq-main{
+  flex:1;
+  min-width:0;
+}
+.faq-sidebar{
+  flex:0 0 260px;
+  background:#f2f2f2;
+  border:1px solid #ccc;
+  padding:15px;
+  margin-top:-34px;
+}
+.faq-sidebar h2{
+  margin-top:0;
+  text-align:center;
+  font-size:14px;
+  font-weight:700;
+}
+.faq-sidebar ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.faq-sidebar li{
+  margin-bottom:5px;
+}
+.faq-sidebar a{
+  color:#095FB4;
+  text-decoration:none;
+  font-size:14px;
+}
+.faq-sidebar a:hover{text-decoration:underline}
+
+/* Footer */
+.lower{
+  width:100%;
+  height:37px;
+  min-height:37px;
+  background:#363636;
+  position:relative;
+  z-index:10;
+  padding:0 20px;
+}
+.footer-inner{
+  max-width:1000px;
+  height:37px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:13px;
+  color:#fff;
+}
+.footer-inner .footer-brand{font-weight:400;color:#fff;text-decoration:none}
+.footer-inner .footer-brand:hover{text-decoration:underline}
+.footer-inner .footer-copyright{color:#cfe0f2}
+
+@media(max-width:768px){
+  .page-container{flex-direction:column}
+  .faq-layout{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="classic-roblox-header">
+    <div class="classic-roblox-header-inner">
+      <span class="brand" aria-label="Vextria">
+        <span class="brand-logo"></span>
+      </span>
+      <ul class="classic-nav-links">
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/about-us">ABOUT US</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/careers">CAREERS</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/blog/home">BLOG</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/press">PRESS</a></li>
+        <li class="active"><a href="https://cleetus-roschool.github.io/Vextria/info/parents">PARENTS</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/contact-us">CONTACT US</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="page-container">
+  <main class="legal-content">
+    <h1>Keeping Kids Safe</h1>
+    <a class="back-link" href="parents.html">&lt; Back to Parents</a>
+
+    <div class="faq-layout">
+      <div class="faq-main">
+        <h2 id="site-moderation">Site moderation</h2>
+        <p>Vextria has a team of moderators who help keep the sit efriendly and appropriate for everyone. Which keeps a eye on discussion fourms, fielding abuse reports from members, and other user-generated content. Theses moderators follow our policies in regard to swearing and obsecities, messages and content of a sexual or violent nature and any sort of aggresive or threatening communication in the rare times when a incident does occur, the infringing member is immediately suspended or permaneltly expelled</p>
+        <p>Above all else, everyone here at Vextria is committed to member safety. We take every precaution possible to make sure kids are protected from inappropriate and offensive individuals, as well as from idecent and distasteful content.</p>
+        <p>For a detailed look at what members can and cannot do, along with potential repercussions, please review our Terms of Service. and Community Guidelines</p>
+
+        <h2 id="chat-modes">Chat modes & filtering & Guidelines</h2>
+        <p>Vextria uses chat filtering and moderation tools to help prevent inappropriate langauge and personal information from being shared through chat.</p>
+        <p>There are two types of chat modes available to each member:</p>
+        <ol>
+          <li><strong>Super Safe Chat:</strong> This is the preferred mode for parents looking for the ultimate in online safety. This option limits what members can say or see to a specific list of pre-approved words. When an under 13 user signs up with their correct birth date, they are automatically put in this mode. Parents may change/disable their child to the next mode via the account settings</li>
+          <li><strong>Safe Chat:</strong> This mode allows members to type their own messages when communicating with other members. However every message that is typed first goes through a filter that blocks inappropriate words and phrases. Vextria's adaptive filter also learns to decipher and ctach codes or other methods that members might use to bypass the system. Please note: although our filter is continuously being updated and improved, some inappropriate comments may get through. In the event that this happens, members have easy access to a &ldquo;report abuse&rdquo; feature.</li>
+        </ol>
+
+        <h2 id="privacy">Privacy & Personal Information</h2>
+        <p>Vextria only collects reasonable data such as Ages, Usernames, (Parents)Email addresses, Passwords, (Parents)Phone Number, 2Step and other useful information for moderation or account protection or to recover lost passwords (if your child forgets a password, we can email a reminder). Please note that Ages, Emails, Phone Numbers, Passwords, 2 Steps are not visible anywhere on the site nor will they ever be disclosed to third party.</p>
+        <p>For more detailed infromattion, please see our privacy policy.</p>
+
+        <h2 id="blocking-reporting">Blocking & Reporting System</h2>
+        <p>Vextira provides tools that allow players to block, mute or report other users. If a player is behaving inappropriately or breaking the Community Guidelines the player or content can be reported to Vextria for a review.</p>
+        <p>If you block a User they will NOT be able to view your profile or games you created, For a game you won't be able to see anything such as badges recently played. Users can still see your Avatar In-game and leaderboard in game.</p>
+
+        <h2 id="configure-account">Configure Your Child's Account</h2>
+        <p>Parents can review and configure certain settings on their child's Vextria account. These settings can help parents understand how their child uses Vextria and manage available communication features.</p>
+        <p>Account settings can be changed at any time as the needs of the player change.</p>
+
+        <h2 id="parent-accounts">Parent Accounts</h2>
+        <p>Parent Accounts allow parents to have additional control over their child's Vextria account and access information about the account.</p>
+        <p>Parents can use their account to review available settings and manage features associated with their child's Vextria account.</p>
+      </div>
+
+      <aside class="faq-sidebar">
+        <h2>Keeping Kids Safe</h2>
+        <ul>
+          <li><a href="#site-moderation">Site moderation</a></li>
+          <li><a href="#chat-modes">Chat modes & filtering & Guidelines</a></li>
+          <li><a href="#privacy">Privacy & Personal Information</a></li>
+          <li><a href="#blocking-reporting">Blocking & Reporting System</a></li>
+          <li><a href="#configure-account">Configure Your Child's Account</a></li>
+          <li><a href="#parent-accounts">Parent Accounts</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<footer class="lower">
+  <div class="footer-inner">
+    <a class="footer-brand" href="/Vextria/"><strong style="font-weight:900">VEXTRIA</strong>.com</a>
+    <span class="footer-copyright">©2026 Vextria Group</span>
+  </div>
+</footer>
+
+</body>
+</html>
