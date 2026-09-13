@@ -189,7 +189,26 @@ body{
 }
 .post-body p{
  margin:10px 0 12px 0;
+ display:-webkit-box;
+ -webkit-box-orient:vertical;
+ -webkit-line-clamp:20;
+ overflow:hidden;
 }
+.like-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid #a6a6a6;
+  background:#f2f2f2;
+  color:#333;
+  font-size:12px;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:3px;
+  cursor:pointer;
+  font-family:inherit;
+}
+.like-btn:hover{background:#e6e6e6}
 .continue-reading{
   display:inline-flex;
   align-items:center;
@@ -230,6 +249,26 @@ body{
   text-decoration:underline;
 }
 .older-post-link img{
+  width:12px;
+  height:12px;
+}
+.pagination-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.newer-post-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#666;
+  text-decoration:none;
+  font-size:14px;
+}
+.newer-post-link:hover{
+  text-decoration:underline;
+}
+.newer-post-link img{
   width:12px;
   height:12px;
 }
@@ -416,6 +455,7 @@ body{
   .blog-layout{flex-direction:column}
 }
 </style>
+<script src="posts-data.js"></script>
 </head>
 <body>
 
@@ -440,68 +480,8 @@ body{
   <main class="legal-content">
     <div class="blog-layout">
       <div class="blog-main">
-
-        <article class="blog-post">
-          <h2 class="post-title"><a href="#">Welcome to the Vextria Blog</a></h2>
-          <p class="post-meta">By <strong>VextriaTeam</strong> - <span class="post-date">September 1, 2026</span></p>
-          <div class="post-body">
-            <img src="https://placehold.co/639x300" alt="Post image">
-            <p>Placeholder post text goes here. This is where the article preview copy will sit once the real post content is written.</p>
-          </div>
-          <a class="continue-reading" href="#">Continue Reading <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true" alt=""></a>
-          <p class="post-category"><a href="#">Posted in News</a></p>
-        </article>
-        <hr class="blog-divider gap-main extend-right">
-
-        <article class="blog-post">
-          <h2 class="post-title"><a href="#">Placeholder Post Title 2</a></h2>
-          <p class="post-meta">By <strong>VextriaTeam</strong> - <span class="post-date">August 28, 2026</span></p>
-          <div class="post-body">
-            <img src="https://placehold.co/639x300" alt="Post image">
-            <p>Placeholder post text goes here. This is where the article preview copy will sit once the real post content is written.</p>
-          </div>
-          <a class="continue-reading" href="#">Continue Reading <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true" alt=""></a>
-          <p class="post-category"><a href="#">Posted in News</a></p>
-        </article>
-        <hr class="blog-divider gap-main extend-right">
-
-        <article class="blog-post">
-          <h2 class="post-title"><a href="#">Placeholder Post Title 3</a></h2>
-          <p class="post-meta">By <strong>VextriaTeam</strong> - <span class="post-date">August 21, 2026</span></p>
-          <div class="post-body">
-            <img src="https://placehold.co/639x300" alt="Post image">
-            <p>Placeholder post text goes here. This is where the article preview copy will sit once the real post content is written.</p>
-          </div>
-          <a class="continue-reading" href="#">Continue Reading <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true" alt=""></a>
-          <p class="post-category"><a href="#">Posted in Announcements</a></p>
-        </article>
-        <hr class="blog-divider gap-main extend-right">
-
-        <article class="blog-post">
-          <h2 class="post-title"><a href="#">Placeholder Post Title 4</a></h2>
-          <p class="post-meta">By <strong>VextriaTeam</strong> - <span class="post-date">August 14, 2026</span></p>
-          <div class="post-body">
-            <img src="https://placehold.co/639x300" alt="Post image">
-            <p>Placeholder post text goes here. This is where the article preview copy will sit once the real post content is written.</p>
-          </div>
-          <a class="continue-reading" href="#">Continue Reading <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true" alt=""></a>
-          <p class="post-category"><a href="#">Posted in Developers</a></p>
-        </article>
-        <hr class="blog-divider gap-main extend-right">
-
-        <article class="blog-post">
-          <h2 class="post-title"><a href="#">Placeholder Post Title 5</a></h2>
-          <p class="post-meta">By <strong>VextriaTeam</strong> - <span class="post-date">August 7, 2026</span></p>
-          <div class="post-body">
-            <img src="https://placehold.co/639x300" alt="Post image">
-            <p>Placeholder post text goes here. This is where the article preview copy will sit once the real post content is written.</p>
-          </div>
-          <a class="continue-reading" href="#">Continue Reading <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true" alt=""></a>
-          <p class="post-category"><a href="#">Posted in Gaming</a></p>
-        </article>
-        <hr class="blog-divider gap-main extend-right">
-
-        <a class="older-post-link" href="#"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_left2.png?raw=true" alt=""> Older Post</a>
+        <div id="blog-posts-container"></div>
+        <div class="pagination-row" id="pagination-row"></div>
       </div>
 
       <div class="blog-vertical-divider"></div>
@@ -548,7 +528,7 @@ body{
         <hr class="blog-divider gap-tight-bottom extend-left">
 
         <div class="sidebar-banner">
-          <a href="subscribe"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/image.png?raw=true" alt="Vextria promo"></a>
+          <a href="subscribe.html"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/image.png?raw=true" alt="Vextria promo"></a>
         </div>
 
         <hr class="blog-divider gap-tight-top extend-left">
@@ -640,5 +620,54 @@ body{
   </div>
 </footer>
 
+<script>
+var POSTS_PER_PAGE = 5;
+
+function renderBlogPosts(){
+  var params = new URLSearchParams(window.location.search);
+  var page = parseInt(params.get("page"), 10);
+  if(!page || page < 1) page = 1;
+  var totalPages = Math.max(1, Math.ceil(POSTS.length / POSTS_PER_PAGE));
+  if(page > totalPages) page = totalPages;
+
+  var start = (page - 1) * POSTS_PER_PAGE;
+  var pagePosts = POSTS.slice(start, start + POSTS_PER_PAGE);
+
+  var postsHtml = pagePosts.map(function(post, i){
+    var isLast = i === pagePosts.length - 1;
+    var articleUrl = 'article?=' + post.id;
+    return (
+      '<article class="blog-post">' +
+        '<h2 class="post-title"><a href="' + articleUrl + '">' + post.title + '</a></h2>' +
+        '<p class="post-meta">By <strong>' + post.author + '</strong> - <span class="post-date">' + post.date + '</span></p>' +
+        '<div class="post-body">' +
+          '<a href="' + articleUrl + '"><img src="' + post.image + '" alt="Post image"></a>' +
+          '<p>' + post.content[0] + '</p>' +
+        '</div>' +
+        '<a class="continue-reading" href="' + articleUrl + '">Continue Reading <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true" alt=""></a>' +
+        '<p class="post-category"><a href="#">Posted in ' + post.category + '</a></p>' +
+      '</article>' +
+      (isLast ? '' : '<hr class="blog-divider gap-main extend-right">')
+    );
+  }).join('');
+
+  document.getElementById('blog-posts-container').innerHTML = postsHtml;
+
+  var paginationHtml = '';
+  if(page < totalPages){
+    paginationHtml += '<a class="older-post-link" href="?page=' + (page+1) + '"><img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_left2.png?raw=true" alt=""> Older Posts</a>';
+  } else {
+    paginationHtml += '<span></span>';
+  }
+  if(page > 1){
+    paginationHtml += '<a class="newer-post-link" href="?page=' + (page-1) + '">Newer Posts <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/arrow_right.png?raw=true" alt=""></a>';
+  } else {
+    paginationHtml += '<span></span>';
+  }
+  document.getElementById('pagination-row').innerHTML = paginationHtml;
+}
+
+renderBlogPosts();
+</script>
 </body>
 </html>
