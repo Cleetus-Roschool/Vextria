@@ -448,29 +448,32 @@ body{
   </div>
 
 <script>
-// Edit this array to add/remove/reorder Answers categories.
-// Each id maps to /vextria/help/answers/group?ID=<id>
 const answerCategories = [
-  { id: 1, title: "Top Answers (10)", meta: "These answers are in high demand. Maybe your solution is right here!" },
-  { id: 2, title: "Builders Club and Billing (25)" },
-  { id: 3, title: "Community information, Rules and Guidelines (7)" },
-  { id: 4, title: "Your Account (18)" },
-  { id: 5, title: "Catalog, Games and Gameplay (20)" },
-  { id: 6, title: "Techincal Issues (8)" },
-  { id: 7, title: "For Parents (3)" },
-  { id: 8, title: "Groups (7)" },
-  { id: 9, title: "Everyday Questions (9)" },
-  { id: 10, title: "Vextria Moblie App (9)" }
+  { slug: "top-answers", title: "Top Answers (10)", meta: "These answers are in high demand. Maybe your solution is right here!" },
+  { slug: "builders-club-billing", title: "Builders Club and Billing (25)" },
+  { slug: "community-rules-guidelines", title: "Community information, Rules and Guidelines (7)" },
+  { slug: "your-account", title: "Your Account (18)" },
+  { slug: "catalog-games-gameplay", title: "Catalog, Games and Gameplay (20)" },
+  { slug: "technical-issues", title: "Technical Issues (8)" },
+  { slug: "for-parents", title: "For Parents (3)" },
+  { slug: "groups", title: "Groups (7)" },
+  { slug: "everyday-questions", title: "Everyday Questions (9)" },
+  { slug: "vextria-mobile-app", title: "Vextria Mobile App (9)" }
 ];
 
 const categoryListEl = document.getElementById('category-list');
+
 answerCategories.forEach(cat => {
   const item = document.createElement('div');
   item.className = 'recent-item';
+
   item.innerHTML = `
-    <a href="/vextria/help/answers/group?ID=${cat.id}" class="recent-item-title">${cat.title}</a>
+    <a href="/vextria/help/answers/${cat.slug}" class="recent-item-title">
+      ${cat.title}
+    </a>
     ${cat.meta ? `<div class="recent-item-meta">${cat.meta}</div>` : ''}
   `;
+
   categoryListEl.appendChild(item);
 });
 </script>
