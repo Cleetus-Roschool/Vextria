@@ -64,6 +64,30 @@ body{
   align-items:center;
   height:100%;
 }
+.support-navbar-right{
+  display:flex;
+  align-items:center;
+  height:100%;
+  padding-right:12px;
+}
+.support-navbar-lang{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.3px;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+.support-navbar-lang:hover{
+  text-decoration:underline;
+}
+.support-navbar-lang .flag-icon{
+  font-size:14px;
+  line-height:1;
+}
 .support-nav-link{
   display:flex;
   align-items:center;
@@ -318,6 +342,9 @@ body{
   color:#1A6690;
   text-decoration:none;
 }
+.sidebar-links a:hover{
+  text-decoration:underline;
+}
 /* Answers page FAQ box */
 .faq-box{
   width:592px;
@@ -401,8 +428,8 @@ body{
 
 <nav class="support-navbar">
   <div class="support-navbar-left">
-    <a class="support-nav-link" href="home">HOME</a>
-    <a class="support-nav-link active" href="answers">ANSWERS</a>
+    <a class="support-nav-link active" href="home">HOME</a>
+    <a class="support-nav-link" href="answers">ANSWERS</a>
     <a class="support-nav-link" href="https://web.archive.org/web/20141009150947/https://en.help.roblox.com/anonymous_requests/new">Submit a request</a>
     <a class="support-nav-link" href="https://web.archive.org/web/20141009150947/https://en.help.roblox.com/requests">Check your existing requests</a>
   </div>
@@ -411,32 +438,42 @@ body{
 <div class="support-frame">
   <div class="support-frame-main">
     <div class="faq-box">
-      <div class="faq-header">
-        <div class="faq-intro-title">Answers</div>
-      </div>
-      <div class="faq-list">
-        <div class="faq-group">
-          <div class="faq-group-title"><a href="answers/top-answers" class="faq-group-link">Top Answers (10)</a></div>
-          <p class="faq-group-desc">These answers are in high demand. Maybe your solution is right here!</p>
+      <div class="recent-box">
+        <div class="recent-item" style="border-bottom:none;">
+          <span style="display:block;font-size:22px;font-weight:700;color:#333;">Answers</span>
         </div>
-        <div class="faq-group">
-          <div class="faq-group-title"><a href="answers/builders-club-and-billing" class="faq-group-link">Builders Club and Billing (25)</a></div>
-        </div>
-        <div class="faq-group">
-          <div class="faq-group-title"><a href="answers/community-information-rules-and-guidelines" class="faq-group-link">Community information, Rules and Guidelines (15)</a></div>
-        </div>
-        <div class="faq-group">
-          <div class="faq-group-title"><a href="answers/your-account" class="faq-group-link">Your Account (15)</a></div>
-        </div>
-        <div class="faq-group">
-          <div class="faq-group-title"><a href="answers/catalog-games-and-gameplay" class="faq-group-link">Catalog, Games and Gameplay (24)</a></div>
-        </div>
-        <div class="faq-group">
-          <div class="faq-group-title"><a href="answers/techincal-issues" class="faq-group-link">Techincal Issues (8)</a></div>
-        </div>
+        <div id="category-list"></div>
       </div>
     </div>
   </div>
+
+<script>
+// Edit this array to add/remove/reorder Answers categories.
+// Each id maps to /vextria/help/answers/group?ID=<id>
+const answerCategories = [
+  { id: 1, title: "Top Answers (10)", meta: "These answers are in high demand. Maybe your solution is right here!" },
+  { id: 2, title: "Builders Club and Billing (25)" },
+  { id: 3, title: "Community information, Rules and Guidelines (7)" },
+  { id: 4, title: "Your Account (18)" },
+  { id: 5, title: "Catalog, Games and Gameplay (20)" },
+  { id: 6, title: "Techincal Issues (8)" },
+  { id: 7, title: "For Parents (3)" },
+  { id: 8, title: "Groups (7)" },
+  { id: 9, title: "Everyday Questions (9)" },
+  { id: 10, title: "Vextria Moblie App (9)" }
+];
+
+const categoryListEl = document.getElementById('category-list');
+answerCategories.forEach(cat => {
+  const item = document.createElement('div');
+  item.className = 'recent-item';
+  item.innerHTML = `
+    <a href="/vextria/help/answers/group?ID=${cat.id}" class="recent-item-title">${cat.title}</a>
+    ${cat.meta ? `<div class="recent-item-meta">${cat.meta}</div>` : ''}
+  `;
+  categoryListEl.appendChild(item);
+});
+</script>
 
   <div class="page-sidebar">
     <div class="sidebar-box">
