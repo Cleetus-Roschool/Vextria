@@ -4,364 +4,372 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vextria - Careers</title>
-<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/favicon.png?raw=true">
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/asdo.png?raw=true">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
 body{
-  background-color:#000443;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bkg.jpg");
-  background-repeat:repeat-x;
-  background-position:0 0;
-  animation:bodyBkgScroll 40s linear infinite;
+  background-color:#fff;
   color:#fff;
   overflow-x:hidden;
-}
-@keyframes bodyBkgScroll{
-  from{background-position:0 0;}
-  to{background-position:-1000px 0;}
+  font-size:95%;
 }
 
-/* Top banner - Signed-out banner (from admin/templates/banners) */
+/* Top banner */
 .topbar{
   position:relative;
-  z-index:20;
+  margin-bottom:0;
+  z-index:100;
   width:100%;
+  background:#363636;
 }
-.first-header-minimal{
-  width:100%;
-  background:#114081;
-}
-.first-header-minimal-inner{
-  max-width:900px;
-  height:40px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 15px;
+.classic-roblox-header{
+  width:1000px;
+  max-width:100%;
+  height:76px;
+  background:#363636;
   position:relative;
+  z-index:100;
+  margin:0 auto;
 }
-.brand{
-  display:block;
-  width:120px;
-  height:34px;
-  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/573eb374-4364-4e5d-a09b-7e81db79af63-removebg-preview.png") center/contain no-repeat;
-}
-.auth-buttons{
+.classic-roblox-header-inner{
+  max-width:none;
+  width:100%;
+  height:76px;
+  margin:0 auto;
   display:flex;
-  align-items:center;
-  gap:8px;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:0 20px 0;
+  position:relative;
+  overflow:visible;
 }
-.sprite-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  text-decoration:none;
-  font-weight:700;
-  font-size:16px;
-  text-shadow:0 -1px rgba(0,0,0,.45);
-  background-repeat:no-repeat;
-}
-.signup,.login{
-  width:80px;
-  height:28px;
-  background-size:80px 154px;
-  background-position:0 0;
-}
-.signup{
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-green.png");
-}
-.login{
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/bg-btn-blue.png");
-}
-.signup:hover,.login:hover{
-  background-position:0 -30px;
-}
-.second-header{
-  height:31px;
-  background:#6e99c9 url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
-  background-size:auto auto;
-  border-top:1px solid rgba(255,255,255,0.15);
-  border-bottom:1px solid rgba(0,0,0,0.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.navbar-links{
+.classic-nav-links{
   display:flex;
   list-style:none;
   margin:0;
   padding:0;
-  height:100%;
-  gap:9px;
+  gap:0;
+  align-items:flex-end;
+  position:relative;
+  overflow:visible;
 }
-.navbar-links li{
-  height:100%;
+.classic-nav-links > li{
+  position:relative;
   display:flex;
-  align-items:center;
+  align-items:flex-end;
+  overflow:visible;
 }
-.navbar-links a{
-  display:flex;
-  align-items:center;
-  height:100%;
-  padding:0 8px;
+.classic-nav-links a{
   color:#fff;
-  font-size:16px;
+  text-decoration:none;
+  font-size:15px;
   font-weight:700;
+  letter-spacing:0.3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;
+  height:30px;
+  padding:0 8px;
+  margin:0;
+  transition:background-color 0.1s ease;
+  white-space:nowrap;
+}
+.classic-nav-links > li > a:hover,
+.classic-nav-links > li.active > a{
+  background:#000;
+  color:#fff;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  align-self:center;
   text-decoration:none;
 }
-.navbar-links a:hover{
-  background:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/topNav_blue.png") repeat-x;
-  background-size:auto auto;
-  filter:brightness(1.3);
+.brand-logo{
+  display:block;width:188px;height:72px;
+  background:url("https://github.com/Cleetus-Roschool/Vextria/blob/main/Your%20paragraph%20text.png?raw=true") center/contain no-repeat
 }
 
-/* Page Layout Container */
+/* Page Layout */
 .page-container{
-  max-width:1100px;margin:0 auto;min-height:calc(100vh - 152px);
-  display:block;background:rgb(220, 220, 220);color:#333;
-  border-left:1px solid rgba(0,0,0,.2);border-right:1px solid rgba(0,0,0,.2);
+  max-width:1000px;margin:0 auto;min-height:calc(100vh - 114px);
+  display:flex;color:#333;
 }
-
-/* Content Area */
 .legal-content{
-  padding:25px 30px;color:#222;
+  flex-grow:1;padding:25px 30px;color:#222;
   font-size:14px;line-height:1.6;
-  min-height:calc(100vh - 152px);
-  background-color:#fff;
-  background-image:url("https://raw.githubusercontent.com/Cleetus-Roschool/Vextria/main/logos/containerBkg_01.png");
-  background-repeat:repeat;
 }
 .legal-content h1{
-  font-size:22px;
+  font-size:40px;
   margin-top:0;
-  margin-bottom:16px;
+  margin-bottom:4px;
+  color:#363636;
+  font-weight:700;
+}
+.legal-content h2{
+  font-size:22px;
+  margin-top:28px;
+  margin-bottom:10px;
   color:#000;
   font-weight:700;
+}
+.legal-content h3{
+  font-size:18px;
+  margin-top:0;
+  margin-bottom:8px;
+  color:#000;
+  font-weight:700;
+}
+.legal-content p{margin:8px 0 15px 0;color:#000}
+
+.careers-layout{
+  display:flex;
+  gap:30px;
+  align-items:flex-start;
+}
+.careers-main{
+  width:750px;
+  max-width:100%;
+}
+.careers-sidebar{
+  width:150px;
+  max-width:100%;
+  flex-shrink:0;
+}
+.careers-vertical-divider{
+  width:1px;
+  align-self:stretch;
+  background:#ccc;
+  flex-shrink:0;
+}
+.careers-divider{
+  border:none;
+  border-top:1px solid #ccc;
+  margin:24px 0;
+}
+
+/* Jobs eyebrow label */
+.eyebrow{
+  font-size:40px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#095FB5;
+  margin:0 0 6px 0;
+}
+
+/* Mission quote */
+.mission-quote{
+  padding:6px 0;
+  margin:16px 0 22px 0;
+}
+.mission-quote p{
+  margin:0;
+  font-family:georgia, serif;
+  font-size:22px;
+  color:#b22222;
+  line-height:36px;
+}
+.mission-portrait{
+  float:right;
+  width:175px;
+  height:345px;
+  object-fit:cover;
+  margin:0 0 15px 20px;
+}
+.mission-banner{
+  display:block;
+  width:690px;
+  max-width:100%;
+  height:auto;
+  margin:20px auto;
+}
+
+/* Disclaimer note */
+.disclaimer-note{
+  background:#f5f5f5;
+  border:1px solid #e0e0e0;
+  border-radius:4px;
+  padding:12px 16px;
+  font-size:13px;
+  color:#555;
+  margin:22px 0;
+}
+.disclaimer-note p{margin:0;color:#555;font-size:13px}
+
+/* Benefit blocks */
+.benefit-block{
+  display:flex;
+  gap:24px;
+  align-items:center;
+  margin:22px 0;
+}
+.benefit-block.reverse{
+  flex-direction:row-reverse;
+}
+.benefit-text{
+  flex:1;
+}
+.benefit-text h3{
+  font-size:19px;
+  margin:0 0 8px 0;
+}
+.benefit-text p{
+  margin:0;
+}
+
+/* Jobs sidebar */
+.jobs-sidebar-heading{
+  font-size:15px;
+  font-weight:700;
+  color:#000;
+  margin:0 0 14px 0;
   text-transform:uppercase;
   letter-spacing:0.3px;
 }
-.legal-content h2{font-size:18px;margin-top:25px;margin-bottom:10px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
-.legal-content p{margin:8px 0 15px 0;color:#000}
-.legal-content a{color:#0000cc;text-decoration:none}
-.legal-content a:hover{text-decoration:none}
-
-/* Red Error/Warning Message Span */
-.message-span-error{
-  display:block;
-  background:#fdeded;
-  border:1px solid #d32f2f;
-  color:#d32f2f;
-  padding:8px 12px;
-  font-size:13px;
-  margin:15px 0 20px 0;
-  width:100%;
+.job-group{
+  margin-bottom:18px;
 }
-
-/* Accordion Dropdown Styles */
-.accordion-section{
-  margin-bottom:12px;
-}
-
-.accordion-toggle{
-  width: 400px;
-  height: 26px;
-  background-image: url(https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/bg-drop_down_btn.png?raw=true);
-  background-repeat: no-repeat;
-  background-size: 400px 76px;
-  background-position: 0 0;
-  color: #333;
-  font-weight: bold;
-  font-size: 12px;
-  border: 1px solid #707070;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 8px;
-  text-align: left;
-}
-
-.accordion-toggle:hover{
-  background-position: 0 -26px;
-  border-color: #555;
-}
-
-.accordion-content{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.2s ease-out;
-  background:#f9f9f9;
-  border:1px solid transparent;
-  width:400px;
-  padding:0 12px;
-}
-
-.accordion-content.show{
-  padding:12px;
-  max-height:800px;
-  border:1px solid #707070;
-  border-top:none;
-}
-
-.no-jobs-msg{
-  font-style:italic;
+.job-category-title{
+  font-size:12px;
+  font-weight:700;
   color:#666;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+  margin:0 0 6px 0;
+}
+.job-listing{
+  display:block;
   font-size:13px;
-  margin:0;
+  color:#095FB5;
+  text-decoration:none;
+  margin-bottom:6px;
+  line-height:1.4;
+}
+.job-listing:hover{
+  text-decoration:underline;
 }
 
 /* Footer */
 .lower{
   width:100%;
-  height:98px;
-  min-height:98px;
-  background:#174d88;
-  border-top:1px solid rgba(255,255,255,.55);
+  height:37px;
+  min-height:37px;
+  background:#363636;
   position:relative;
   z-index:10;
-  text-align:center;
-  padding:16px 20px 0;
+  padding:0 20px;
 }
-.footer-links{
+.footer-inner{
+  max-width:1000px;
+  height:37px;
+  margin:0 auto;
   display:flex;
-  justify-content:center;
   align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  font-size:14px;
-  font-weight:700;
+  justify-content:space-between;
+  font-size:13px;
+  color:#fff;
 }
-.footer-links a{color:#fff;text-decoration:none}
-.footer-links a:hover{text-decoration:underline}
-.footer-copy{margin:14px 0 0;font-size:13px;color:#8eadd1;line-height:1.25}
+.footer-inner .footer-brand{font-weight:400;color:#fff;text-decoration:none}
+.footer-inner .footer-brand:hover{text-decoration:underline}
+.footer-inner .footer-copyright{color:#cfe0f2}
 
 @media(max-width:768px){
-  .legal-content{padding:20px}
-  .accordion-toggle, .accordion-content{width:100%}
+  .page-container{flex-direction:column}
+  .careers-layout{flex-direction:column}
+  .careers-vertical-divider{display:none}
+  .benefit-block, .benefit-block.reverse{flex-direction:column}
 }
 </style>
 </head>
 <body>
 
 <header class="topbar">
-  <div class="first-header-minimal">
-    <div class="first-header-minimal-inner">
-      <a class="brand" href="/Vextria/" aria-label="Vextria Home"></a>
-      <div class="auth-buttons">
-        <a href="/Vextria/signup" class="sprite-btn signup">Sign Up</a>
-        <a href="/Vextria/login" class="sprite-btn login">Log In</a>
-      </div>
+  <div class="classic-roblox-header">
+    <div class="classic-roblox-header-inner">
+      <span class="brand" aria-label="Vextria">
+        <span class="brand-logo"></span>
+      </span>
+      <ul class="classic-nav-links">
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/about-us">ABOUT US</a></li>
+        <li class="active"><a href="https://cleetus-roschool.github.io/Vextria/info/careers">CAREERS</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/blog/home">BLOG</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/info/parents">PARENTS</a></li>
+        <li><a href="https://cleetus-roschool.github.io/Vextria/contact-us">CONTACT US</a></li>
+      </ul>
     </div>
-  </div>
-
-  <div class="second-header">
-    <ul class="navbar-links">
-      <li><a href="/Vextria/my/account">My Account</a></li>
-      <li><a href="/Vextria/games">Games</a></li>
-      <li><a href="/Vextria/catalog">Catalog</a></li>
-      <li><a href="/Vextria/browse/people">People</a></li>
-      <li><a href="/Vextria/my/account/upgrade">Upgrade</a></li>
-      <li><a href="/Vextria/contests">Contests</a></li>
-      <li><a href="/Vextria/fourms">Fourms</a></li>
-      <li><a href="/Vextria/info/parents">Parents</a></li>
-      <li><a href="/Vextria/blog/home">Blog</a></li>
-      <li><a href="/Vextria/wiki/home">Help</a></li>
-    </ul>
   </div>
 </header>
 
 <div class="page-container">
   <main class="legal-content">
-    <h1>Careers</h1>
+    <div class="careers-layout">
+      <div class="careers-main">
+        <p class="eyebrow">Jobs</p>
+        <h1 style="font-size:22px;">Why Vextria?</h1>
 
-    <div class="message-span-error">
-      Please remember at this time applying for a role is a voluntary role. You will not be getting paid Real Life cash for this moment.
-    </div>
+        <img class="mission-portrait" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/ROBLOXian%20(1).jpg?raw=true" alt="Vextria character">
 
-    <!-- Management -->
-    <div class="accordion-section">
-      <button class="accordion-toggle" onclick="toggleAccordion(this)">
-        Management
-      </button>
-      <div class="accordion-content">
-        <div class="no-jobs-msg">There is currently no available jobs in this category.</div>
+        <div class="mission-quote">
+          <p>"At Vextria, our mission is to become a kid friendly, user-generated gaming platform for all ages to play, build and customize anything they possibly want."</p>
+        </div>
+
+        <p>Join the team at Vextria and help us in our mission. Vextria employees have built a global gaming cloud, a distributed physics engine, and a business with strong annual growth. We are looking for exceptional people to take our 3D game platform to the highest level of technological sophistication, and we continue to hire aggressively to support our growth and vision. We are motivated by significant opportunities to expand our audience, and to offer Vextria games on multiple platforms.</p>
+
+        <div class="disclaimer-note">
+          <p>Please remember, at this time applying for a role is a voluntary role. You will not be getting paid Real Life cash for this position.</p>
+        </div>
+
+        <hr class="careers-divider">
+
+        <h2>Benefits of Working at Vextria</h2>
+        <p>You will work with a fantastic team. Plus, you will also have these additional benefits:</p>
+
+        <div class="benefit-block">
+          <div class="benefit-text">
+            <h3>We let you take your time (off).</h3>
+            <p>Our vacation policy is&hellip; well, we don't have a vacation policy; we're all about responsibility. You're a grownup, we trust you to figure out the time you need to have off as well as get all your work done.</p>
+          </div>
+        </div>
+
+        <div class="benefit-block reverse">
+          <div class="benefit-text">
+            <h3>You'll have a piece of our future.</h3>
+            <p>Vextria is a privately held company and offers incentive stock options to all of our full-time regular employees.</p>
+          </div>
+        </div>
+
+        <img class="mission-banner" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/Stratosphere-Settlement-banner%20(1).jpg?raw=true" alt="Vextria settlement banner">
       </div>
-    </div>
 
-    <!-- Engineering & Development & Designs -->
-    <div class="accordion-section">
-      <button class="accordion-toggle" onclick="toggleAccordion(this)">
-        Engineering &amp; Development
-      </button>
-      <div class="accordion-content">
-        <div class="no-jobs-msg">There is currently no available jobs in this category.</div>
-      </div>
-    </div>
+      <div class="careers-vertical-divider"></div>
 
-    <!-- People & Operations -->
-    <div class="accordion-section">
-      <button class="accordion-toggle" onclick="toggleAccordion(this)">
-        People &amp; Operations
-      </button>
-      <div class="accordion-content">
-        <div class="no-jobs-msg">There is currently no available jobs in this category.</div>
-      </div>
-    </div>
+      <aside class="careers-sidebar">
+        <div class="jobs-sidebar-heading">Open Roles</div>
 
-    <!-- Public Relations & Marketing -->
-    <div class="accordion-section">
-      <button class="accordion-toggle" onclick="toggleAccordion(this)">
-        PR &amp; Marketing
-      </button>
-      <div class="accordion-content">
-        <div class="no-jobs-msg">There is currently no available jobs in this category.</div>
-      </div>
-    </div>
+        <div class="job-group">
+          <p class="job-category-title">Title : Engineers</p>
+          <a class="job-listing" href="#">Job Title</a>
+        </div>
 
-    <!-- Moderation & Safety -->
-    <div class="accordion-section">
-      <button class="accordion-toggle" onclick="toggleAccordion(this)">
-        Moderation &amp; Safety
-      </button>
-      <div class="accordion-content">
-        <div class="no-jobs-msg">There is currently no available jobs in this category.</div>
-      </div>
+        <div class="job-group">
+          <p class="job-category-title">Title : Engineers</p>
+          <a class="job-listing" href="#">Job Title</a>
+        </div>
+      </aside>
     </div>
-
-    <h2>To Apply:</h2>
-    <p>Please email your resume to <a href="mailto:careers@vextria.com">careers@vextria.com</a> and state the job you are applying for in the subject line.</p>
   </main>
 </div>
 
 <footer class="lower">
-  <nav class="footer-links" aria-label="Footer">
-    <a href="/Vextria/info/privacy-policy">Privacy Policy</a><span>|</span>
-    <a href="/Vextria/contact-us">Contact Us</a><span>|</span>
-    <a href="/Vextria/info/about-us">About Us</a><span>|</span>
-    <a href="/Vextria/info/careers">Careers</a><span>|</span>
-    <a href="/Vextria/blog/home">Blog</a><span>|</span>
-    <a href="/Vextria/info/parents">Parents</a><span>|</span>
-    <a href="/Vextria/wiki/home">Help</a><span>|</span>
-    <a href="/Vextria/info/guidelines">Guidelines</a><span>|</span>
-    <a href="/Vextria/info/terms-of-Service">Terms of Service</a>
-  </nav>
-  <p class="footer-copy">Vextria, "Adventure Awaits" ©2026 Vextria Corporation is not affiliated, sponsored, authorized or endorsed with<br>Roblox Corporation Use of this site signifies your acceptance of the Terms and Conditions</p>
+  <div class="footer-inner">
+    <a class="footer-brand" href="/Vextria/"><strong style="font-weight:900">VEXTRIA</strong>.com</a>
+    <span class="footer-copyright">©2026 Vextria Group</span>
+  </div>
 </footer>
-
-<script>
-function toggleAccordion(button) {
-  button.classList.toggle('active');
-  var content = button.nextElementSibling;
-  if (content.classList.contains('show')) {
-    content.classList.remove('show');
-  } else {
-    content.classList.add('show');
-  }
-}
-</script>
 
 </body>
 </html>
