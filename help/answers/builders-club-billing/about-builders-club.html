@@ -435,9 +435,9 @@ body{
 <nav class="support-navbar">
   <div class="support-navbar-left">
     <a class="support-nav-link" href="home">HOME</a>
-    <a class="support-nav-link active" href="/Vextria/help/answers">ANSWERS</a>
-    <a class="support-nav-link" href="request/new">SUBMIT A REQUEST</a>
-    <a class="support-nav-link" href="request/existing">CHECK YOUR EXISTING REQUESTS</a>
+    <a class="support-nav-link active" href="answers">ANSWERS</a>
+    <a class="support-nav-link" href="https://web.archive.org/web/20141009150947/https://en.help.roblox.com/anonymous_requests/new">Submit a request</a>
+    <a class="support-nav-link" href="https://web.archive.org/web/20141009150947/https://en.help.roblox.com/requests">Check your existing requests</a>
   </div>
   <div class="support-navbar-right">
   </div>
@@ -474,6 +474,7 @@ answerCategories.forEach(cat => {
       ${cat.title}
     </span>
     ${cat.meta ? `<div class="recent-item-meta">${cat.meta}</div>` : ''}
+    <div class="recent-item-meta" style="color:#000;"><br>Builders Club is a premium service that enhances the Vextria experience.<br>Builders Club memberships give users the ability to create and manage multiple games and environments simultaneously. Builders Club members also receive a daily stipend of Vextria currency — called "Vexbucks"— which can be used to purchase premium items in the catalog. These items enable much greater (i.e. much cooler!) customization of users’ avatars and their interactive creations.<br>In addition, Builders Club members gain the ability to promote their creations in the catalog and sell them to other members using the virtual Vextria economy.<br>Finally, unlike free account holders, Builders Club members are not exposed to, or distracted by, on-screen advertisements.<br>For parents who are interested in learning more about subscription options or in purchasing a Builders Club membership, click on the membership button on the home page</div>
   `;
 
   categoryListEl.appendChild(item);
