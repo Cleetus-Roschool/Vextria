@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vextria Support</title>
+<link rel="icon" type="image/png" href="https://github.com/Cleetus-Roschool/Vextria/blob/main/asdo.png?raw=true">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{
+  background-color:#E3E3E3;
+  overflow-x:hidden;
+}
+.support-header{
+  width:850px;
+  max-width:100%;
+  height:69px;
+  background:#CDCDCD;
+  border-bottom:1px solid #fff;
+  border-radius:4px 4px 0 0;
+  display:flex;
+  align-items:center;
+  margin:0 auto;
+}
+.support-header-logo{
+  width:50px;
+  height:50px;
+  margin-left:20px;
+  display:block;
+  object-fit:contain;
+}
+.support-header-delimiter{
+  width:2px;
+  height:27px;
+  margin-left:10px;
+  display:block;
+}
+.support-header-title{
+  margin-left:10px;
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+}
+.support-navbar{
+  width:850px;
+  max-width:100%;
+  height:26px;
+  background:#AAAAAA;
+  border-radius:0 0 10px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.support-navbar-left{
+  display:flex;
+  align-items:center;
+  height:100%;
+}
+.support-navbar-right{
+  display:flex;
+  align-items:center;
+  height:100%;
+  padding-right:12px;
+}
+.support-navbar-answers{
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.3px;
+}
+.support-navbar-lang{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.3px;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+.support-navbar-lang:hover{
+  text-decoration:underline;
+}
+.support-navbar-lang .flag-icon{
+  font-size:14px;
+  line-height:1;
+}
+.support-nav-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:26px;
+  padding:0 12px;
+  color:#fff;
+  background:#AAAAAA;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.3px;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+.support-nav-link:hover{
+  color:#fff;
+  background:#D1D1D1;
+}
+.support-nav-link.active{
+  color:#2a2a2a;
+  background:#fff;
+}
+.support-frame{
+  width:850px;
+  max-width:100%;
+  height:auto;
+  background:#fff;
+  margin:-5px auto 0;
+  padding:15px 0 15px;
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  box-sizing:border-box;
+}
+.support-frame-main{
+  width:592px;
+  max-width:100%;
+}
+.answers-box{
+  width:592px;
+  max-width:100%;
+  height:151px;
+  background:#f4f4f4;
+  margin:5px auto 0;
+  padding:20px;
+  box-sizing:border-box;
+}
+.answers-title{
+  margin:0;
+  font-size:24px;
+  font-weight:700;
+  color:#333;
+}
+.answers-search-wrap{
+  position:relative;
+  width:537px;
+  max-width:100%;
+  margin-top:17px;
+}
+.answers-search-icon{
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  pointer-events:none;
+}
+.answers-search{
+  display:block;
+  width:100%;
+  height:36px;
+  padding:0 10px 0 32px;
+  border:1px solid #ccc;
+  border-radius:2px;
+  font-size:14px;
+  box-sizing:border-box;
+}
+.button.search, .content a.button.search, .button_disabled.search {
+    font-size: 17px;
+    line-height: 25px;
+    font-weight: normal;
+    margin: 0px 0px 0px 5px;
+    padding: 4px 10px;
+    vertical-align: middle;
+}
+.button.primary, .button.save, .content a.button.primary, .content a.button.save, .button_disabled.primary, .button_disabled.save {
+    background-color: #7a7a7a;
+    background-repeat: repeat-x;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.button, .content a.button, .button_disabled {
+    background-color: #ebebeb;
+    background-repeat: repeat-x;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 4px 14px;
+}
+.recent-box{
+  width:592px;
+  max-width:100%;
+  background:#f4f4f4;
+  margin:10px auto 0;
+  padding:15px 23px;
+  box-sizing:border-box;
+}
+.recent-item{
+  width:546px;
+  max-width:100%;
+  min-height:65px;
+  background:#fff;
+  box-sizing:border-box;
+  padding:14px;
+  border-bottom:1px dashed #AAAAAA;
+}
+.recent-item:last-child{
+  border-bottom:none;
+}
+.recent-item-title{
+  display:block;
+  font-size:19px;
+  font-weight:700;
+  color:#1A6690;
+  text-decoration:none;
+}
+.recent-item-title:hover{
+  text-decoration:underline;
+}
+.recent-item-meta{
+  margin-top:6px;
+  font-size:12px;
+  color:#888;
+}
+.recent-item-meta .section{
+  font-weight:700;
+}
+.page-sidebar{
+  width:241px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+.sidebar-box{
+  background:#CDCDCD;
+  border-radius:6px;
+  box-sizing:border-box;
+  padding:18px;
+}
+.sidebar-title{
+  margin:0 0 12px;
+  font-size:20px;
+  font-weight:700;
+  color:#222;
+}
+.sidebar-subtitle{
+  font-weight:700;
+  color:#222;
+  text-decoration:underline;
+}
+.sidebar-subtitle:hover{
+  color:#222;
+}
+.sidebar-text{
+  margin:0 0 12px;
+  font-size:13px;
+  line-height:1.6;
+  color:#333;
+}
+.sidebar-text:last-child{
+  margin-bottom:0;
+}
+.sidebar-text a{
+  color:#1A6690;
+  text-decoration:none;
+}
+.sidebar-text a:hover{
+  text-decoration:underline;
+}
+.sidebar-links{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.sidebar-links a{
+  font-size:13px;
+  color:#1A6690;
+  text-decoration:none;
+}
+.sidebar-links a:hover{
+  text-decoration:underline;
+}
+.faq-box{
+  width:592px;
+  max-width:100%;
+  background:#fff;
+  margin:10px auto 0;
+  border:1px solid #ddd;
+  box-sizing:border-box;
+}
+</style>
+</head>
+<body>
+
+<header class="support-header">
+  <img class="support-header-logo" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/noFilter.webp?raw=true" alt="Vextria">
+  <img class="support-header-delimiter" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/logos/logo-delimiter.png?raw=true" alt="">
+  <span class="support-header-title">Vextria Support</span>
+</header>
+
+<nav class="support-navbar">
+  <div class="support-navbar-left">
+    <a class="support-nav-link" href="home">HOME</a>
+    <a class="support-nav-link active" href="/Vextria/help/answers">ANSWERS</a>
+    <a class="support-nav-link" href="request/new">SUBMIT A REQUEST</a>
+    <a class="support-nav-link" href="request/existing">CHECK YOUR EXISTING REQUESTS</a>
+  </div>
+  <div class="support-navbar-right">
+  </div>
+</nav>
+
+<div class="support-frame">
+  <div class="support-frame-main">
+    <div class="faq-box">
+      <div class="recent-box">
+        <span style="display:block;font-size:22px;font-weight:700;color:#333;margin-bottom:10px;">
+          <a href="https://cleetus-roschool.github.io/Vextria/help/answers" style="color:#1A6690;text-decoration:none;">Answers</a>
+          /
+          <a href="https://cleetus-roschool.github.io/Vextria/help/answers/builders-club-billing" style="color:#1A6690;text-decoration:none;">Builders Club and Billing</a>
+        </span>
+        <div id="category-list"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const answerCategories = [
+  { title: "Why Didn't I Get My Signing Bonus?", meta: "Vextria, 13 September 2026" }
+];
+
+const categoryListEl = document.getElementById('category-list');
+
+answerCategories.forEach(cat => {
+  const item = document.createElement('div');
+  item.className = 'recent-item';
+  item.style.borderBottom = 'none';
+
+  item.innerHTML = `
+    <span class="recent-item-title" style="color:#333;cursor:default;">
+      ${cat.title}
+    </span>
+    ${cat.meta ? `<div class="recent-item-meta">${cat.meta}</div>` : ''}
+    <div class="recent-item-meta" style="color:#000;font-size:14px;"><br>Why Didn't I Get My Signing Bonus?:<br><br>The reasons you might not have gotten your Signing Bonus could be:<br><br>1. It hasn't been the full 24 hours since your last session. (E.G You play at 4pm Saturday and play at 7pm Saturday You will get your signing bonus on 4pm Sunday)<br>2. Signing Bonus only apply if you play/go online in Vextria (Expect Builders Club)<br><br>If you still haven't gotten your signing bonus please send us a message, We will see what is going on!</div>
+  `;
+
+  categoryListEl.appendChild(item);
+});
+</script>
+
+  <div class="page-sidebar">
+    <div class="sidebar-box">
+      <div class="sidebar-title">Additional Support</div>
+      <p class="sidebar-text"><a href="#" class="sidebar-subtitle">Account or Billing Support</a> - If you have a general question or need customer service, the fastest way to get help is to email us at <a href="mailto:help@Vextria.co.uk">help@Vextria.co.uk</a></p>
+      <p class="sidebar-text">Check out our <a href="https://Vextria.co.uk/fourms">Forums</a> for Game Play/Building information and to interact with the Vextria Community.</p>
+      <p class="sidebar-text">See the <a href="https://group.Vextria.co.uk/contactus">Contact Us</a> page for more ways to reach Vextria.</p>
+      <p class="sidebar-text">Click here to return to <a href="https://Vextria.co.uk">Vextria.</a></p>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">Other Help Sources</div>
+      <div class="sidebar-links">
+        <a href="https://Vextria.co.uk/fourms">Vextria Forums</a>
+        <a href="https://group.Vextria.co.uk/parents">Parents</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
