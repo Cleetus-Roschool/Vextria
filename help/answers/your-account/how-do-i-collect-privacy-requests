@@ -341,7 +341,7 @@ body{
 
 <script>
 const answerCategories = [
-  { title: "My Account was Hacked - What do I do?", meta: "Vextria, 13 September 2026" }
+  { title: "How do I collect privacy requests", meta: "Vextria, 13 September 2026" }
 ];
 
 const categoryListEl = document.getElementById('category-list');
@@ -356,7 +356,7 @@ answerCategories.forEach(cat => {
       ${cat.title}
     </span>
     ${cat.meta ? `<div class="recent-item-meta">${cat.meta}</div>` : ''}
-    <div class="recent-item-meta" style="color:#000;font-size:14px;"><br>In Account Settings we offer loads of settings to change. such as:<br><br>Settings:<br> - Username<br><br> - Password<br><br> - Email<br><br> - Phone Number<br><br> - Date of Birth<br><br> - Gender<br><br> - Language<br><br> - Country<br><br> - Personal blurb<br><br><br>Security:<br> - Two Step Verification (Email, Phone Number, Hardware Security Key, Authenticator App)<br> - Recent Logins from Devices<br> - Blocked Users<br> - Blocked Games<br><br>Privacy:<br> - In-game Chat<br> - Inbox Messaging<br> - Live Chat<br> - Online Status<br> - Current Game<br> - VIP Servers<br> - In-game Chat<br> - Inventory visibility<br> - Trading<br><br>Billing<br> - Builderclub Subscriptions<br> - VIP Server Subscriptions<br> - Credit<br><br> - Moderation History<br> - All your Moderation History<br><br><br>This may change with new updates coming to Vextria!</div>
+    <div class="recent-item-meta" style="color:#000;font-size:14px;"><br>To request privacy data such as "Right to Access", "Cookies", "Other Privacy Request" by going to Support > Privacy Request > Right to Access/Cookies/Other Privacy Request</div>
   `;
 
   categoryListEl.appendChild(item);
