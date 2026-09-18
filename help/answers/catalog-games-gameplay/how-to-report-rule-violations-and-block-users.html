@@ -332,7 +332,7 @@ body{
         <span style="display:block;font-size:22px;font-weight:700;color:#333;margin-bottom:10px;">
           <a href="https://cleetus-roschool.github.io/Vextria/help/answers" style="color:#1A6690;text-decoration:none;">Answers</a>
           /
-          <a href="https://cleetus-roschool.github.io/Vextria/help/answers/your-account" style="color:#1A6690;text-decoration:none;">Your Account</a>
+          <a href="https://cleetus-roschool.github.io/Vextria/help/answers/catalog-games-gameplay" style="color:#1A6690;text-decoration:none;">Catalog, Games and Gameplay</a>
         </span>
         <div id="category-list"></div>
       </div>
@@ -341,7 +341,10 @@ body{
 
 <script>
 const answerCategories = [
-  { title: "How Do I Change My Age, meta: "Vextria, 13 September 2026" }
+  {
+    title: "How Do I Report or Block a User?",
+    meta: "Vextria, 13 September 2026"
+  }
 ];
 
 const categoryListEl = document.getElementById('category-list');
@@ -355,8 +358,33 @@ answerCategories.forEach(cat => {
     <span class="recent-item-title" style="color:#333;cursor:default;">
       ${cat.title}
     </span>
+
     ${cat.meta ? `<div class="recent-item-meta">${cat.meta}</div>` : ''}
-    <div class="recent-item-meta" style="color:#000;font-size:14px;"><br>To report a user/game ingame for breaking the rules or to block a user is a very simple explanation to do!<br><br>Reporting a User/Game<br><br>1. Go to Settings<br>2. Press "Abuse Report"<br>3. Either Select the Game/User (and Select their Username (User Only))<br>4. Fill out the Short Description and a moderator will take action.<br><br>You can also report via the Playerlist,<br>You can Block a user in the Playerlist aswell!</div>
+
+    <div class="recent-item-meta" style="color:#000;font-size:14px;">
+      <br>
+      To report a user/game in-game for breaking the rules or to block a user is a very simple process!
+
+      <br><br>
+
+      <strong>Reporting a User/Game</strong>
+
+      <br><br>
+
+      1. Go to Settings
+      <br>
+      2. Press "Abuse Report"
+      <br>
+      3. Either select the Game/User (and select their username for users only)
+      <br>
+      4. Fill out the Short Description, and a moderator will take action.
+
+      <br><br>
+
+      You can also report via the Playerlist.
+      <br>
+      You can block a user in the Playerlist as well!
+    </div>
   `;
 
   categoryListEl.appendChild(item);
