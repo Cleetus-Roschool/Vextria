@@ -351,13 +351,35 @@ answerCategories.forEach(cat => {
   item.className = 'recent-item';
   item.style.borderBottom = 'none';
 
-  item.innerHTML = `
-    <span class="recent-item-title" style="color:#333;cursor:default;">
-      ${cat.title}
-    </span>
-    ${cat.meta ? `<div class="recent-item-meta">${cat.meta}</div>` : ''}
-    <div class="recent-item-meta" style="color:#000;font-size:14px;"><br>To change your date of birth/birthday to a older date or younger date (ACCOUNTS WITH PARENT ACCOUNTS CONNECTED MUST ASK THEIR PARENTS TO CHANGE)<br><br>1. Sign in to Vextria.<br>2. Go to "Account"<br>3. Go to Birthday and press on the dropdown to change your birthday then press "Update"<br>3.5 For Connected Parents Accounts you must press "Ask Parent To Change" this will send a email to your Parent's Email. Fill in the Verification code and you can change the birthday.</div>
-  `;
+item.innerHTML = `
+  <span class="recent-item-title" style="color:#333;cursor:default;">
+    ${cat.title}
+  </span>
+
+  ${cat.meta ? `
+    <div class="recent-item-meta">
+      ${cat.meta}
+    </div>
+  ` : ''}
+
+  <div class="recent-item-meta" style="color:#000;font-size:14px;">
+    <br>
+    To change your date of birth/birthday to an older or younger date
+    (ACCOUNTS WITH PARENT ACCOUNTS CONNECTED MUST ASK THEIR PARENTS TO CHANGE)
+    <br><br>
+
+    1. Sign in to Vextria.
+    <br>
+    2. Go to "Account".
+    <br>
+    3. Go to "Birthday", select the dropdown to change your birthday,
+    then press "Update".
+    <br>
+    3.5 For Connected Parent Accounts, press "Ask Parent To Change".
+    This will send an email to your parent's email address.
+    Enter the verification code to change the birthday.
+  </div>
+`;
 
   categoryListEl.appendChild(item);
 });
