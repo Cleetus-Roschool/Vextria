@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register - Frutigerooms</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  body { margin: 0; min-height: 100vh; background: #e0eff6; font: 12px Verdana, Tahoma, sans-serif; color: #000; }
+  .top { background: linear-gradient(#4a9fd8, #2b79b9); color: #fff; padding: 14px 16px; font: bold 18px Verdana, sans-serif; }
+  .wrap { width: 900px; max-width: 100%; margin: 0 auto; background: #fff; padding: 14px; box-sizing: border-box; min-height: 320px; }
+  .box { width: 300px; max-width: 100%; border: 1px solid #33487e; }
+  .box h2 { margin: 0; padding: 6px 8px; background: #33487e; color: #fff; font: bold 13px Verdana, sans-serif; }
+  .body { padding: 8px 8px 10px; }
+  label { display: block; font-weight: bold; margin: 0 0 2px; }
+  .row { margin-bottom: 8px; }
+  input { width: 100%; box-sizing: border-box; padding: 4px; border: 1px solid #7f7f7f; font: 12px Verdana, sans-serif; }
+  button { padding: 5px 10px; border: 1px solid #0f1832; background: #33487e; color: #fff; font: 12px Verdana, sans-serif; text-transform: uppercase; cursor: pointer; }
+  button:disabled { opacity: .6; cursor: default; }
+  .msg { margin: 0 0 8px; font-weight: bold; }
+  .err { color: #cc0000; } .ok { color: #1f7a1f; }
+  a { color: #003399; }
+  .note { margin-top: 10px; }
+</style>
+</head>
+<body>
+  <div class="top">Frutigerooms</div>
+  <div class="wrap">
+    <form class="box" id="f" autocomplete="off">
+      <h2>Register</h2>
+      <div class="body">
+        <div class="row"><label for="u">Username:</label><input id="u" type="text" maxlength="20"></div>
+        <div class="row"><label for="p">Password:</label><input id="p" type="password"></div>
+        <div class="msg" id="m" role="alert" hidden></div>
+        <button id="b" type="submit">Create account</button>
+        <div class="note"><a href="index.html">Back to login</a></div>
+      </div>
+    </form>
+  </div>
+<script>
+  const sb = window.supabase.createClient("https://sabjroumudvbelhegqxw.supabase.co", "sb_publishable_aCkLMO762Zpowe5dr6BstQ_ZCYfVjIk", { global: { fetch: (url, opts = {}) => {
+    // plain-object headers so the page also works inside preview sandboxes
+    const h = {}; new Headers(opts.headers || {}).forEach((v, k) => { h[k] = v; });
+    return fetch(url, Object.assign({}, opts, { headers: h }));
+  } } });
+  const m = document.getElementById("m"), b = document.getElementById("b");
+  const say = (t, ok) => { m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); m.hidden = false; };
+  document.getElementById("f").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const username = document.getElementById("u").value.trim();
+    const password = document.getElementById("p").value;
+    if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) return say("Username must be 3-20 letters, numbers or _.", false);
+    if (password.length < 6) return say("Password must be at least 6 characters.", false);
+    b.disabled = true;
+    try {
+      const free = await sb.rpc("username_available", { u: username });
+      if (free.error) { say("Setup problem: " + free.error.message, false); return; }
+      if (free.data === false) { say("That username is taken.", false); return; }
+      // creates the account from just username + password (no email involved)
+      const reg = await sb.rpc("register_user", { u: username, p: password });
+      if (reg.error) { say(reg.error.message, false); return; }
+      const { error } = await sb.auth.signInWithPassword({ email: reg.data, password });
+      if (error) { say("Account created, but auto-login failed: " + error.message + ". Try logging in on the main page.", false); return; }
+      say("Account created! Taking you back...", true);
+      setTimeout(() => { location.href = "index.html"; }, 1200);
+    } catch (e) { say("Something went wrong. Try again.", false); }
+    finally { b.disabled = false; }
+  });
+</script>
+</body>
+</html>
