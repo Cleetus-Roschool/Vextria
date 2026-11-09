@@ -6,66 +6,619 @@
 <title>Register - Frutigerooms</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-  body { margin: 0; min-height: 100vh; background: #e0eff6; font: 12px Verdana, Tahoma, sans-serif; color: #000; }
-  .top { background: linear-gradient(#4a9fd8, #2b79b9); color: #fff; padding: 14px 16px; font: bold 18px Verdana, sans-serif; }
-  .wrap { width: 900px; max-width: 100%; margin: 0 auto; background: #fff; padding: 14px; box-sizing: border-box; min-height: 320px; }
-  .box { width: 300px; max-width: 100%; border: 1px solid #33487e; }
-  .box h2 { margin: 0; padding: 6px 8px; background: #33487e; color: #fff; font: bold 13px Verdana, sans-serif; }
-  .body { padding: 8px 8px 10px; }
-  label { display: block; font-weight: bold; margin: 0 0 2px; }
-  .row { margin-bottom: 8px; }
-  input { width: 100%; box-sizing: border-box; padding: 4px; border: 1px solid #7f7f7f; font: 12px Verdana, sans-serif; }
-  button { padding: 5px 10px; border: 1px solid #0f1832; background: #33487e; color: #fff; font: 12px Verdana, sans-serif; text-transform: uppercase; cursor: pointer; }
-  button:disabled { opacity: .6; cursor: default; }
-  .msg { margin: 0 0 8px; font-weight: bold; }
-  .err { color: #cc0000; } .ok { color: #1f7a1f; }
-  a { color: #003399; }
-  .note { margin-top: 10px; }
+  body { margin: 0; min-height: 100vh; background-color: #e0eff6; font: 12px Verdana, Tahoma, sans-serif; color: #000;
+    background-image:
+      linear-gradient(105deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.22) 38%, rgba(255,255,255,0) 52%),
+      radial-gradient(ellipse 60% 100% at 20% 0%, rgba(255,255,255,.25), rgba(255,255,255,0)),
+      linear-gradient(#5a9fd6 0, #6cb7df 60px, #6fb8e6 190px, #a6d7ec 300px, #ddeef6 400px, #e0eff6 420px);
+    background-repeat: no-repeat; background-size: 100% 420px; }
+  a { color: #1f5aa6; }
+  /* header (same as homepage) */
+  .banner { position: relative; width: 900px; max-width: 100%; margin: 0 auto; padding: 6px 16px 0; box-sizing: border-box; }
+  .top { position: relative; height: 46px; }
+  .applogo { position: absolute; left: 6px; top: 4px; width: 180px; max-width: 42%; height: auto; }
+  .tab { position: absolute; right: -16px; bottom: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 5px 12px 5px 22px; color: #fff; background: linear-gradient(#3f97d8, #2b79b9); border-radius: 18px 0 0 0; }
+  .tab a { color: #fff; text-decoration: none; } .tab a:hover { text-decoration: underline; } .tab i { font-style: normal; opacity: .7; }
+  .navwrap { margin: 0 -16px; }
+  .nav { display: grid; grid-template-columns: repeat(5, 1fr); background: linear-gradient(#3c92d3 0%, #2a7cbd 49%, #1f6aa9 51%, #1a5b95 100%); }
+  .nav a { min-width: 0; padding: 9px 6px; text-align: center; color: #fff; font-weight: bold; text-decoration: none; border-left: 1px solid rgba(255,255,255,.18); border-right: 1px solid rgba(0,40,90,.45); }
+  .nav a:nth-child(n+6) { border-top: 1px solid rgba(0,40,90,.45); }
+  .nav a:hover { background: rgba(255,255,255,.18); }
+  @media (min-width: 760px) { .nav { display: flex; } .nav a { flex: 1 1 auto; } .nav a:nth-child(n+6) { border-top: 0; } }
+
+  .page { width: 900px; max-width: 100%; margin: 0 auto; padding: 10px; box-sizing: border-box; min-height: 320px; background: #fff; }
+  .cols { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 10px; align-items: start; }
+  @media (max-width: 760px) { .cols { grid-template-columns: minmax(0, 1fr); } .wizard { order: -1; } }
+
+  /* boxes */
+  .box { margin: 0 0 10px; border: 1px solid #8c86aa; background: #fff; }
+  .box h2 { margin: 0; padding: 6px 8px; background: #8c86aa; color: #fff; font: bold 13px Verdana, Tahoma, sans-serif; }
+  .box .body { padding: 8px 8px 10px; line-height: 1.4; }
+  .box p { margin: 0 0 8px; } .box p:last-child { margin: 0; }
+
+  /* Win95 buttons + textboxes */
+  .btn { display: inline-block; padding: 4px 14px; font: 12px Verdana, Tahoma, sans-serif; color: #1f5aa6; text-decoration: none; cursor: pointer; background: #fff; border: 1px solid; border-color: #d2d2d2 #8c8c8c #8c8c8c #d2d2d2; }
+  .btn:active { border-color: #8c8c8c #d2d2d2 #d2d2d2 #8c8c8c; }
+  .btn.pri { background: #33487e; color: #fff; border-color: #6a80bd #0f1832 #0f1832 #6a80bd; }
+  .btn.pri:active { border-color: #0f1832 #6a80bd #6a80bd #0f1832; }
+  input[type=text], input[type=password], input[type=email], select, textarea { box-sizing: border-box; padding: 3px 4px; font: 12px Verdana, Tahoma, sans-serif; background: #fff; border: 1px solid; border-color: #6e6e6e #c4c4c4 #c4c4c4 #6e6e6e; }
+  select { -webkit-appearance: none; appearance: none; min-width: 74px; padding: 3px 24px 3px 4px; cursor: pointer; color: #000; border: 1px solid; border-color: #6e6e6e #c4c4c4 #c4c4c4 #6e6e6e; border-radius: 0;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0h10L5 6z' fill='%23444'/></svg>") right 7px center / 10px 6px no-repeat; }
+  select:hover, select:focus { outline: none; background-color: #f3f9fd; }
+  input[type=text], input[type=password], input[type=email], textarea { width: 100%; max-width: 340px; }
+  textarea { height: 80px; max-width: 100%; resize: vertical; }
+
+  /* Windows 7 style radios + old-style checkboxes */
+  input[type=radio] { -webkit-appearance: none; appearance: none; position: relative; width: 15px; height: 15px; margin: 0; flex: none; border-radius: 50%; border: 1px solid #707070; background: radial-gradient(circle at 50% 25%, #fff, #e9e9e9 55%, #cdcdcd); cursor: pointer; }
+  input[type=radio]:hover { border-color: #3c7fb1; background: radial-gradient(circle at 50% 25%, #fff, #d9f0fc 55%, #a9dcf6); }
+  input[type=radio]:checked::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: radial-gradient(circle at 40% 30%, #9be4ff, #1e8bd0 55%, #0b5a9a); }
+  input[type=radio]:disabled { opacity: .55; cursor: default; }
+  input[type=checkbox] { -webkit-appearance: none; appearance: none; width: 13px; height: 13px; margin: 0; flex: none; border: 1px solid #1c5180; border-radius: 0; background: linear-gradient(135deg, #dcdcd8, #f7f7f7) no-repeat; cursor: pointer; }
+  input[type=checkbox]:checked { background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'><path d='M4 6.6l1.8 1.9L9 4.9' fill='none' stroke='%231f9b1f' stroke-width='1.6' stroke-linecap='square'/></svg>") center / 13px 13px no-repeat, linear-gradient(135deg, #dcdcd8, #f7f7f7); }
+
+  /* wizard */
+  .wizard { border: 1px solid #4caf50; background: #fff; }
+  .wizard > h2 { margin: 0; padding: 6px 8px; background: #4caf50; color: #fff; font: bold 13px Verdana, Tahoma, sans-serif; }
+  .track { display: flex; align-items: flex-start; padding: 12px 20px 8px; }
+  .node { flex: none; width: 90px; text-align: center; font: bold 13px Verdana, Tahoma, sans-serif; color: #666; }
+  .node::before { content: ""; display: block; width: 18px; height: 18px; margin: 4px auto 8px; border-radius: 50%; background: #c4c4c4; }
+  .node.done::before { background: #c4c4c4 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'><path d='M4.500 9.200l3 3 6-6.400' fill='none' stroke='white' stroke-width='2.200'/></svg>") center / 18px no-repeat; }
+  .node.cur { color: #000; }
+  .node.cur::before { width: 26px; height: 26px; margin: 0 auto 6px; border-radius: 0; background: linear-gradient(#ff5a4a, #c4160c); clip-path: polygon(50% 0, 62% 35%, 98% 35%, 69% 57%, 80% 92%, 50% 71%, 20% 92%, 31% 57%, 2% 35%, 38% 35%); }
+  .bar { flex: 1 1 auto; height: 6px; margin-top: 12px; border-radius: 3px; background: #c4c4c4; min-width: 30px; }
+  .viewport { overflow: hidden; }
+  .panel { display: none; padding: 8px 12px 14px; }
+  .panel.on { display: block; animation: slide .35s ease-out; }
+  @keyframes slide { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
+  .panel h3 { margin: 4px 0 8px; font-size: 14px; color: #33487e; }
+  .field { margin: 0 0 11px; }
+  .field > label.lab, .field > .lab { display: block; margin-bottom: 2px; font-weight: bold; }
+  .hint { margin: 0 0 3px; font-size: 11px; color: #555; }
+  .err { margin-top: 3px; font-size: 11px; color: #b00020; }
+  .err { padding-left: 17px; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M7 1L13.500 13H.5z' fill='%23f5b800' stroke='%23b00020' stroke-width='1' stroke-linejoin='round'/><path d='M7 5v4' stroke='%23b00020' stroke-width='1.600'/><circle cx='7' cy='11' r='.9' fill='%23b00020'/></svg>") left 1px / 13px 13px no-repeat; }
+  .err.good { color: #2e7d32; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><circle cx='7' cy='7' r='6.500' fill='%234caf50'/><path d='M3.800 7.200l2.200 2.200 4.200-4.600' fill='none' stroke='white' stroke-width='1.800'/></svg>"); }
+  .err:empty { display: none; }
+  .field.bad input[type=text], .field.bad input[type=password], .field.bad input[type=email], .field.bad select { border-color: #b00020; background-color: #fff6f6; }
+  .field.ok input[type=text], .field.ok input[type=password], .field.ok input[type=email], .field.ok select { border-color: #4caf50; }
+  .req { margin-left: 2px; color: #b00020; font-weight: bold; }
+  .imgerr.good { color: #2e7d32; }
+  .fail ul { margin: 4px 0 0; padding-left: 18px; } .fail a { color: #7a0016; }
+  #toasts { position: fixed; right: 12px; bottom: 12px; z-index: 70; display: flex; flex-direction: column; gap: 8px; width: 340px; max-width: calc(100% - 24px); }
+  .toast { position: relative; padding: 9px 26px 22px 46px; min-height: 52px; cursor: default; line-height: 1.35; color: #1442a0; border: 1px solid #8ba4cf; border-radius: 3px;
+    background: linear-gradient(#e6f0fd 0%, #d3e3fa 45%, #c3d8f6 50%, #cfe1f9 100%); box-shadow: 0 2px 8px rgba(0,30,90,.35); animation: toastIn .35s ease-out; }
+  @keyframes toastIn { from { opacity: 0; transform: translateX(80px); } to { opacity: 1; transform: none; } }
+  .toast .ico { position: absolute; left: 10px; top: 10px; width: 28px; height: 28px; }
+  .toast b { display: block; text-decoration: underline; font-size: 12px; }
+  .toast .msg { display: block; text-decoration: underline; }
+  .toast.err { border-color: #c98a8a; background: linear-gradient(#fdeaea 0%, #f9d4d4 45%, #f3c2c2 50%, #f8d0d0 100%); color: #8a1020; }
+  .toast.good { border-color: #86b98a; background: linear-gradient(#eaf8ea 0%, #d5f0d6 45%, #c3e8c5 50%, #d0ecd2 100%); color: #1f6b27; }
+  .toast .ctl { position: absolute; top: 4px; right: 6px; display: flex; gap: 8px; font-size: 11px; }
+  .toast .ctl span { cursor: pointer; color: #222; }
+  .toast .acts { position: absolute; left: 46px; bottom: 4px; display: flex; gap: 6px; font-size: 12px; }
+  .toast .acts span { cursor: pointer; }
+  .cap { display: block; margin: 0 0 6px; border: 1px solid #7f7f7f; max-width: 100%; }
+  #cbx input[type=text] { max-width: 160px; text-transform: uppercase; letter-spacing: 2px; }
+  .row2 { display: flex; gap: 8px; flex-wrap: wrap; } .row2 .field { flex: 1 1 140px; margin-bottom: 11px; } .row2 input { max-width: 100%; }
+  .inline { display: flex; align-items: center; gap: 5px; margin: 4px 0; cursor: pointer; }
+  .inline.pick { display: inline-flex; margin-right: 12px; }
+  .full-only { display: block; }
+  .actions { margin-top: 12px; }
+  .steps { margin: 0 0 12px; padding-left: 20px; line-height: 1.5; }
+  .help { margin-top: 14px; padding-top: 8px; border-top: 1px solid #b6b6b6; }
+  .help h4 { margin: 0 0 4px; font-size: 12px; }
+  .pbanner { height: 80px; max-width: 340px; border: 1px solid #7f7f7f; background: #dde8f0 center / cover no-repeat; }
+  .pavatar { width: 80px; height: 80px; border: 1px solid #7f7f7f; background: #dde8f0 center / cover no-repeat; }
+  .imgerr { color: #b00020; font-size: 11px; }
+  .fail { margin: 0 0 10px; padding: 6px 8px; background: #fde8e8; border: 1px solid #b00020; color: #7a0016; }
+
+  /* Win95-style dialog */
+  .dim { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 12px; background: rgba(0,30,60,.45); z-index: 50; }
+  .dim.on { display: flex; }
+  .dlg { width: 380px; max-width: 100%; background: #fff; border: 2px solid; border-color: #d2d2d2 #4a4a4a #4a4a4a #d2d2d2; }
+  .dlg h2 { margin: 0; padding: 4px 8px; background: #33487e; color: #fff; font: bold 12px Verdana, Tahoma, sans-serif; }
+  .dlg .body { padding: 12px; line-height: 1.45; } .dlg .body p { margin: 0 0 10px; }
+  .dlg .btns { display: flex; gap: 6px; justify-content: flex-end; }
+
+  /* footer (same as homepage) */
+  .foot { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; column-gap: 40px; row-gap: 6px; width: 900px; max-width: 100%; margin: 0 auto; padding: 14px 16px 12px; box-sizing: border-box; color: #fff; font-size: 11px; border-top: 1px solid #c9f2c9; border-bottom: 4px solid #1b5e20;
+    background: linear-gradient(105deg, rgba(255,255,255,0) 20%, rgba(255,255,255,.25) 35%, rgba(255,255,255,0) 50%), linear-gradient(#4caf50 0%, #3d9a42 45%, #2e7d32 100%); }
+  .foot .flogo { grid-column: 1; grid-row: 1; width: 150px; max-width: 100%; height: auto; }
+  .foot .copy { grid-column: 1; grid-row: 2; font-size: 10px; }
+  .foot .l1 { grid-column: 2; grid-row: 1; } .foot .l2 { grid-column: 2; grid-row: 2; }
+  .foot .links { display: flex; flex-wrap: wrap; line-height: 16px; }
+  .foot .links a { padding: 0 8px; color: #fff; text-decoration: none; white-space: nowrap; }
+  .foot .links a:first-child { padding-left: 0; } .foot .links a + a { border-left: 1px solid rgba(255,255,255,.8); }
+  .foot .links a:hover { text-decoration: underline; }
+  @media (max-width: 620px) { .foot { grid-template-columns: 1fr; } .foot > * { grid-column: 1 !important; grid-row: auto !important; } }
+  /* phones: stack the top links above the Help / Sign Up tab so nothing is covered */
+  @media (max-width: 600px) {
+    .top { height: auto; min-height: 46px; display: flex; flex-direction: column; align-items: flex-end; }
+    .tab { position: static; margin-right: -16px; max-width: 100%; }
+  }
 </style>
 </head>
 <body>
-  <div class="top">Frutigerooms</div>
-  <div class="wrap">
-    <form class="box" id="f" autocomplete="off">
-      <h2>Register</h2>
-      <div class="body">
-        <div class="row"><label for="u">Username:</label><input id="u" type="text" maxlength="20"></div>
-        <div class="row"><label for="p">Password:</label><input id="p" type="password"></div>
-        <div class="msg" id="m" role="alert" hidden></div>
-        <button id="b" type="submit">Create account</button>
-        <div class="note"><a href="index.html">Back to login</a></div>
-      </div>
-    </form>
+<header class="banner">
+  <div class="top">
+    <img class="applogo" alt="Frutigerooms" src="https://github.com/Cleetus-Roschool/Vextria/blob/main/3934cb32-0e0b-47f1-988a-27f103be5ede.png?raw=true">
+    <div class="tab"><a href="/help" data-t="help">Help</a><i>|</i><a href="/register" data-t="signup">Sign Up</a><i>|</i><a href="/login" data-t="login">Log in</a></div>
   </div>
+  <div class="navwrap"><nav class="nav"><a href="/my/home" data-t="home">Home</a><a href="/Games" data-t="games">Games</a><a href="/Marketplace" data-t="market">Marketplace</a><a href="/Browse" data-t="people">People</a><a href="/upgrade" data-t="member">Membership</a><a href="/contests" data-t="contests">Contests</a><a href="/Fourms" data-t="forums">Forums</a><a href="/corp/news" data-t="news">News</a><a href="/help" data-t="help">Help</a></nav></div>
+</header>
+
+<div class="page"><div class="cols">
+
+  <!-- LEFT: info -->
+  <aside>
+    <div class="box"><h2>Already Registered?</h2><div class="body"><p>If you are already registered to Frutigerooms, go to the <a href="/login">Login</a> page.</p></div></div>
+    <div class="box"><h2>Terms and Privacy</h2><div class="body"><p>By registering your account to Frutigerooms you agree to accept our <a href="/corp/legal/terms-of-use">Terms of Use</a>, our <a href="/corp/legal/privacy-policy">Privacy Policy</a> and other legal documents.</p><p>We will not share your details with 3rd parties. All details shared will be hashed for maximum safety.</p></div></div>
+    <div class="box"><h2>Age Verification</h2><div class="body"><p>You must be at least 13 years old to create a Frutigerooms account. If you are under 13, you will not be able to register.</p><p>If there are any signs of fraudulent activity, your account WILL be locked until age verification has taken place. Your face/ID will NOT be shared with anyone.</p></div></div>
+  </aside>
+
+  <!-- RIGHT: slider -->
+  <main class="wizard">
+    <h2>Create Your Account</h2>
+    <div class="track" id="track"></div>
+
+    <div class="viewport">
+      <!-- STEP: Create Account -->
+      <section class="panel" id="p-create">
+        <form id="form" novalidate autocomplete="off">
+          <div class="fail" id="formFail" hidden></div>
+          <div class="fail" id="problems" role="alert" hidden></div>
+          <p class="hint"><span class="req">*</span> Required</p>
+
+          <div class="field">
+            <span class="lab">What is your birthday?<span class="req" title="Required">*</span></span>
+            <select id="bDay" aria-label="Day"></select>
+            <select id="bMonth" aria-label="Month"></select>
+            <select id="bYear" aria-label="Year"></select>
+            <p class="hint">Your birthday will not be saved or given out to any third parties. This is to customize your experience.</p>
+            <label class="inline full-only"><input type="checkbox" id="bAnnounce"> We will announce when it’s your birthday</label>
+            <div class="err" id="e-dob"></div>
+          </div>
+
+          <div class="field">
+            <label class="lab" for="uName">Choose a display name for your account<span class="req" title="Required">*</span></label>
+            <p class="hint">Use 3-20 alphanumeric characters, no spaces.</p>
+            <input type="text" id="uName" maxlength="20" autocapitalize="off" autocomplete="username">
+            <div class="err" id="e-user"></div>
+          </div>
+
+          <div class="full-only">
+            <span class="lab" style="display:block;font-weight:bold;margin-bottom:2px">Please enter your full name:<span class="req" title="Required">*</span></span>
+            <div class="row2">
+              <div class="field"><label for="fName">First Name:</label><input type="text" id="fName" maxlength="50"><div class="err" id="e-fname"></div></div>
+              <div class="field"><label for="lName">Last Name:</label><input type="text" id="lName" maxlength="50"><div class="err" id="e-lname"></div></div>
+            </div>
+            <div class="field">
+              <span class="lab">Gender:<span class="req" title="Required">*</span></span>
+              <label class="inline pick"><input type="radio" name="gender" value="female"> Female</label>
+              <label class="inline pick"><input type="radio" name="gender" value="male"> Male</label>
+              <label class="inline pick"><input type="radio" name="gender" value="nonbinary"> Non-Binary</label>
+              <label class="inline pick"><input type="radio" name="gender" value="none"> Prefer not to say</label>
+              <div class="err" id="e-gender"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="lab" for="pw1">Choose your password<span class="req" title="Required">*</span></label>
+            <p class="hint">10 - 200 characters, no spaces.</p>
+            <label for="pw1">Password:</label><br><input type="password" id="pw1" maxlength="200" autocomplete="new-password">
+            <div class="err" id="e-pw"></div>
+            <div style="margin-top:6px"><label for="pw2">Confirm Password:</label><br><input type="password" id="pw2" maxlength="200" autocomplete="new-password"></div>
+            <div class="err" id="e-pw2"></div>
+            <label class="inline"><input type="checkbox" id="showPw"> Show passwords</label>
+          </div>
+
+          <div class="field">
+            <label class="lab" for="email">Provide your email address<span class="req" title="Required">*</span></label>
+            <p class="hint">We will use this to send you a link that helps you recover your account if you forget your password.</p>
+            <input type="email" id="email" maxlength="254">
+            <div class="err" id="e-email"></div>
+          </div>
+
+          <div class="field">
+            <label class="inline"><input type="checkbox" id="agree"> I have read the <a href="/corp/legal/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/corp/legal/terms-of-use" target="_blank">Terms of Use</a><span class="req" title="Required">*</span></label>
+            <div class="err" id="e-agree"></div>
+          </div>
+
+          <div class="actions"><button class="btn pri" type="submit" id="createBtn">Create Account</button></div>
+        </form>
+      </section>
+
+      <!-- STEP: Your Account -->
+      <section class="panel" id="p-account">
+        <h3>Your Account</h3>
+        <div class="field"><span class="lab">Profile Banner:</span><div class="pbanner" id="bannerPrev"></div><input type="file" id="bannerIn" accept="image/png,image/jpeg,image/gif,image/webp"></div>
+        <div class="field"><span class="lab">Profile Picture:</span><div class="pavatar" id="avatarPrev"></div><input type="file" id="avatarIn" accept="image/png,image/jpeg,image/gif,image/webp"></div>
+        <div class="imgerr" id="imgErr"></div>
+        <div class="field"><label class="lab" for="desc">Description:</label><textarea id="desc" maxlength="500"></textarea></div>
+        <p class="hint">You can change these settings by pressing “Account”.</p>
+        <div class="actions"><button class="btn pri" type="button" id="saveBtn">Skip</button></div>
+      </section>
+
+      <!-- DONE -->
+      <section class="panel" id="p-done">
+        <h3>You’re all set!</h3>
+        <p>Welcome to Frutigerooms. Your account has been created.</p>
+        <div class="actions"><a class="btn pri" href="/my/home">Go to my Home</a></div>
+      </section>
+    </div>
+  </main>
+</div></div>
+
+<!-- age verification dialog, shown when Create Account succeeds -->
+<div id="toasts" aria-live="polite"></div>
+<div class="dim" id="dim"><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dTitle"><h2 id="dTitle"></h2><div class="body" id="dBody"></div></div></div>
+
+<footer class="foot">
+  <img class="flogo" id="footLogo" alt="Frutigerooms">
+  <div class="copy">&copy; 2026 Frutigerooms</div>
+  <div class="links l1"><a href="/corp/legal/privacy-policy" data-t="fprivacy">Privacy Policy</a><a href="/corp/legal/terms-of-use" data-t="fterms">Terms of use</a><a href="/corp/legal/about-us" data-t="about">About us</a><a href="/corp/contact-us" data-t="contact">Contact us</a><a href="/corp/carrers" data-t="careers">Careers</a><a href="/corp/legal/trademark" data-t="trademark">Trademark</a></div>
+  <div class="links l2"><a href="/corp/legal/guidelines" data-t="guidelines">Guidelines</a><a href="/corp/advertise-with-us" data-t="advertise">Advertise with Us</a><a href="/corp/news" data-t="news">News</a><a href="/parent/info" data-t="parents">Parents</a></div>
+</footer>
+
 <script>
-  const sb = window.supabase.createClient("https://sabjroumudvbelhegqxw.supabase.co", "sb_publishable_aCkLMO762Zpowe5dr6BstQ_ZCYfVjIk", { global: { fetch: (url, opts = {}) => {
-    // plain-object headers so the page also works inside preview sandboxes
+  const $ = s => document.querySelector(s);
+  const STEPS = { both: ["create", "account"] };
+  const LABEL = { create: "Create Account", account: "Your Account" };
+  const MIN_AGE = 13;
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  let type = "both", idx = 0;
+  $("#footLogo").src = document.querySelector(".applogo").src;
+
+  /* ---------- birthday dropdowns ---------- */
+  const opt = (v, t) => { const o = document.createElement("option"); o.value = v; o.textContent = t; return o; };
+  $("#bDay").append(opt("", "Day")); for (let d = 1; d <= 31; d++) $("#bDay").append(opt(d, d));
+  $("#bMonth").append(opt("", "Month")); MONTHS.forEach((m, i) => $("#bMonth").append(opt(i + 1, m)));
+  $("#bYear").append(opt("", "Year")); for (let y = new Date().getFullYear(); y >= 1900; y--) $("#bYear").append(opt(y, y));
+
+  function getAge() {
+    const d = +$("#bDay").value, m = +$("#bMonth").value, y = +$("#bYear").value;
+    if (!d || !m || !y) return null;
+    const dt = new Date(y, m - 1, d);
+    if (dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d || dt > new Date()) return NaN;
+    const now = new Date(); let a = now.getFullYear() - y;
+    if (now < new Date(now.getFullYear(), m - 1, d)) a--;
+    return a;
+  }
+  /* ---------- under-13 block: warns and stops Create Account, but they can change the birthday and try again ---------- */
+  const UNDER_MSG = "Sorry, you must be at least 13 years old to create a Frutigerooms account.";
+  try { localStorage.removeItem("frutigerooms-underage"); } catch (e) {} // clear any old lock
+  function checkAge() {
+    const a = getAge(), under = a !== null && !isNaN(a) && a < MIN_AGE;
+    $("#createBtn").disabled = under;
+    if (a !== null && isNaN(a)) return set("dob", "Please enter a real date of birth.");
+    if (under) { toast(UNDER_MSG, "err"); return set("dob", UNDER_MSG); }
+    return set("dob", "", a === null ? "" : "Birthday looks good!");
+  }
+  ["#bDay", "#bMonth", "#bYear"].forEach(s => $(s).addEventListener("change", checkAge));
+
+  /* ---------- slider / track ---------- */
+  function render() {
+    const steps = STEPS[type], t = $("#track"); t.innerHTML = "";
+    steps.forEach((s, i) => {
+      if (i) { const b = document.createElement("div"); b.className = "bar" + (i <= idx ? " done" : ""); t.append(b); }
+      const n = document.createElement("div"); n.className = "node" + (i < idx ? " done" : i === idx ? " cur" : ""); n.textContent = LABEL[s]; t.append(n);
+    });
+    show("p-" + steps[idx]);
+  }
+  function show(id) {
+    document.querySelectorAll(".panel").forEach(p => p.classList.remove("on"));
+    const p = document.getElementById(id); void p.offsetWidth; p.classList.add("on");
+  }
+  function next() {
+    if (idx < STEPS[type].length - 1) { idx++; render(); }
+    else { $("#track").innerHTML = ""; show("p-done"); }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ---------- Supabase (publishable key only; never put the secret key here) ---------- */
+  const SUPABASE_URL = "https://sabjroumudvbelhegqxw.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_aCkLMO762Zpowe5dr6BstQ_ZCYfVjIk";
+  const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { global: { fetch: (url, opts = {}) => {
     const h = {}; new Headers(opts.headers || {}).forEach((v, k) => { h[k] = v; });
     return fetch(url, Object.assign({}, opts, { headers: h }));
-  } } });
-  const m = document.getElementById("m"), b = document.getElementById("b");
-  const say = (t, ok) => { m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); m.hidden = false; };
-  document.getElementById("f").addEventListener("submit", async ev => {
-    ev.preventDefault();
-    const username = document.getElementById("u").value.trim();
-    const password = document.getElementById("p").value;
-    if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) return say("Username must be 3-20 letters, numbers or _.", false);
-    if (password.length < 6) return say("Password must be at least 6 characters.", false);
-    b.disabled = true;
-    try {
-      const free = await sb.rpc("username_available", { u: username });
-      if (free.error) { say("Setup problem: " + free.error.message, false); return; }
-      if (free.data === false) { say("That username is taken.", false); return; }
-      // creates the account from just username + password (no email involved)
-      const reg = await sb.rpc("register_user", { u: username, p: password });
-      if (reg.error) { say(reg.error.message, false); return; }
-      const { error } = await sb.auth.signInWithPassword({ email: reg.data, password });
-      if (error) { say("Account created, but auto-login failed: " + error.message + ". Try logging in on the main page.", false); return; }
-      say("Account created! Taking you back...", true);
-      setTimeout(() => { location.href = "index.html"; }, 1200);
-    } catch (e) { say("Something went wrong. Try again.", false); }
-    finally { b.disabled = false; }
+  } } }) : null;
+  let session = null, onEmailConfirmed = null;
+  // fires when the person clicks the confirmation link in their email (also works from another tab)
+  if (sb) sb.auth.onAuthStateChange((ev, sess) => {
+    if (ev !== "SIGNED_IN" || !sess) return;
+    session = sess;
+    if (onEmailConfirmed) onEmailConfirmed();
+    else if (/access_token|type=signup/.test(location.hash)) toast("Email authorised! You’re signed in.", "good");
   });
+
+  /* ---------- notifications ---------- */
+  const ICON = {
+    "": "<svg class='ico' viewBox='0 0 28 28'><rect x='2' y='6' width='24' height='17' rx='2' fill='#fff' stroke='#4a6fb5'/><path d='M2.500 7.500L14 16.500 25.500 7.500' fill='none' stroke='#4a6fb5' stroke-width='1.500'/><circle cx='22' cy='19' r='5' fill='#f5a623' stroke='#b36b00'/><path d='M22 16.500v3M22 21v.5' stroke='#fff' stroke-width='1.600'/></svg>",
+    good: "<svg class='ico' viewBox='0 0 28 28'><rect x='2' y='6' width='24' height='17' rx='2' fill='#fff' stroke='#4a8a4f'/><path d='M2.500 7.500L14 16.500 25.500 7.500' fill='none' stroke='#4a8a4f' stroke-width='1.500'/><circle cx='22' cy='19' r='5.500' fill='#4caf50' stroke='#2e7d32'/><path d='M19.300 19l2 2 3.500-4' fill='none' stroke='#fff' stroke-width='1.700'/></svg>",
+    err: "<svg class='ico' viewBox='0 0 28 28'><rect x='2' y='6' width='24' height='17' rx='2' fill='#fff' stroke='#b04a4a'/><path d='M2.500 7.500L14 16.500 25.500 7.500' fill='none' stroke='#b04a4a' stroke-width='1.500'/><circle cx='22' cy='19' r='5.500' fill='#d32f2f' stroke='#8a1020'/><path d='M19.700 16.700l4.600 4.600M24.300 16.700l-4.600 4.600' stroke='#fff' stroke-width='1.600'/></svg>"
+  };
+  const TITLE = { "": "Frutigerooms", good: "All done!", err: "Something went wrong" };
+  function toast(msg, kind) {
+    kind = kind || "";
+    const t = document.createElement("div"); t.className = "toast " + kind;
+    t.innerHTML = ICON[kind] + `<b>${TITLE[kind]}</b><span class="msg"></span><div class="ctl"><span title="Options">▾</span><span title="Close">✕</span></div><div class="acts"><span style="color:#c4160c" title="Flag">⚑</span><span title="Dismiss">✕</span></div>`;
+    t.querySelector(".msg").textContent = msg;
+    const kill = () => { t.style.transition = "opacity .3s"; t.style.opacity = "0"; setTimeout(() => t.remove(), 300); };
+    t.querySelectorAll(".ctl span:last-child, .acts span:last-child").forEach(x => x.onclick = kill);
+    $("#toasts").append(t); setTimeout(kill, 8000);
+  }
+  const esc = x => x.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const LBL = { dob: "Birthday", user: "Display name", fname: "First name", lname: "Last name", gender: "Gender", pw: "Password", pw2: "Confirm password", email: "Email", agree: "Privacy Policy and Terms" };
+  const FOC = { dob: "#bDay", user: "#uName", fname: "#fName", lname: "#lName", gender: "input[name=gender]", pw: "#pw1", pw2: "#pw2", email: "#email", agree: "#agree" };
+  function renderProblems() {
+    const box = $("#problems"), keys = Object.keys(LBL).filter(k => { const e = $("#e-" + k); return e.offsetParent && e.textContent && !e.classList.contains("good"); });
+    if (!keys.length) { box.hidden = true; return 0; }
+    box.innerHTML = `<b>Please fix the following (${keys.length}):</b><ul>` + keys.map(k => `<li><a href="#" data-f="${k}">${LBL[k]}</a> – ${esc($("#e-" + k).textContent)}</li>`).join("") + "</ul>";
+    box.hidden = false; return keys.length;
+  }
+  $("#problems").addEventListener("click", ev => { const a = ev.target.closest("a[data-f]"); if (!a) return; ev.preventDefault(); const el = $(FOC[a.dataset.f]); el.scrollIntoView({ block: "center", behavior: "smooth" }); el.focus(); });
+  ["input", "change"].forEach(n => $("#form").addEventListener(n, () => { if (!$("#problems").hidden) setTimeout(renderProblems, 0); }));
+  let warned = false;
+
+  /* ---------- validation ---------- */
+  const set = (id, msg, good) => {
+    const e = $("#e-" + id); e.textContent = msg || good || ""; e.classList.toggle("good", !msg && !!good);
+    const f = e.closest(".field");
+    if (f) { const bad = f.querySelector(".err:not(.good):not(:empty)"), ok = f.querySelector(".err.good:not(:empty)"); f.classList.toggle("bad", !!bad); f.classList.toggle("ok", !bad && !!ok); }
+    return !msg;
+  };
+  const COMMON = ["password", "1234567890", "qwertyuiop", "iloveyou", "letmein", "frutigerooms", "abcdefghij"];
+  function checkUser(show) {
+    const u = $("#uName").value;
+    if (!/^[A-Za-z0-9]{3,20}$/.test(u)) return set("user", show || u ? "Use 3-20 alphanumeric characters, no spaces." : "");
+    return set("user", "");
+  }
+  // asks the database (rpc username_available, see register_setup.sql); returns true if free or if it can't tell
+  async function usernameFree() {
+    const u = $("#uName").value;
+    if (!sb || !/^[A-Za-z0-9]{3,20}$/.test(u)) return true;
+    const r = await sb.rpc("username_available", { u });
+    if (r.error) { console.warn("username check failed:", r.error.message); if (!warned) { warned = true; toast("Couldn’t check if that username is taken right now. We’ll check again when you create your account.", ""); } return true; }
+    if (r.data === true) set("user", "", "Username is available!");
+    if (r.data === false) {
+      const alt = u.slice(0, 17) + Math.floor(100 + Math.random() * 900);
+      $("#e-user").innerHTML = `This username is already taken. Try <a href="#" id="altName">${alt}</a> instead!`;
+      $("#altName").onclick = ev => { ev.preventDefault(); $("#uName").value = alt; set("user", ""); };
+      return false;
+    }
+    return true;
+  }
+  function checkPw(show) {
+    const p = $("#pw1").value, u = $("#uName").value.toLowerCase(), l = p.toLowerCase();
+    let m = "";
+    if (p.length < 10 || p.length > 200 || /\s/.test(p)) m = "Use 10 - 200 characters, no spaces.";
+    else if (COMMON.some(c => l.includes(c)) || new Set(p).size < 5 || (u && l.includes(u))) m = "Password too easy to guess. Try another.";
+    return set("pw", show || p ? m : "", !m && p ? "Strong enough!" : "");
+  }
+  function checkPw2() { const a = $("#pw2").value, ok = a && a === $("#pw1").value; return set("pw2", a && !ok ? "Passwords do not match." : "", ok ? "Passwords match!" : ""); }
+  const chkName = (i, k, w, show) => { const v = $(i).value.trim(); return set(k, !v && show ? `Please enter your ${w} name.` : "", v ? "Looks good!" : ""); };
+  const chkEmail = show => {
+    const v = $("#email").value.trim(), good = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    return set("email", !good && (show || v) ? "Please enter a valid email address." : "", good ? "Email looks good!" : "");
+  };
+  [["#fName", "fname", "first"], ["#lName", "lname", "last"]].forEach(([i, k, w]) => { $(i).addEventListener("input", () => chkName(i, k, w, false)); $(i).addEventListener("blur", () => chkName(i, k, w, true)); });
+  $("#email").addEventListener("input", () => chkEmail(false)); $("#email").addEventListener("blur", () => { if ($("#email").value) chkEmail(true); });
+  document.querySelectorAll("input[name=gender]").forEach(r => r.addEventListener("change", () => set("gender", "", "Looks good!")));
+  $("#agree").addEventListener("change", () => set("agree", $("#agree").checked ? "" : "You must read and accept the Privacy Policy and Terms of Use.", $("#agree").checked ? "Thanks!" : ""));
+  $("#uName").addEventListener("input", () => { set("user", ""); });
+  $("#uName").addEventListener("blur", async () => { if (checkUser(false) && $("#uName").value) await usernameFree(); });
+  $("#pw1").addEventListener("input", () => { checkPw(false); if ($("#pw2").value) checkPw2(); });
+  $("#pw2").addEventListener("input", checkPw2);
+  $("#showPw").addEventListener("change", e => { $("#pw1").type = $("#pw2").type = e.target.checked ? "text" : "password"; });
+
+  $("#form").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const a = getAge(); let ok = true;
+    ok = checkAge() && ok;
+    if (a !== null && !isNaN(a) && a < MIN_AGE) return;
+    if (a === null) ok = set("dob", "Please enter your birthday (required).") && ok;
+    ok = checkUser(true) && ok;
+    if (ok || /^[A-Za-z0-9]{3,20}$/.test($("#uName").value)) ok = (await usernameFree()) && ok;
+    ok = chkName("#fName", "fname", "first", true) && ok;
+    ok = chkName("#lName", "lname", "last", true) && ok;
+    ok = set("gender", document.querySelector("input[name=gender]:checked") ? "" : "Please choose an option.", "Looks good!") && ok;
+    ok = checkPw(true) && ok; ok = checkPw2() && ok;
+    if (!$("#pw2").value) ok = set("pw2", "Please confirm your password.") && ok;
+    ok = chkEmail(true) && ok;
+    ok = set("agree", $("#agree").checked ? "" : "You must read and accept the Privacy Policy and Terms of Use.", "Thanks!") && ok;
+    if (!ok) { const n = renderProblems(); $("#problems").scrollIntoView({ block: "center", behavior: "smooth" }); toast(`Please fix ${n || "the highlighted"} ${n === 1 ? "thing" : "things"} before creating your account.`, "err"); return; }
+    $("#problems").hidden = true;
+
+    const data = { type, birthday: { d: +$("#bDay").value, m: +$("#bMonth").value, y: +$("#bYear").value }, announceBirthday: $("#bAnnounce").checked,
+      username: $("#uName").value, firstName: $("#fName").value.trim(), lastName: $("#lName").value.trim(),
+      gender: (document.querySelector("input[name=gender]:checked") || {}).value || null, password: $("#pw1").value, email: $("#email").value.trim() };
+    const cap = await captchaDialog();
+    if (cap === null) { toast("Security check cancelled. Press Create Account to try again.", ""); return; }
+    const btn = $("#createBtn"); btn.disabled = true; btn.textContent = "Creating..."; $("#formFail").hidden = true; toast("Creating your account...", "");
+    try { await registerAccount(data, cap === "local" ? undefined : cap); }
+    catch (err) { const m = err.message || "Something went wrong. Please try again."; $("#formFail").textContent = m; $("#formFail").hidden = false; toast(m, "err"); btn.disabled = false; btn.textContent = "Create Account"; $("#formFail").scrollIntoView({ block: "center", behavior: "smooth" }); return; }
+    btn.disabled = false; btn.textContent = "Create Account"; toast("Account created!", "good");
+    // ask the browser (Chrome/Edge) to offer to save the new login in its password manager
+    try { if (window.PasswordCredential && navigator.credentials && navigator.credentials.store) navigator.credentials.store(new PasswordCredential({ id: data.username, password: data.password, name: data.username })).catch(() => {}); } catch (e) {}
+    await emailDialog(data);
+    next();
+  });
+
+  /* ---------- dialogs: security check (captcha) and email authorisation ---------- */
+  const rnd = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+  function openDialog(title, html) { $("#dTitle").textContent = title; $("#dBody").innerHTML = html; $("#dim").classList.add("on"); }
+  function closeDialog() { $("#dim").classList.remove("on"); $("#dBody").innerHTML = ""; }
+
+  // Cloudflare Turnstile gives REAL bot/AI protection. Paste your site key here and turn on Captcha protection in
+  // Supabase (Authentication > Attack Protection) with the secret key. With the key left empty, the page uses a simple built-in
+  // picture check that only stops casual bots.
+  const TURNSTILE_SITE_KEY = "";
+  let capText = "";
+  function drawCaptcha(cv) {
+    const c = cv.getContext("2d"), W = cv.width, H = cv.height, set = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; capText = "";
+    c.fillStyle = "#eef4fb"; c.fillRect(0, 0, W, H);
+    for (let i = 0; i < 7; i++) { c.strokeStyle = `rgba(${rnd(0, 150)},${rnd(0, 150)},${rnd(100, 200)},.55)`; c.lineWidth = rnd(1, 2); c.beginPath(); c.moveTo(rnd(0, W), rnd(0, H)); c.bezierCurveTo(rnd(0, W), rnd(0, H), rnd(0, W), rnd(0, H), rnd(0, W), rnd(0, H)); c.stroke(); }
+    for (let i = 0; i < 5; i++) {
+      const ch = set[crypto.getRandomValues(new Uint32Array(1))[0] % set.length]; capText += ch;
+      c.save(); c.translate(14 + i * 28, H / 2 + rnd(-5, 5)); c.rotate(rnd(-28, 28) * Math.PI / 180);
+      c.font = `bold ${rnd(26, 32)}px Verdana`; c.fillStyle = `rgb(${rnd(0, 90)},${rnd(0, 90)},${rnd(60, 160)})`; c.textBaseline = "middle"; c.fillText(ch, 0, 0); c.restore();
+    }
+    for (let i = 0; i < 60; i++) { c.fillStyle = `rgba(${rnd(0, 120)},${rnd(0, 120)},${rnd(80, 200)},.5)`; c.fillRect(rnd(0, W), rnd(0, H), 2, 2); }
+  }
+  // resolves with a token ("local" for the built-in check) or null if cancelled
+  function captchaDialog() {
+    return new Promise(res => {
+      const useT = !!TURNSTILE_SITE_KEY;
+      openDialog("Security Check", `<p>Please prove you’re a real person. This helps protect Frutigerooms from bots and AI spam.</p>
+        <div id="cbx">${useT ? '<div id="tsBox"></div>' : '<canvas class="cap" id="capCv" width="160" height="50"></canvas><input type="text" id="capIn" maxlength="5" autocomplete="off" placeholder="Type the 5 characters"> <a href="#" id="capNew">Different image</a>'}</div>
+        <div class="err" id="capErr"></div>
+        <div class="btns" style="margin-top:10px"><button class="btn" type="button" id="capNo">Cancel</button><button class="btn pri" type="button" id="capGo">Verify</button></div>`);
+      let tok = "";
+      if (useT) {
+        const go = () => window.turnstile.render("#tsBox", { sitekey: TURNSTILE_SITE_KEY, callback: t => { tok = t; $("#capErr").textContent = ""; } });
+        if (window.turnstile) go(); else { const sc = document.createElement("script"); sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"; sc.onload = go; document.head.append(sc); }
+      } else { drawCaptcha($("#capCv")); $("#capNew").onclick = e => { e.preventDefault(); drawCaptcha($("#capCv")); $("#capIn").value = ""; }; }
+      $("#capNo").onclick = () => { closeDialog(); res(null); };
+      $("#capGo").onclick = () => {
+        if (useT) { if (!tok) { $("#capErr").textContent = "Please complete the security check."; return; } closeDialog(); return res(tok); }
+        if ($("#capIn").value.trim().toUpperCase() !== capText) { $("#capErr").textContent = "That doesn’t match. Please try again."; drawCaptcha($("#capCv")); $("#capIn").value = ""; return; }
+        closeDialog(); res("local");
+      };
+    });
+  }
+
+  // email authorisation: a 6-digit code is emailed by Supabase (the "Confirm signup" email template must contain {{ .Token }})
+  function emailDialog(d) {
+    return new Promise(res => {
+      const fraud = "<p>If we ever see signs of fraudulent activity, your account will be locked until age verification has taken place.</p>";
+      if (session) { toast("Your email was accepted. You’re signed in.", "good"); return res(); } // Supabase "Confirm email" is off
+      let cool = false;
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      onEmailConfirmed = () => { onEmailConfirmed = null; closeDialog(); toast("Email authorised!", "good"); res(); };
+
+      // main dialog: enter the emailed code
+      const show = () => {
+        openDialog("Email Authorisation", `<p>We’ve sent a 6-digit code to <b>${esc(d.email)}</b>. Enter it below to authorise your email address, or click the confirmation link in the email.</p>
+          <input type="text" id="emCode" maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="123456" style="max-width:130px;letter-spacing:3px">
+          <div class="err" id="emErr"></div>${fraud}
+          <div class="btns" style="flex-wrap:wrap"><a href="#" id="emResend" style="margin-right:auto;align-self:center">Resend code</a><button class="btn" type="button" id="emChange">Change</button><button class="btn" type="button" id="emSkip">Later</button><button class="btn pri" type="button" id="emGo">Authorise</button></div>`);
+        $("#emSkip").onclick = confirmLater;
+        $("#emChange").onclick = change;
+        $("#emResend").onclick = async e => {
+          e.preventDefault(); if (cool) return; cool = true; setTimeout(() => { cool = false; }, 60000);
+          const r = await sb.auth.resend({ type: "signup", email: d.email });
+          if (r.error) toast("Couldn’t resend the code: " + r.error.message, "err"); else toast("A new code is on its way.", "good");
+        };
+        $("#emGo").onclick = async () => {
+          const code = $("#emCode").value.replace(/\s/g, "");
+          if (!/^\d{6}$/.test(code)) { $("#emErr").textContent = "Please enter the 6-digit code from your email."; return; }
+          $("#emGo").disabled = true;
+          const r = await sb.auth.verifyOtp({ email: d.email, token: code, type: "signup" });
+          $("#emGo").disabled = false;
+          if (r.error) { $("#emErr").textContent = "That code isn’t right or has expired."; toast("Email code not accepted.", "err"); return; }
+          onEmailConfirmed = null; session = r.data.session; closeDialog(); toast("Email authorised!", "good"); res();
+        };
+      };
+
+      // "Later": ask first, with the warning
+      const confirmLater = () => {
+        openDialog("Verify Email Later?", `<p>Do you want to verify your email later?</p>
+          <p>If you do not supply a valid email address and you lose your password, we cannot help you recover your account.</p>
+          <p>You may be asked to verify your email with any reasons, You can verify your email in account settings.</p>
+          <div class="btns"><button class="btn" type="button" id="emBack">Go back</button><button class="btn pri" type="button" id="emYes">Yes, later</button></div>`);
+        $("#emBack").onclick = show;
+        $("#emYes").onclick = () => { onEmailConfirmed = null; closeDialog(); toast("You can authorise your email later. Some features stay locked until you do.", ""); res(); };
+      };
+
+      // "Change": use a different email address and send a new code there
+      const change = () => {
+        openDialog("Change Email", `<p>Enter the email address you want to use. We’ll send a new code to it.</p>
+          <input type="email" id="emNew" maxlength="254" value="${esc(d.email)}">
+          <div class="err" id="emNewErr"></div>
+          <div class="btns"><button class="btn" type="button" id="emCancel">Cancel</button><button class="btn pri" type="button" id="emSave">Change</button></div>`);
+        $("#emNew").focus();
+        $("#emCancel").onclick = show;
+        $("#emSave").onclick = async () => {
+          const v = $("#emNew").value.trim(), err = m => { $("#emNewErr").textContent = m; };
+          if (!EMAIL_RE.test(v)) return err("Please enter a valid email address.");
+          if (v.toLowerCase() === d.email.toLowerCase()) return show();
+          if (!d.userId) return err("Couldn’t change your email. Please try again later.");
+          err(""); $("#emSave").disabled = true;
+          const r = await sb.functions.invoke("change-email", { body: { userId: d.userId, password: d.password, newEmail: v } });
+          if (r.error) {
+            $("#emSave").disabled = false;
+            let m = "Couldn’t change your email. Please try again later.";
+            try { const j = await r.error.context.json(); if (/already/i.test(j.error || "")) m = "That email is already registered."; } catch (e) {}
+            return err(m);
+          }
+          d.email = v; $("#email").value = v; cool = false;
+          const rs = await sb.auth.resend({ type: "signup", email: v });
+          if (rs.error) toast("Email changed, but we couldn’t send the code: " + rs.error.message, "err"); else toast("A new code is on its way to " + v + ".", "good");
+          show();
+        };
+      };
+
+      show();
+    });
+  }
+
+  /* ---------- sign up with Supabase ----------
+     The row in "profiles" is created by a database trigger (register_setup.sql), not by this page. */
+  async function registerAccount(d, captchaToken) {
+    if (!sb) throw new Error("Could not connect to the server. Please try again later.");
+    const age = getAge();
+    if (age === null || isNaN(age) || age < MIN_AGE) throw new Error(UNDER_MSG);
+    const email = d.email;
+    const meta = { username: d.username, account_type: d.type, under_13: false, announce_birthday: d.announceBirthday, first_name: d.firstName, last_name: d.lastName, gender: d.gender };
+    if (d.announceBirthday) { meta.birth_month = d.birthday.m; meta.birth_day = d.birthday.d; } // month + day only, never the year
+    const { data, error } = await sb.auth.signUp({ email, password: d.password, options: { data: meta, captchaToken: captchaToken || undefined, emailRedirectTo: location.href.split("#")[0].split("?")[0] } });
+    if (error) {
+      console.error(error);
+      if (/failed to fetch|network|load failed/i.test(error.message)) throw new Error("Can’t reach the server. Check your internet connection and try again.");
+      if (/already registered|already been registered/i.test(error.message)) throw new Error("That email is already registered. Please log in instead.");
+      if (/database error/i.test(error.message)) throw new Error("That username may already be taken, or the database is not set up yet (run register_setup.sql).");
+      if (/rate limit|too many/i.test(error.message)) throw new Error("Too many attempts. Please wait a few minutes and try again.");
+      throw new Error(error.message);
+    }
+    if (data.user && data.user.identities && data.user.identities.length === 0) throw new Error("That email is already registered. Please log in instead.");
+    session = data.session; // null if "Confirm email" is switched on in Supabase Auth settings
+    d.userId = data.user && data.user.id; // used by the "Change" email button
+  }
+
+  async function saveProfile() {
+    const uid = session && session.user.id, upd = {};
+    if (!uid) return; // no session yet (email confirmation on): they can edit this later from Account
+    const up = async (file, name) => {
+      const ext = (file.type.split("/")[1] || "png").replace("jpeg", "jpg"), path = `${uid}/${name}.${ext}`;
+      const r = await sb.storage.from("profile-images").upload(path, file, { upsert: true, contentType: file.type });
+      if (r.error) throw r.error;
+      return sb.storage.from("profile-images").getPublicUrl(path).data.publicUrl + "?v=" + Date.now();
+    };
+    if ($("#avatarIn").files[0]) upd.avatar_url = await up($("#avatarIn").files[0], "avatar");
+    if ($("#bannerIn").files[0]) upd.banner_url = await up($("#bannerIn").files[0], "banner");
+    if ($("#desc").value.trim()) upd.description = $("#desc").value.trim();
+    if (!Object.keys(upd).length) return;
+    const r = await sb.from("profiles").update(upd).eq("id", uid);
+    if (r.error) throw r.error;
+  }
+
+  /* ---------- Your Account step ---------- */
+  function preview(inputId, boxId) {
+    $(inputId).addEventListener("change", e => {
+      const f = e.target.files[0], box = $(boxId); $("#imgErr").className = "imgerr"; $("#imgErr").textContent = "";
+      if (!f) { box.style.backgroundImage = ""; return upd(); }
+      if (!/^image\/(png|jpeg|gif|webp)$/.test(f.type) || f.size > 2 * 1024 * 1024) { e.target.value = ""; box.style.backgroundImage = ""; $("#imgErr").textContent = "Images must be PNG, JPG, GIF or WEBP and under 2 MB."; return upd(); }
+      box.style.backgroundImage = `url(${URL.createObjectURL(f)})`; $("#imgErr").className = "imgerr good"; $("#imgErr").textContent = "Image added!"; upd();
+    });
+  }
+  const upd = () => { $("#saveBtn").textContent = ($("#bannerIn").files.length || $("#avatarIn").files.length || $("#desc").value.trim()) ? "Save" : "Skip"; };
+  preview("#bannerIn", "#bannerPrev"); preview("#avatarIn", "#avatarPrev"); $("#desc").addEventListener("input", upd);
+  $("#saveBtn").addEventListener("click", async () => {
+    const b = $("#saveBtn"), save = b.textContent === "Save";
+    if (save) { b.disabled = true; try { await saveProfile(); } catch (e) { console.error(e); $("#imgErr").textContent = "Could not save: " + (e.message || e); toast("Could not save your profile. Please try again or press Skip.", "err"); b.disabled = false; return; } b.disabled = false; }
+    next();
+  });
+
+  render();
 </script>
 </body>
 </html>
