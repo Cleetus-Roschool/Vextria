@@ -113,44 +113,40 @@
   .banner { padding-bottom: 0; }
   .navwrap, .acct { margin-left: -16px; margin-right: -16px; }
 
-  /* parents box under the login */
-  .mparents { margin: 0; border-color: #802c2a; grid-column: 1; grid-row: 2; align-self: start; width: 100%; max-width: 100%; box-sizing: border-box; }
-  .mparents .btns { display: flex; flex-wrap: wrap; gap: 6px; }
-  .mparents .btn { display: block; box-sizing: border-box; flex: 1 1 auto; padding: 4px 6px; white-space: nowrap; text-align: center; text-decoration: none; }
-  .mparents .btn.light { flex: 0 0 auto; }
-  .mparents .btn.orange { background: #a43938; color: #fff; border-color: #d26a67 #5a1010 #5a1010 #d26a67; box-shadow: inset 1px 1px 0 #c25451, inset -1px -1px 0 #6e2321; }
-  .mparents .btn.orange:active { border-color: #5a1010 #d26a67 #d26a67 #5a1010; box-shadow: none; }
-  .mparents .btn.orange.light { background: #cc6360; border-color: #e6a09e #8c2f2d #8c2f2d #e6a09e; box-shadow: inset 1px 1px 0 #d98582, inset -1px -1px 0 #a24744; }
-  .mparents .btn.orange.light:active { border-color: #8c2f2d #e6a09e #e6a09e #8c2f2d; box-shadow: none; }
-  .mparents h2 { background: #a43938; }
-  .mparents p { margin: 0 0 10px; line-height: 1.4; }
 
-  /* top row: login | photo (photo matches the login's height); parents box sits below the photo */
+  /* ---------- layout ----------
+     left column : login, then the 250x250 ad pinned to the bottom.
+     right column: image (fixed 618x237), then the 4 feature boxes directly under it, stretched down
+                   so their bottom edge lines up with the bottom of the ad. */
   .cols { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 10px; align-items: stretch; }
-  .cols > .frame { grid-column: 1; grid-row: 1; }
-  .cols > .ad.video { grid-column: 2; grid-row: 1; }
-  body.in .mparents { display: none; }
-  body.in .cols > .ad.video { grid-column: 1 / 3; grid-row: 1; }
-  .ad { flex: none; box-sizing: border-box; border: 1px solid #b6b6b6; background: #f4f8fb; overflow: hidden; }
-  .ad .slot { position: relative; }
+  .colL, .colR { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .colL .ad300 { margin-top: auto; }
+  body.in .colL .ad300 { margin-top: 0; }
+  .colR .feats { flex: 1 1 auto; grid-template-rows: 1fr; }
+
+  /* the image: exactly 618 x 237 (the 1px border makes the box 620 wide) */
+  .ad { box-sizing: border-box; border: 1px solid #b6b6b6; background: #f4f8fb; overflow: hidden; }
+  .ad.video { width: 620px; max-width: 100%; flex: none; }
+  .ad .slot { position: relative; width: 100%; max-width: 618px; aspect-ratio: 618 / 237; }
   .ad .slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ad.video { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
-  .ad.video .slot { width: 100%; flex: 1 1 auto; min-height: 0; }
-  body.in .ad.video .slot { min-height: 300px; }
-  .frame { flex: none; }
-  /* when logged in the login box is hidden, so the video just takes the space */
+
+  /* the 250x250 ad */
+  .ad300 { width: 250px; max-width: 100%; flex: none; }
+  .ad300 .adlabel { margin: 0 0 2px; font: 9px Verdana, Tahoma, sans-serif; color: #777; text-align: right; text-transform: uppercase; letter-spacing: 1px; }
+  .ad300 .adbox { width: 250px; height: 250px; max-width: 100%; box-sizing: border-box; overflow: hidden; border: 1px solid #b6b6b6; background: #f4f8fb; display: flex; align-items: center; justify-content: center; text-align: center; font: 12px Verdana, Tahoma, sans-serif; color: #555; }
+  .ad300 .adbox a { color: #1f5aa6; font-weight: bold; }
+
   @media (max-width: 760px) {
-    .cols { grid-template-columns: minmax(0, 1fr); justify-content: stretch; }
-    .cols > .frame, .cols > .ad.video, .cols > .mparents, body.in .cols > .ad.video { grid-column: 1; grid-row: auto; }
-      .cols > .ad.video .slot { aspect-ratio: 16 / 9; }
-    .mparents { width: 100%; }
-    .ad.video .slot { aspect-ratio: 16 / 9; flex: none; }
-    .ad.video, .frame { width: 100%; }
+    .cols { display: flex; flex-direction: column; }
+    .colL, .colR { display: contents; }
+    .ad.video { order: -1; width: 100%; }
+    .frame { width: 100%; }
+    .colR .feats { flex: none; }
+    .colL .ad300 { order: 5; margin: 0 auto; }
   }
 
   /* four small feature sections under the photo */
-  .feats { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch; }
-  body.in .feats { grid-column: 1 / 3; }
+  .feats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch; }
   .feat { padding: 10px 6px 12px; text-align: center; color: #1a1a1a; font: 10.5px/1.4 Verdana, Tahoma, sans-serif; }
   .feat.green { background: #88d54a; } .feat.blue { background: #3aa3dc; } .feat.yellow { background: #efb712; } .feat.pink { background: #eb59b7; }
   .feat .circ { width: 62px; height: 62px; margin: 0 auto 8px; border-radius: 50%; background: #fff; border: 2px solid rgba(0,0,0,.18); display: flex; align-items: center; justify-content: center; }
@@ -158,8 +154,8 @@
   .feat.green .circ svg { stroke: #88d54a; } .feat.blue .circ svg { stroke: #3aa3dc; } .feat.yellow .circ svg { stroke: #efb712; } .feat.pink .circ svg { stroke: #eb59b7; }
   .feat h3 { margin: 0 0 5px; font: bold 11px Verdana, Tahoma, sans-serif; }
   .feat p { margin: 0; }
-  @media (max-width: 760px) { .cols > .feats, body.in .cols > .feats { grid-column: 1; grid-row: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 480px) { .cols > .feats { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 760px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .feats { grid-template-columns: minmax(0, 1fr); } }
 
   /* drop shadow behind the photo (more specific than the global reset below, so it wins) */
   .ad.video { box-shadow: 4px 6px 12px rgba(0,0,0,.45) !important; }
@@ -190,16 +186,16 @@
   </header>
   <div class="page"><div class="cols">
 
-
+    <div class="colL">
     <!-- LEFT: login -->
     <main class="frame">
-    <form class="mlogin" id="loginForm" autocomplete="off">
+    <form class="mlogin" id="loginForm" novalidate>
       <h2 data-t="mlogin">Member Login</h2>
       <div class="body">
-        <div class="row"><label class="lab" for="fUser" data-t="useremail">Username or E-mail:</label><input type="text" id="fUser"></div>
-        <div class="row"><label class="lab" for="fPass" data-t="password">Password:</label><div class="pw"><input type="password" id="fPass"><button type="button" class="eye" id="fShow" aria-label="Show password" title="Show password"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#33487e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path id="eyeOpen" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle id="eyeDot" cx="12" cy="12" r="3"/><path id="eyeSlash" d="M3 3l18 18" style="display:none"/></svg></button></div></div>
+        <div class="row"><label class="lab" for="fUser" data-t="useremail">Username or E-mail:</label><input type="text" id="fUser" name="username" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="254"></div>
+        <div class="row"><label class="lab" for="fPass" data-t="password">Password:</label><div class="pw"><input type="password" id="fPass" name="password" autocomplete="current-password" maxlength="200"><button type="button" class="eye" id="fShow" aria-label="Show password" title="Show password"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#33487e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path id="eyeOpen" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle id="eyeDot" cx="12" cy="12" r="3"/><path id="eyeSlash" d="M3 3l18 18" style="display:none"/></svg></button></div></div>
         <div class="err" id="loginErr" role="alert" hidden>Incorrect username or password.</div>
-        <div class="keep"><label><input type="checkbox" id="fKeep"><span data-t="keepme">Keep me logged in</span></label></div>
+        <div class="keep"><label><input type="checkbox" id="fKeep" checked><span data-t="keepme">Keep me logged in</span></label></div>
         <div class="btns"><button class="btn" type="button" id="loginBtn" data-t="login">Log in</button><button class="btn orange" type="button" id="registerBtn" data-t="register">Register!</button></div>
         <hr>
         <div class="links"><a href="/parents/login" data-t="parentlogin">Parent Login</a><a href="/login/forgotpassword" data-t="forgot">Forgot your password?</a></div>
@@ -207,21 +203,20 @@
     </form>
     </main>
 
-    <!-- RIGHT: image, same height as the login, fills the rest of the row -->
+    <!-- 250x250 AD: paste your ad code inside .adbox (replace the placeholder link) -->
+    <aside class="ad300">
+      <div class="adlabel">Advertisement</div>
+      <div class="adbox" id="ad300"><a href="/corp/advertise-with-us">Advertise with Us<br>250 &times; 250</a></div>
+    </aside>
+    </div>
+
+    <div class="colR">
+    <!-- RIGHT: image, fixed 618 x 237 -->
     <aside class="ad video">
       <div class="slot" id="adVideo">
-        <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/The%20Free,%202000s%20Themed%20Gaming%20and%20Social%20Media%20Platform.png?raw=true" alt="The Free, 2000s Themed Gaming and Social Media Platform">
+        <img src="https://github.com/Cleetus-Roschool/Vextria/blob/main/The%20Free,%202000s%20Themed%20Gaming%20and%20Social%20Media%20Platform.png?raw=true" alt="The Free, 2000s Themed Gaming and Social Media Platform" width="618" height="237">
       </div>
     </aside>
-
-    <!-- BELOW LOGIN: parents -->
-    <div class="mlogin mparents">
-      <h2 data-t="parentsTitle">Parents</h2>
-      <div class="body">
-        <p><b data-t="parentsHello">Hello Parents!</b> <span data-t="parentsText">Welcome to Frutigerooms, the 2k social media / gaming platform. This platform is a kid-friendly place on the internet where your child can play and create games and communicate in a safe, moderated environment.</span></p>
-        <div class="btns"><a class="btn orange light" href="/parent/info" data-t="learnmore">Learn More</a><a class="btn orange" href="/parents/register" data-t="parentacct">Parent Account</a></div>
-      </div>
-    </div>
 
   <section class="feats">
     <div class="feat green">
@@ -232,21 +227,21 @@
         <rect x="42" y="48" width="33" height="22" rx="3"/><circle cx="70" cy="59" r="1.500"/>
       </svg></div>
       <h3>CROSS-PLATFORM...</h3>
-      <p>You can access social features and so much much on any devices around the world. Plus, We are free. <b>Playing games is currently exclusive to Windows PC</b></p>
+      <p>You can access social features and so much much on any devices around the world. Plus, We are free.</p>
     </div>
     <div class="feat blue">
-      <div class="circ"><svg viewBox="0 0 80 80" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Hammer">
-        <g transform="rotate(45 40 40)"><rect x="36" y="26" width="8" height="46" rx="3"/><rect x="20" y="10" width="40" height="16" rx="4"/></g>
+      <div class="circ"><svg viewBox="0 0 80 80" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Pencil">
+        <path d="M14 66l4-16L52 16a6 6 0 0 1 8.500 0l3.500 3.500a6 6 0 0 1 0 8.500L30 62z"/><path d="M46 22l12 12"/><path d="M18 50l12 12"/>
       </svg></div>
-      <h3>CREATE ANYTHING...</h3>
-      <p>Discover Hundreds of player-created games, Or make your own game for your friends and other players to play in</p>
+      <h3>EXPRESS YOURSELF...</h3>
+      <p>Share your thoughts, post your latest creations, or tell your story. Build a feed that is uniquely yours for your friends and followers to see.</p>
     </div>
     <div class="feat pink">
       <div class="circ"><svg viewBox="0 0 80 80" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Chat bubble">
         <path d="M14 16h52a5 5 0 0 1 5 5v28a5 5 0 0 1-5 5H38L24 68V54h-10a5 5 0 0 1-5-5V21a5 5 0 0 1 5-5z"/><circle cx="27" cy="35" r="1.800"/><circle cx="40" cy="35" r="1.800"/><circle cx="53" cy="35" r="1.800"/>
       </svg></div>
-      <h3>NOT JUST A GAMING PLATFORM...</h3>
-      <p>Not wanting to play games or use this mostly for social media? Well you can! (13+) You can disable all gaming content and use Frutigerooms for communication like the old times.</p>
+      <h3>COMMUNICATE WITH ANYONE, ANYWHERE...</h3>
+      <p>Discover hundreds of user-generated groups of your favourite topic or find friends forever here.</p>
     </div>
     <div class="feat yellow">
       <div class="circ"><svg viewBox="0 0 80 80" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Paint brush and paint bucket">
@@ -257,6 +252,7 @@
       <p>Not a big Frutiger Aero fan? How about changing to another Frutiger Family or going to a flat design? You can customize your own experience. Not every customization is behind a paywall.</p>
     </div>
   </section>
+    </div>
 
   </div>
   </div>
@@ -282,7 +278,38 @@
   // Supabase. Only the PUBLISHABLE key belongs in browser code. Never put the secret key here.
   const SUPABASE_URL = "https://sabjroumudvbelhegqxw.supabase.co";
   const SUPABASE_KEY = "sb_publishable_aCkLMO762Zpowe5dr6BstQ_ZCYfVjIk";
-  const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { global: { fetch: (url, opts = {}) => {
+  /* ---------- keep-signed-in: the Supabase session is kept in a cookie (split into chunks because it is bigger than 4 KB),
+     with browser storage as a fallback if cookies are blocked. Same code on the home and register pages so both share the login. ---------- */
+  const KEEP_KEY = "frutigerooms-keep";
+  const keepOn = () => { try { return localStorage.getItem(KEEP_KEY) !== "0"; } catch (e) { return true; } };
+  const setKeep = v => { try { localStorage.setItem(KEEP_KEY, v ? "1" : "0"); } catch (e) {} };
+  const ck = {
+    get: n => { const m = document.cookie.split("; ").find(c => c.indexOf(n + "=") === 0); return m ? m.slice(n.length + 1) : null; },
+    set: (n, v, keep) => { document.cookie = n + "=" + v + "; path=/; SameSite=Lax" + (location.protocol === "https:" ? "; Secure" : "") + (keep ? "; max-age=31536000" : ""); },
+    del: n => { document.cookie = n + "=; path=/; max-age=0"; }
+  };
+  const CHUNK = 3000;
+  const authStorage = {
+    getItem(key) {
+      try {
+        const n = +ck.get(key + ".n");
+        if (n > 0) { let s = ""; for (let i = 0; i < n; i++) { const p = ck.get(key + "." + i); if (p === null) { s = null; break; } s += p; } if (s !== null) return decodeURIComponent(s); }
+      } catch (e) {}
+      try { return localStorage.getItem(key) || sessionStorage.getItem(key); } catch (e) { return null; }
+    },
+    setItem(key, value) {
+      authStorage.removeItem(key);
+      const keep = keepOn(), enc = encodeURIComponent(value), n = Math.ceil(enc.length / CHUNK);
+      for (let i = 0; i < n; i++) ck.set(key + "." + i, enc.slice(i * CHUNK, (i + 1) * CHUNK), keep);
+      ck.set(key + ".n", String(n), keep);
+      if (+ck.get(key + ".n") !== n) { try { (keep ? localStorage : sessionStorage).setItem(key, value); } catch (e) {} } // cookies blocked
+    },
+    removeItem(key) {
+      try { const n = +ck.get(key + ".n") || 0; for (let i = 0; i < n; i++) ck.del(key + "." + i); ck.del(key + ".n"); } catch (e) {}
+      try { localStorage.removeItem(key); sessionStorage.removeItem(key); } catch (e) {}
+    }
+  };
+  const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storage: authStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }, global: { fetch: (url, opts = {}) => {
     // plain-object headers so the page also works inside preview sandboxes
     const h = {}; new Headers(opts.headers || {}).forEach((v, k) => { h[k] = v; });
     return fetch(url, Object.assign({}, opts, { headers: h }));
@@ -310,7 +337,12 @@
   const els = {}, EN = {};
   document.querySelectorAll("[data-t]").forEach(el => { const k = el.dataset.t; (els[k] = els[k] || []).push(el); EN[k] = el.textContent; });
   // Messages shown by script (not tied to an element) are translated through the same tables.
-  const MSG = { errEmpty: "Please enter your username and password.", errBad: "Incorrect username or password." };
+  const MSG = {
+    errEmpty: "Please enter your username and password.",
+    errBad: "Incorrect username or password.",
+    errUnconfirmed: "Your email isn’t verified yet. Use the code or link we emailed you, then log in.",
+    errRate: "Too many attempts. Please wait a few minutes and try again."
+  };
   Object.keys(MSG).forEach(k => { EN[k] = MSG[k]; els[k] = []; });
   const KEYS = Object.keys(EN);
   const langLabel = document.getElementById("langLabel");
@@ -428,6 +460,11 @@
     } catch (e) {}
     setUser(name || (session.user.email || "").split("@")[0] || "User");
   }
+
+  /* ---------- login: accepts a USERNAME or an EMAIL ----------
+     - contains "@"  -> treated as an email and signed in directly (usernames are letters/numbers only, so they never contain "@")
+     - anything else -> treated as a username; the database function get_email_for_username() turns it into the email */
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   let busy = false;
   const doLogin = async e => {
     e.preventDefault();
@@ -435,33 +472,42 @@
     const u = document.getElementById("fUser"), p = document.getElementById("fPass");
     const id = u.value.trim();
     if (!id || !p.value) { showErr("errEmpty"); return; }
-    if (!sb) { showErr("errBad"); return; }
+    if (!sb) { showRaw("Can’t reach the server. Please try again later."); return; }
     busy = true;
+    const btn = document.getElementById("loginBtn"); btn.disabled = true;
     try {
-      let email = id;
-      if (!id.includes("@")) {
-        // username -> email lookup (see supabase_setup.sql)
+      let email;
+      if (id.includes("@")) {
+        if (!EMAIL_RE.test(id)) { showErr("errBad"); return; }
+        email = id.toLowerCase();
+      } else {
         const r = await sb.rpc("get_email_for_username", { u: id });
-        if (r.error) { console.error(r.error); showRaw("Setup problem: " + r.error.message); return; }
-        if (!r.data) { showErr("errBad"); p.value = ""; return; }
+        if (r.error) {
+          console.error(r.error);
+          showRaw(/could not find the function|does not exist/i.test(r.error.message || "")
+            ? "Setup problem: the get_email_for_username function is missing in Supabase."
+            : "Setup problem: " + r.error.message);
+          return;
+        }
+        if (!r.data) { showErr("errBad"); p.value = ""; return; } // no such username
         email = r.data;
       }
+      setKeep(document.getElementById("fKeep").checked); // checked: stay signed in for a year; unchecked: until the browser closes
       const { data, error } = await sb.auth.signInWithPassword({ email, password: p.value });
       if (error) {
         console.error(error);
         if (/invalid login credentials/i.test(error.message)) showErr("errBad");
+        else if (/not confirmed/i.test(error.message)) showErr("errUnconfirmed");
+        else if (/rate limit|too many/i.test(error.message)) showErr("errRate");
+        else if (/failed to fetch|network|load failed/i.test(error.message)) showRaw("Can’t reach the server. Check your internet connection and try again.");
         else showRaw("Login problem: " + error.message);
         p.value = ""; return;
       }
-      try {
-        if (document.getElementById("fKeep").checked) localStorage.removeItem(SESSION_ONLY);
-        else { localStorage.setItem(SESSION_ONLY, "1"); sessionStorage.setItem(SESSION_ONLY, "1"); }
-      } catch (e2) {}
       hideErr();
       u.value = ""; p.value = "";
       await showSession(data.session);
     } catch (err) { console.error(err); showRaw("Something went wrong: " + (err && err.message || err)); }
-    finally { busy = false; }
+    finally { busy = false; btn.disabled = false; }
   };
   document.getElementById("fShow").addEventListener("click", () => {
     const p = document.getElementById("fPass"), show = p.type === "password";
@@ -502,8 +548,6 @@
   setUser(null);
   if (sb) (async () => {
     try {
-      // "Keep me logged in" unchecked: end the session when the browser was closed
-      if (localStorage.getItem(SESSION_ONLY) && !sessionStorage.getItem(SESSION_ONLY)) await sb.auth.signOut();
       const { data } = await sb.auth.getSession();
       await showSession(data.session);
       sb.auth.onAuthStateChange((ev) => { if (ev === "SIGNED_OUT") setUser(null); });
