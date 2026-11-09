@@ -163,7 +163,7 @@
     <div class="viewport">
       <!-- STEP: Create Account -->
       <section class="panel" id="p-create">
-        <form id="form" novalidate autocomplete="off">
+        <form id="form" novalidate>
           <div class="fail" id="formFail" hidden></div>
           <div class="fail" id="problems" role="alert" hidden></div>
           <p class="hint"><span class="req">*</span> Required</p>
@@ -181,15 +181,15 @@
           <div class="field">
             <label class="lab" for="uName">Choose a display name for your account<span class="req" title="Required">*</span></label>
             <p class="hint">Use 3-20 alphanumeric characters, no spaces.</p>
-            <input type="text" id="uName" maxlength="20" autocapitalize="off" autocomplete="username">
+            <input type="text" id="uName" name="username" maxlength="20" autocapitalize="off" autocomplete="username">
             <div class="err" id="e-user"></div>
           </div>
 
           <div class="full-only">
             <span class="lab" style="display:block;font-weight:bold;margin-bottom:2px">Please enter your full name:<span class="req" title="Required">*</span></span>
             <div class="row2">
-              <div class="field"><label for="fName">First Name:</label><input type="text" id="fName" maxlength="50"><div class="err" id="e-fname"></div></div>
-              <div class="field"><label for="lName">Last Name:</label><input type="text" id="lName" maxlength="50"><div class="err" id="e-lname"></div></div>
+              <div class="field"><label for="fName">First Name:</label><input type="text" id="fName" name="given-name" maxlength="50" autocomplete="given-name"><div class="err" id="e-fname"></div></div>
+              <div class="field"><label for="lName">Last Name:</label><input type="text" id="lName" name="family-name" maxlength="50" autocomplete="family-name"><div class="err" id="e-lname"></div></div>
             </div>
             <div class="field">
               <span class="lab">Gender:<span class="req" title="Required">*</span></span>
@@ -204,9 +204,9 @@
           <div class="field">
             <label class="lab" for="pw1">Choose your password<span class="req" title="Required">*</span></label>
             <p class="hint">10 - 200 characters, no spaces.</p>
-            <label for="pw1">Password:</label><br><input type="password" id="pw1" maxlength="200" autocomplete="new-password">
+            <label for="pw1">Password:</label><br><input type="password" id="pw1" name="password" maxlength="200" autocomplete="new-password">
             <div class="err" id="e-pw"></div>
-            <div style="margin-top:6px"><label for="pw2">Confirm Password:</label><br><input type="password" id="pw2" maxlength="200" autocomplete="new-password"></div>
+            <div style="margin-top:6px"><label for="pw2">Confirm Password:</label><br><input type="password" id="pw2" name="password-confirm" maxlength="200" autocomplete="new-password"></div>
             <div class="err" id="e-pw2"></div>
             <label class="inline"><input type="checkbox" id="showPw"> Show passwords</label>
           </div>
@@ -214,7 +214,7 @@
           <div class="field">
             <label class="lab" for="email">Provide your email address<span class="req" title="Required">*</span></label>
             <p class="hint">We will use this to send you a link that helps you recover your account if you forget your password.</p>
-            <input type="email" id="email" maxlength="254">
+            <input type="email" id="email" name="email" maxlength="254" autocomplete="email">
             <div class="err" id="e-email"></div>
           </div>
 
@@ -317,7 +317,38 @@
   /* ---------- Supabase (publishable key only; never put the secret key here) ---------- */
   const SUPABASE_URL = "https://sabjroumudvbelhegqxw.supabase.co";
   const SUPABASE_KEY = "sb_publishable_aCkLMO762Zpowe5dr6BstQ_ZCYfVjIk";
-  const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { global: { fetch: (url, opts = {}) => {
+  /* ---------- keep-signed-in: the Supabase session is kept in a cookie (split into chunks because it is bigger than 4 KB),
+     with browser storage as a fallback if cookies are blocked. Same code on the home and register pages so both share the login. ---------- */
+  const KEEP_KEY = "frutigerooms-keep";
+  const keepOn = () => { try { return localStorage.getItem(KEEP_KEY) !== "0"; } catch (e) { return true; } };
+  const setKeep = v => { try { localStorage.setItem(KEEP_KEY, v ? "1" : "0"); } catch (e) {} };
+  const ck = {
+    get: n => { const m = document.cookie.split("; ").find(c => c.indexOf(n + "=") === 0); return m ? m.slice(n.length + 1) : null; },
+    set: (n, v, keep) => { document.cookie = n + "=" + v + "; path=/; SameSite=Lax" + (location.protocol === "https:" ? "; Secure" : "") + (keep ? "; max-age=31536000" : ""); },
+    del: n => { document.cookie = n + "=; path=/; max-age=0"; }
+  };
+  const CHUNK = 3000;
+  const authStorage = {
+    getItem(key) {
+      try {
+        const n = +ck.get(key + ".n");
+        if (n > 0) { let s = ""; for (let i = 0; i < n; i++) { const p = ck.get(key + "." + i); if (p === null) { s = null; break; } s += p; } if (s !== null) return decodeURIComponent(s); }
+      } catch (e) {}
+      try { return localStorage.getItem(key) || sessionStorage.getItem(key); } catch (e) { return null; }
+    },
+    setItem(key, value) {
+      authStorage.removeItem(key);
+      const keep = keepOn(), enc = encodeURIComponent(value), n = Math.ceil(enc.length / CHUNK);
+      for (let i = 0; i < n; i++) ck.set(key + "." + i, enc.slice(i * CHUNK, (i + 1) * CHUNK), keep);
+      ck.set(key + ".n", String(n), keep);
+      if (+ck.get(key + ".n") !== n) { try { (keep ? localStorage : sessionStorage).setItem(key, value); } catch (e) {} } // cookies blocked
+    },
+    removeItem(key) {
+      try { const n = +ck.get(key + ".n") || 0; for (let i = 0; i < n; i++) ck.del(key + "." + i); ck.del(key + ".n"); } catch (e) {}
+      try { localStorage.removeItem(key); sessionStorage.removeItem(key); } catch (e) {}
+    }
+  };
+  const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storage: authStorage, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }, global: { fetch: (url, opts = {}) => {
     const h = {}; new Headers(opts.headers || {}).forEach((v, k) => { h[k] = v; });
     return fetch(url, Object.assign({}, opts, { headers: h }));
   } } }) : null;
@@ -439,9 +470,27 @@
     btn.disabled = false; btn.textContent = "Create Account"; toast("Account created!", "good");
     // ask the browser (Chrome/Edge) to offer to save the new login in its password manager
     try { if (window.PasswordCredential && navigator.credentials && navigator.credentials.store) navigator.credentials.store(new PasswordCredential({ id: data.username, password: data.password, name: data.username })).catch(() => {}); } catch (e) {}
+    offerSavePassword(data.username, data.password);
     await emailDialog(data);
     next();
   });
+
+
+  // Best-effort nudge for the browser's "save password" prompt: submits a tiny hidden login form into a hidden frame.
+  function offerSavePassword(user, pass) {
+    try {
+      let f = document.getElementById("pwSaveForm");
+      if (!f) {
+        const fr = document.createElement("iframe"); fr.name = "pwSaveFrame"; fr.tabIndex = -1; fr.setAttribute("aria-hidden", "true");
+        fr.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;border:0";
+        f = document.createElement("form"); f.id = "pwSaveForm"; f.method = "post"; f.action = "about:blank"; f.target = "pwSaveFrame"; f.setAttribute("aria-hidden", "true");
+        f.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden";
+        f.innerHTML = '<input type="text" name="username" autocomplete="username"><input type="password" name="password" autocomplete="new-password"><input type="submit" tabindex="-1">';
+        document.body.append(fr, f);
+      }
+      f.elements.username.value = user; f.elements.password.value = pass; f.submit();
+    } catch (e) {}
+  }
 
   /* ---------- dialogs: security check (captcha) and email authorisation ---------- */
   const rnd = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
@@ -565,6 +614,7 @@
      The row in "profiles" is created by a database trigger (register_setup.sql), not by this page. */
   async function registerAccount(d, captchaToken) {
     if (!sb) throw new Error("Could not connect to the server. Please try again later.");
+    setKeep(true); // new accounts stay signed in (cookie)
     const age = getAge();
     if (age === null || isNaN(age) || age < MIN_AGE) throw new Error(UNDER_MSG);
     const email = d.email;
